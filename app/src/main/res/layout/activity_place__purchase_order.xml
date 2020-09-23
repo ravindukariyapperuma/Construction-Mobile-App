@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -45,7 +46,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/imageView2"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="RtlCompat" />
 
         </RelativeLayout>
 
@@ -54,7 +56,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-
+            android:fontFamily="sans-serif"
             android:paddingTop="20dp"
 
 
@@ -70,57 +72,121 @@
             android:gravity="center_horizontal" />
 
         <LinearLayout
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/no"
+                android:id="@+id/supplier"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="100dp"
                 android:layout_marginLeft="10dp"
                 android:textSize="18dp"
                 android:textColor="#000000"
-                android:text="Enter Requisition No" />
+                android:text="Enter Supplier" />
 
-            <EditText
-                android:id="@+id/destxt"
+            <Spinner
+                android:id="@+id/supplyspin"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:ems="10"
+                android:layout_margin="10dp"
                 android:paddingLeft="10dp"
                 android:textColor="#BDBDBD"
                 android:padding="10dp"
                 android:inputType="textPersonName"
                 android:background="#ffffff"
-                android:hint="Enter Requisition No "
+                android:hint="Select Supplier :  "
 
                 />
+
             <TextView
-                android:id="@+id/des"
+                android:id="@+id/delAdd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+
                 android:layout_marginLeft="10dp"
                 android:textSize="18dp"
                 android:textColor="#000000"
-                android:text="Item List" />
+                android:text="Enter Delivery Address" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/approveRV"
-                android:paddingTop="10dp"
-                android:paddingBottom="30dp"
+            <EditText
+                android:id="@+id/addLine1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="50dp"
+                android:ems="10"
+                android:layout_margin="10dp"
+                android:paddingLeft="10dp"
+                android:textColor="#BDBDBD"
+                android:padding="10dp"
+                android:inputType="textPersonName"
+                android:background="#ffffff"
+                android:hint="Enter Address Line 1  :  "/>
 
-            </androidx.recyclerview.widget.RecyclerView>
+            <EditText
+                android:id="@+id/addLine2"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:ems="10"
+                android:layout_margin="10dp"
+                android:paddingLeft="10dp"
+                android:textColor="#BDBDBD"
+                android:padding="10dp"
+                android:inputType="textPersonName"
+                android:background="#ffffff"
+                android:hint="Enter Address Line 2  :  "/>
+
+
+            <Spinner
+                android:id="@+id/selectcity"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:ems="10"
+                android:layout_margin="10dp"
+                android:paddingLeft="10dp"
+                android:textColor="#BDBDBD"
+                android:padding="10dp"
+                android:inputType="textPersonName"
+                android:background="#ffffff"
+                android:hint="Select City :  "
+
+                />
+
+            <TextView
+                android:id="@+id/reddate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="20dp"
+                android:paddingLeft="10dp"
+                android:textSize="18dp"
+                android:textColor="#000000"
+                android:text="Enter Required Date : " />
+
+
+
+
+            <EditText
+                android:id="@+id/requireDate"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:ems="10"
+                android:clickable="true"
+                android:layout_margin="10dp"
+                android:paddingLeft="10dp"
+                android:textColor="#BDBDBD"
+                android:padding="10dp"
+
+                android:background="#ffffff"
+                android:editable="false"
+                android:hint="Select Date"/>
+
 
         </LinearLayout>
+
+
         <Button
-            android:id="@+id/add_item"
+            android:id="@+id/Addrequisition"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
@@ -128,8 +194,14 @@
             android:padding="15dp"
             android:layout_margin="20dp"
             android:textColor="#FFFFFF"
-            android:text="Approve Requisition"
+            android:text="Add Requisition"
             android:gravity="center_horizontal" />
 
+
+
+
+
+
     </LinearLayout>
+
 </ScrollView>
