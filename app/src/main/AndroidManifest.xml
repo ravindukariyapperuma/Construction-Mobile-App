@@ -9,13 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".place_purchase_Order_List"></activity>
-        <activity android:name=".Approve_Requisition" />
+        <activity android:name=".place_Purchase_order"></activity>
+        <activity android:name=".place_purchase_Order_List" />
         <activity android:name=".itemList" />
+        <activity android:name=".place_purchase_order_Item_List" />
         <activity android:name=".test1" />
         <activity android:name=".MainActivity" />
         <activity
-            android:name=".place_Purchase_order"
+            android:name=".Approve_Requisition"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

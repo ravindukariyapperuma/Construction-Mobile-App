@@ -62,7 +62,7 @@
 
 
 
-            android:text="Approve Requisition"
+            android:text="Place Purchase Order"
             android:textColor="@android:color/white"
             android:textSize="34sp"
 
