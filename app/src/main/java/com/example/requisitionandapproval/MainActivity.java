@@ -2,22 +2,18 @@ package com.example.requisitionandapproval;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ClipData;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-
-import org.json.JSONObject;
-
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -25,6 +21,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Body;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
         endpoints = retrofit.create(Endpoints.class);
 
         Button add_item = findViewById(R.id.add_item);
+        Button button = findViewById(R.id.button);
+
         destxt = findViewById(R.id.destxt);
         qty1 = findViewById(R.id.qty1);
         price = findViewById(R.id.price);
@@ -51,6 +50,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 sendPostRequest();
+            }
+        });
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendGETRequest();
             }
         });
     }
@@ -64,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
 
         add_item.setOnClickListener(new View.OnClickListener(){
 
-
             @Override
             public void onClick(View view) {
                 HashMap <String, String> map = new HashMap<>();
@@ -76,7 +81,8 @@ public class MainActivity extends AppCompatActivity {
                 call.enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
-                    System.out.println("pass");
+                        System.out.println("pass");
+
                     }
 
                     @Override
@@ -88,5 +94,37 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void sendGETRequest(){
+
+        destxt = findViewById(R.id.destxt);
+        HashMap <String, String> map = new HashMap<>();
+        map.put("username", destxt.getText().toString());
+        Call<List<ItemResult>> call = endpoints.getItemListByUser(map);
+        call.enqueue(new Callback<List<ItemResult>>() {
+            @Override
+            public void onResponse(Call<List<ItemResult>> call, Response<List<ItemResult>> response) {
+                System.out.println("passssed");
+                if(response.code() ==200){
+                    Toast.makeText(MainActivity.this, response.message(), Toast.LENGTH_LONG).show();
+                }
+                List<ItemResult> it = response.body();
+                for(int i=0;i<2;i++){
+                    it.get(i);
+                    System.out.println("product " + it.get(i).getItemID());
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<List<ItemResult>> call, Throwable t) {
+                System.out.println("failed");
+                Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
+
+            }
+
+        });
+
     }
 }

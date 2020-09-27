@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.requisitionandapproval">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
@@ -11,27 +12,28 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme"
-        tools:targetApi="m">
-        <activity android:name=".place_Purchase_order"></activity>
+        android:usesCleartextTraffic="true"
+        tools:targetApi="m">aseda
+        <activity android:name=".itemList"
+            />
+        <activity android:name=".place_Purchase_order" />
         <activity android:name=".place_purchase_Order_List" />
-        <activity android:name=".itemList" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".place_purchase_order_Item_List" />
         <activity android:name=".test1" />
         <activity
             android:name=".Approve_Requisition"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        </activity>
-
-        <activity android:name=".MainActivity" >
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+        <activity
+            android:name=".UserLogin"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>
