@@ -5,10 +5,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.requisitionandapproval.ApiClient.ApiClient;
+import com.example.requisitionandapproval.ApiClient.Endpoints;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,9 +22,11 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class itemList extends AppCompatActivity {
+    ApiClient apiClient = new ApiClient();
+
     private Retrofit retrofit;
     private Endpoints endpoints;
-    private String Base_URL = "http://10.0.2.2:3000";
+    private String Base_URL = apiClient.getBASE_URL();
     private TextView destxt,qty1,price, sef;
 
     @Override

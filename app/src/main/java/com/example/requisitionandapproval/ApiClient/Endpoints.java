@@ -1,5 +1,9 @@
-package com.example.requisitionandapproval;
+package com.example.requisitionandapproval.ApiClient;
+import com.example.requisitionandapproval.ItemResult;
 import com.example.requisitionandapproval.model.userLogin;
+import com.example.requisitionandapproval.model.userRegisterModel;
+import com.example.requisitionandapproval.model.commonModels;
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -24,4 +28,8 @@ public interface Endpoints {
     @POST("/users/userLogin")
 //    Call<JSONResponse> getItemListByUser(@Body HashMap<String, String> map);
     Call<userLogin> userLogin(@Body HashMap<String, String> map);
+
+    @POST("/users/registerUsers")
+//    Call<JSONResponse> getItemListByUser(@Body HashMap<String, String> map);
+    Call<Void> userRegister(@Body HashMap<String, String> map);
 }

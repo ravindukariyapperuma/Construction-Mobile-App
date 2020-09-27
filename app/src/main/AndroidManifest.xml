@@ -14,9 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
-        tools:targetApi="m">aseda
-        <activity android:name=".itemList"
-            />
+        tools:targetApi="m">
+        <activity android:name=".MainClasses.Users.UserLogin"></activity>
+        <activity android:name=".itemList" />
         <activity android:name=".place_Purchase_order" />
         <activity android:name=".place_purchase_Order_List" />
         <activity android:name=".MainActivity" />
@@ -24,10 +24,8 @@
         <activity android:name=".test1" />
         <activity
             android:name=".Approve_Requisition"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
-        <activity
-            android:name=".UserLogin"
-            >
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".MainClasses.Users.registerUsers">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

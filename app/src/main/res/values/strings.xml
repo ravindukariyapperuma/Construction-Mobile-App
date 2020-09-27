@@ -11,4 +11,13 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="username">TextView</string>
     <string name="usernme">username</string>
+
+    <string name="users_prompt">Choose User types</string>
+
+    <string-array name="userTypes">
+        <item>sitemanager</item>
+        <item>supplier</item>
+        <item>accountant</item>
+    </string-array>
+
 </resources>
