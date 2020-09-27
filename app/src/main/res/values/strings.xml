@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">RequisitionandApproval</string>
+    <string name="title_activity_user_login">UserLogin</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="username">TextView</string>
+    <string name="usernme">username</string>
+
+    <string name="users_prompt">Choose User types</string>
+
+    <string-array name="userTypes">
+        <item>sitemanager</item>
+        <item>supplier</item>
+        <item>accountant</item>
+    </string-array>
+
 </resources>
