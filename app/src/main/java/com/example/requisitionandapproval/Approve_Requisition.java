@@ -19,7 +19,7 @@ public class Approve_Requisition extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_approve__requisition);
 
-         recyclerView = findViewById(R.id.approveRV);
+        recyclerView = findViewById(R.id.approveRV);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
