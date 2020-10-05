@@ -71,23 +71,22 @@ public class itemList extends AppCompatActivity {
                 List<ItemResult> it = response.body();
                 String[] values = new String[it.size()];
 
-                for(int i=0;i<it.size();i++) {
-                    it.get(i);
-                    System.out.println("product " + it.get(i).getItemID());
-                    values[i] = it.get(i).getItemID();
 
-                    Itemcls[] itemcls = new Itemcls[]{
 
-                        new Itemcls(it.get(i).getItemID(), it.get(i).getItem_Quantity(), it.get(i).getItem_AgreedPrice(), R.drawable.edit, R.drawable.delete),
+                Itemcls[] itemcls  =  new Itemcls[it.size()];
 
-                    };
+                for(int i =0 ; i<it.size(); i++){
 
-                    itemAdapter adapter= new itemAdapter(itemcls,itemList.this);
-                    recyclerView.setAdapter(adapter);
 
-                    System.out.println("cx" + i);
+
+                    itemcls[i] =new Itemcls (it.get(i).getItemID(), it.get(i).getItem_Quantity(), it.get(i).getItem_AgreedPrice(), R.drawable.edit, R.drawable.delete);
 
                 }
+
+                itemAdapter adapter= new itemAdapter(itemcls,itemList.this);
+                recyclerView.setAdapter(adapter);
+
+
 
 
             }
