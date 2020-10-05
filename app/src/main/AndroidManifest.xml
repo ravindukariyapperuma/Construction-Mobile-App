@@ -18,13 +18,13 @@
         <activity android:name=".MainClasses.Items.itemList"></activity>
         <activity android:name=".MainClasses.Users.registerUsers" />
         <activity android:name=".MainClasses.Order.place_Purchase_order" />
-        <activity android:name=".place_purchase_Order_List" />
+        <activity android:name=".MainClasses.Users.UserLogin" />
         <activity android:name=".MainActivity" />
         <activity android:name=".MainClasses.Order.place_purchase_order_Item_List" />
         <activity
             android:name=".Approve_Requisition"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".MainClasses.Users.UserLogin">
+        <activity android:name=".MainClasses.SiteManager.place_purchase_Order_List">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private Endpoints endpoints;
     private String Base_URL = "http://10.0.2.2:3000";
     private TextView destxt,qty1,price, sef;
-    public String username;
+    public String username, userID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,8 +44,10 @@ public class MainActivity extends AppCompatActivity {
         qty1 = findViewById(R.id.qty1);
         price = findViewById(R.id.price);
         Intent intent = getIntent();
+
+        //get the username and userID when user login to the system
         username = intent.getStringExtra("username");
-        System.out.println("Username is"+username);
+        userID = intent.getStringExtra("userID");
 
         add_item.setOnClickListener(new View.OnClickListener() {
 
@@ -86,9 +88,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 HashMap <String, String> map = new HashMap<>();
                 map.put("username", username);
-                map.put("ItemID", destxt.getText().toString());
-                map.put("Item_Description", qty1.getText().toString());
+                map.put("ItemID", userID);
+                map.put("Item_Description", destxt.getText().toString());
                 map.put("Item_Quantity", price.getText().toString());
+                map.put("Item_AgreedPrice", price.getText().toString());
 
                 Call<Void> call = endpoints.saveItemList(map);
                 call.enqueue(new Callback<Void>() {

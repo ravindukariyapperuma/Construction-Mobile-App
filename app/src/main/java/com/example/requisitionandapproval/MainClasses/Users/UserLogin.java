@@ -74,6 +74,7 @@ public class UserLogin extends AppCompatActivity {
                 try {
                     jsonObject = new JSONObject(new Gson().toJson(response.body()));
                     String nme = jsonObject.getString("userType");
+                    String userID = jsonObject.getString("userID");
 
                     if(nme.equals("supplier")){
                         System.out.println("Supplier Login");
@@ -87,6 +88,7 @@ public class UserLogin extends AppCompatActivity {
                     }else if(nme.equals("employee")){
                         Intent it = new Intent(getBaseContext(), com.example.requisitionandapproval.MainActivity.class);
                         it.putExtra("username", jsonObject.getString("username"));
+                        it.putExtra("userID", jsonObject.getString("userID"));
                         startActivity(it);
                         System.out.println("employee");
 

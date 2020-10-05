@@ -1,12 +1,16 @@
 package com.example.requisitionandapproval.ApiClient;
+import com.example.requisitionandapproval.model.GetReqNumbers;
 import com.example.requisitionandapproval.model.ItemResult;
+import com.example.requisitionandapproval.model.arrayModelClass.itemResultCls;
 import com.example.requisitionandapproval.model.userLogin;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface Endpoints {
@@ -27,4 +31,13 @@ public interface Endpoints {
     @POST("/users/registerUsers")
 //    Call<JSONResponse> getItemListByUser(@Body HashMap<String, String> map);
     Call<Void> userRegister(@Body HashMap<String, String> map);
+
+
+    //sitemanager's ENDPOINTS
+    @GET("/items/getRequestingNumberList")
+    Call<List<GetReqNumbers>> getAllReqNumbers();
+
+    @POST("/items/getItemsByReqNumbers")
+    Call<List<GetReqNumbers>> getItemsByReqID();
+
 }
