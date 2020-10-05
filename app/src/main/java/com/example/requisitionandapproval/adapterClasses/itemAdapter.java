@@ -1,16 +1,19 @@
-package com.example.requisitionandapproval;
+package com.example.requisitionandapproval.adapterClasses;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.requisitionandapproval.model.Itemcls;
+import com.example.requisitionandapproval.MainClasses.Items.itemList;
+import com.example.requisitionandapproval.R;
 
 public class itemAdapter extends RecyclerView.Adapter<itemAdapter.ViewHolder> {
 

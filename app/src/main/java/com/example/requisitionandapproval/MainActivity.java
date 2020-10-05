@@ -2,6 +2,7 @@ package com.example.requisitionandapproval;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.requisitionandapproval.ApiClient.Endpoints;
+import com.example.requisitionandapproval.model.ItemResult;
 
 import java.util.HashMap;
 import java.util.List;
@@ -25,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private Endpoints endpoints;
     private String Base_URL = "http://10.0.2.2:3000";
     private TextView destxt,qty1,price, sef;
+    public String username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,12 +37,15 @@ public class MainActivity extends AppCompatActivity {
         endpoints = retrofit.create(Endpoints.class);
 
         Button add_item = findViewById(R.id.add_item);
-        Button button = findViewById(R.id.button);
+        Button button = findViewById(R.id.showBtn);
+        Button showBtn = findViewById(R.id.showBtn);
 
         destxt = findViewById(R.id.destxt);
         qty1 = findViewById(R.id.qty1);
         price = findViewById(R.id.price);
-
+        Intent intent = getIntent();
+        username = intent.getStringExtra("username");
+        System.out.println("Username is"+username);
 
         add_item.setOnClickListener(new View.OnClickListener() {
 
@@ -55,11 +61,21 @@ public class MainActivity extends AppCompatActivity {
                 sendGETRequest();
             }
         });
+
+        showBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent it = new Intent(getBaseContext(), com.example.requisitionandapproval.MainClasses.Items.itemList.class);
+                it.putExtra("username", username);
+                startActivity(it);
+            }
+        });
     }
 
     public void sendPostRequest(){
 
         Button add_item = findViewById(R.id.add_item);
+
         destxt = findViewById(R.id.destxt);
         qty1 = findViewById(R.id.qty1);
         price = findViewById(R.id.price);
@@ -69,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 HashMap <String, String> map = new HashMap<>();
+                map.put("username", username);
                 map.put("ItemID", destxt.getText().toString());
                 map.put("Item_Description", qty1.getText().toString());
                 map.put("Item_Quantity", price.getText().toString());
@@ -78,12 +95,10 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
                         System.out.println("pass");
-
                     }
                     @Override
                     public void onFailure(Call<Void> call, Throwable t) {
                         System.out.println("fail");
-
                     }
                 });
             }

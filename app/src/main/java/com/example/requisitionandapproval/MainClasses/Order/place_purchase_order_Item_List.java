@@ -1,10 +1,14 @@
-package com.example.requisitionandapproval;
+package com.example.requisitionandapproval.MainClasses.Order;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+
+import com.example.requisitionandapproval.R;
+import com.example.requisitionandapproval.adapterClasses.place_Item_listAdapter;
+import com.example.requisitionandapproval.model.Itemcls;
 
 public class place_purchase_order_Item_List extends AppCompatActivity {
 

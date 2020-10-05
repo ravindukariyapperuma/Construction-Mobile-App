@@ -1,18 +1,13 @@
 package com.example.requisitionandapproval.ApiClient;
-import com.example.requisitionandapproval.ItemResult;
+import com.example.requisitionandapproval.model.ItemResult;
 import com.example.requisitionandapproval.model.userLogin;
-import com.example.requisitionandapproval.model.userRegisterModel;
-import com.example.requisitionandapproval.model.commonModels;
 
 import java.util.HashMap;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.HTTP;
 import retrofit2.http.POST;
-import retrofit2.http.GET;
-import retrofit2.http.Path;
 
 public interface Endpoints {
     @POST("/items/addItems")

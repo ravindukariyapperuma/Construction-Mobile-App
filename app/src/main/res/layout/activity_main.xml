@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -165,16 +165,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1">
 
-            <Button
-                android:id="@+id/add_item"
-                android:layout_width="350dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:background="@drawable/button_states"
-                android:padding="15dp"
-                android:textColor="#FFFFFF"
-                android:text="Add Item To List" />
-
         </RelativeLayout>
 
         <RelativeLayout
@@ -182,17 +172,18 @@
             android:layout_height="wrap_content"
             android:layout_weight="1">
 
-            <Button
-                android:id="@+id/button"
-                android:layout_width="350dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="40dp"
-                android:textColor="#FFFFFF"
-                android:background="@drawable/button_show_btn"
-                android:text="Show Item List" />
-
         </RelativeLayout>
+
+        <Button
+            android:id="@+id/add_item"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:background="@drawable/button_states"
+            android:padding="15dp"
+            android:text="Add Item To List"
+            android:textColor="#FFFFFF" />
+
     </LinearLayout>
 
 <LinearLayout
@@ -211,6 +202,16 @@
         android:layout_marginBottom="50dp"
 
         />
+
+    <Button
+        android:id="@+id/showBtn"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="40dp"
+        android:background="@drawable/button_show_btn"
+        android:text="Show Item List"
+        android:textColor="#FFFFFF" />
 </LinearLayout>
 
 </LinearLayout>
