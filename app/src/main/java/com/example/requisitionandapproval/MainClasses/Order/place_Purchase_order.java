@@ -1,4 +1,4 @@
-package com.example.requisitionandapproval;
+package com.example.requisitionandapproval.MainClasses.Order;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+
+import com.example.requisitionandapproval.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

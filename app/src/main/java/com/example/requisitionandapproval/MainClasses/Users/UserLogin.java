@@ -6,7 +6,7 @@ import android.os.Bundle;
 import com.example.requisitionandapproval.ApiClient.Endpoints;
 import com.example.requisitionandapproval.R;
 import com.example.requisitionandapproval.model.userLogin;
-import com.example.requisitionandapproval.place_Purchase_order;
+import com.example.requisitionandapproval.MainClasses.Order.place_Purchase_order;
 import com.google.gson.Gson;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -84,8 +84,11 @@ public class UserLogin extends AppCompatActivity {
 
                         System.out.println("sitemanager Login");
 
-                    }else if(nme.equals("other")){
-                        System.out.println("other");
+                    }else if(nme.equals("employee")){
+                        Intent it = new Intent(getBaseContext(), com.example.requisitionandapproval.MainActivity.class);
+                        it.putExtra("username", jsonObject.getString("username"));
+                        startActivity(it);
+                        System.out.println("employee");
 
                     }else {
                         Toast.makeText(UserLogin.this, "Invlaid Login", Toast.LENGTH_LONG).show();

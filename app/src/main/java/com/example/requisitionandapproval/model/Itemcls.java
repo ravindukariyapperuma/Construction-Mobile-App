@@ -1,4 +1,4 @@
-package com.example.requisitionandapproval;
+package com.example.requisitionandapproval.model;
 
 public class Itemcls {
 
