@@ -22,9 +22,9 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".MainClasses.Order.place_purchase_order_Item_List" />
         <activity
-            android:name=".Approve_Requisition"
+            android:name=".MainClasses.SiteManager.place_purchase_Order_List"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".MainClasses.SiteManager.place_purchase_Order_List">
+        <activity android:name=".MainClasses.SiteManager.Approve_Requisition">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,7 +1,8 @@
 package com.example.requisitionandapproval.ApiClient;
+import com.example.requisitionandapproval.model.GetReqDetailsByID;
 import com.example.requisitionandapproval.model.GetReqNumbers;
 import com.example.requisitionandapproval.model.ItemResult;
-import com.example.requisitionandapproval.model.arrayModelClass.itemResultCls;
+
 import com.example.requisitionandapproval.model.userLogin;
 
 import java.util.ArrayList;
@@ -38,6 +39,6 @@ public interface Endpoints {
     Call<List<GetReqNumbers>> getAllReqNumbers();
 
     @POST("/items/getItemsByReqNumbers")
-    Call<List<GetReqNumbers>> getItemsByReqID();
+    Call<List<GetReqDetailsByID>> getItemsByReqID(@Body HashMap<String, String> map);
 
 }
