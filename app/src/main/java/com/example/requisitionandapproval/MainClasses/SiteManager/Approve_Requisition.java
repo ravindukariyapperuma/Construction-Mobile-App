@@ -106,7 +106,7 @@ public class Approve_Requisition extends AppCompatActivity {
     public void getdetails_from_reqID(String reqID){
 
         HashMap<String, String> map = new HashMap<>();
-        map.put("ItemID", "a2709de0-0711-11eb-b4fa-ebe76c8280ca");
+        map.put("ItemID", reqID);
 
 
         Call<List<GetReqDetailsByID>> call = endpoints.getItemsByReqID(map);
