@@ -106,7 +106,7 @@ public class Approve_Requisition extends AppCompatActivity {
     public void getdetails_from_reqID(String reqID){
 
         HashMap<String, String> map = new HashMap<>();
-        map.put("ItemID", reqID);
+        map.put("ItemID", "a2709de0-0711-11eb-b4fa-ebe76c8280ca");
 
 
         Call<List<GetReqDetailsByID>> call = endpoints.getItemsByReqID(map);
@@ -130,6 +130,8 @@ public class Approve_Requisition extends AppCompatActivity {
 
                     String[] username = new String[it.size()];
                     for(int i=0; i<it.size(); i++){
+                        System.out.println("HEEREEEEEE");
+                        System.out.println("sefij"+it.get(0).getUserName());
                         approveModels.add(new ApproveModel(it.get(i).getDes(),it.get(i).getQty(),it.get(i).getPrice()));
                        // username[i]= it.get(i).getUserName();
 

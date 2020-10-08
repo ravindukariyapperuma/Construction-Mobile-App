@@ -2,26 +2,26 @@ package com.example.requisitionandapproval.model;
 
 public class GetReqDetailsByID {
 
-    private String userName;
-    private String Des;
-    private String qty;
-    private String price;
+    private String username;
+    private String Item_Description;
+    private String Item_Quantity;
+    private String Item_AgreedPrice;
 
 
 
     public String getUserName() {
-        return userName;
+        return username;
     }
 
     public String getDes() {
-        return Des;
+        return Item_Description;
     }
 
     public String getQty() {
-        return qty;
+        return Item_Quantity;
     }
 
     public String getPrice() {
-        return price;
+        return Item_AgreedPrice;
     }
 }
