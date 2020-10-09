@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,6 +21,7 @@ public class ApproveAdapter extends RecyclerView.Adapter<ApproveAdapter.ViewHold
 //    ApproveModel[] approveModels;
 //    Context context;
     List<ApproveModel> approveModels1;
+
 
 
     public ApproveAdapter( List<ApproveModel> approveModels1) {
@@ -44,6 +46,8 @@ public class ApproveAdapter extends RecyclerView.Adapter<ApproveAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
        ApproveModel approveModel =approveModels1.get(position);
         holder.ItemName.setText(approveModel.getITName());
+        holder.qty.setText(approveModel.getQty());
+        holder.price.setText(approveModel.getPrice());
 
         boolean isExpanded = approveModels1.get(position).isExpanded();
         holder.expandableLayout.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
@@ -52,12 +56,20 @@ public class ApproveAdapter extends RecyclerView.Adapter<ApproveAdapter.ViewHold
 
     @Override
     public int getItemCount() {
-        return approveModels1.size();
+        if(approveModels1 == null ){
+            return 0;
+        }else{
+            return approveModels1.size();
+
+        }
+
+
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         TextView ItemName;
+        EditText qty, price;
         Button down;
 
         ConstraintLayout expandableLayout;
@@ -67,6 +79,8 @@ public class ApproveAdapter extends RecyclerView.Adapter<ApproveAdapter.ViewHold
             super(itemView);
 
             ItemName = itemView.findViewById(R.id.titleTextView);
+            qty = itemView.findViewById(R.id.QTY);
+            price = itemView.findViewById(R.id.PRICE);
             expandableLayout = itemView.findViewById(R.id.expandableLayout);
             down = itemView.findViewById(R.id.arrowdown);
 

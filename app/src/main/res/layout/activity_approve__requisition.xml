@@ -86,8 +86,8 @@
                 android:textColor="#000000"
                 android:text="Enter Requisition No" />
 
-            <EditText
-                android:id="@+id/destxt"
+            <Spinner
+                android:id="@+id/reqIDS"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:ems="10"
