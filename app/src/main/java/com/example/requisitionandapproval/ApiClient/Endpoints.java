@@ -3,6 +3,7 @@ import com.example.requisitionandapproval.model.GetReqDetailsByID;
 import com.example.requisitionandapproval.model.GetReqNumbers;
 import com.example.requisitionandapproval.model.ItemResult;
 
+import com.example.requisitionandapproval.model.ReqApprovalModel;
 import com.example.requisitionandapproval.model.userLogin;
 
 import java.util.ArrayList;
@@ -40,5 +41,8 @@ public interface Endpoints {
 
     @POST("/items/getItemsByReqNumbers")
     Call<List<GetReqDetailsByID>> getItemsByReqID(@Body HashMap<String, String> map);
+
+    @POST("/sitemanager/approveReq")
+    Call<ReqApprovalModel> requestApproval(@Body ReqApprovalModel[] rm);
 
 }

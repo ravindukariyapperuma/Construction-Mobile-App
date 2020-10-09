@@ -8,22 +8,20 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.requisitionandapproval.ApiClient.ApiClient;
 import com.example.requisitionandapproval.ApiClient.Endpoints;
-import com.example.requisitionandapproval.MainClasses.Users.UserLogin;
 import com.example.requisitionandapproval.R;
 import com.example.requisitionandapproval.adapterClasses.ApproveAdapter;
 import com.example.requisitionandapproval.model.ApproveModel;
 import com.example.requisitionandapproval.model.GetReqDetailsByID;
 import com.example.requisitionandapproval.model.GetReqNumbers;
-import com.example.requisitionandapproval.model.userLogin;
-import com.google.gson.Gson;
-
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.example.requisitionandapproval.model.Itemcls;
+import com.example.requisitionandapproval.model.ItemsDetails;
+import com.example.requisitionandapproval.model.ReqApprovalModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,7 +37,9 @@ public class Approve_Requisition extends AppCompatActivity {
 
     List<ApproveModel> approveModels;
     RecyclerView recyclerView;
+    ReqApprovalModel[] rm;
     ApiClient apiClient = new ApiClient();
+    Button add_item;
     private Retrofit retrofit;
     private Endpoints endpoints;
     private String Base_URL = apiClient.getBASE_URL();
@@ -55,10 +55,16 @@ public class Approve_Requisition extends AppCompatActivity {
         recyclerView = findViewById(R.id.approveRV);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
+        add_item = findViewById(R.id.add_item);
 
         getAllReqNumbers();
 
+        add_item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requestingApproval(rm);
+            }
+        });
 //        ApproveModel[] approveModels = new ApproveModel[]{
 //
 //                new ApproveModel("Tokyo cement"),
@@ -69,7 +75,7 @@ public class Approve_Requisition extends AppCompatActivity {
 //        };
 //        ApproveAdapter adapter= new ApproveAdapter(approveModels,Approve_Requisition.this);
 //        recyclerView.setAdapter(adapter);
-       // getdetails_from_reqID(RequisitionId);
+        // getdetails_from_reqID(RequisitionId);
         final Spinner reqId = (Spinner) findViewById(R.id.reqIDS);
 
         reqId.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -87,23 +93,25 @@ public class Approve_Requisition extends AppCompatActivity {
         });
 
 
-       // initdata();
+        // initdata();
 
     }
+
     private void initRecyclerView() {
         ApproveAdapter approveAdapter = new ApproveAdapter(approveModels);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(approveAdapter);
     }
-    private void initdata(){
+
+    private void initdata() {
         approveModels = new ArrayList<>();
-        approveModels.add(new ApproveModel("Tokya Cementt","20","20.00"));
-        approveModels.add(new ApproveModel("Pipes","10","30.00"));
-        approveModels.add(new ApproveModel("Brikes","50","35"));
+        approveModels.add(new ApproveModel("Tokya Cementt", "20", "20.00"));
+        approveModels.add(new ApproveModel("Pipes", "10", "30.00"));
+        approveModels.add(new ApproveModel("Brikes", "50", "35"));
 
     }
 
-    public void getdetails_from_reqID(String reqID){
+    public void getdetails_from_reqID(final String reqID) {
 
         HashMap<String, String> map = new HashMap<>();
         map.put("ItemID", reqID);
@@ -114,31 +122,24 @@ public class Approve_Requisition extends AppCompatActivity {
         call.enqueue(new Callback<List<GetReqDetailsByID>>() {
             @Override
             public void onResponse(Call<List<GetReqDetailsByID>> call, Response<List<GetReqDetailsByID>> response) {
-                if(response.code() ==200){
+                if (response.code() == 200) {
                     Toast.makeText(Approve_Requisition.this, response.message(), Toast.LENGTH_LONG).show();
                 }
                 approveModels = new ArrayList<>();
-//                approveModels.add(new ApproveModel("Tokya Cementt","20","20.00"));
-//                approveModels.add(new ApproveModel("Pipes","10","30.00"));
-//                approveModels.add(new ApproveModel("Brikes","50","35"));
-                try {
-//                    jsonObject = new JSONObject(new Gson().toJson(response.body()));
-//                    String nme = jsonObject.getString("username");
-//
-//                    System.out.println(jsonObject.length()+"ycyctgcitvig");
-                    List<GetReqDetailsByID> it = response.body();
 
-                    String[] username = new String[it.size()];
-                    for(int i=0; i<it.size(); i++){
-                        System.out.println("HEEREEEEEE");
-                        System.out.println("sefij"+it.get(0).getUserName());
-                        approveModels.add(new ApproveModel(it.get(i).getDes(),it.get(i).getQty(),it.get(i).getPrice()));
-                       // username[i]= it.get(i).getUserName();
+                try {
+                    List<GetReqDetailsByID> it = response.body();
+                    rm  =  new ReqApprovalModel[it.size()];
+                    for (int i = 0; i < it.size(); i++) {
+                        approveModels.add(new ApproveModel(it.get(i).getDes(), it.get(i).getQty(), it.get(i).getPrice()));
+                        String nm = it.get(i).getPrice();
+                        rm[i] = new ReqApprovalModel(it.get(i).getDes(), it.get(i).getPrice(), it.get(i).getPrice(), it.get(i).getPrice());
 
                     }
-                   // System.out.println(username[0]);
+
+                    // System.out.println(username[0]);
                     initRecyclerView();
-                }catch (Exception e){
+                } catch (Exception e) {
 
                     e.printStackTrace();
                     System.out.println("123123123123");
@@ -148,31 +149,26 @@ public class Approve_Requisition extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<GetReqDetailsByID>> call, Throwable t) {
-                System.out.println("failed" +t);
+                System.out.println("failed" + t);
                 Toast.makeText(Approve_Requisition.this, "Error", Toast.LENGTH_LONG).show();
             }
         });
 
 
-
-
-
     }
 
     public void getAllReqNumbers() {
-        System.out.println("HEREE");
 
         Call<List<GetReqNumbers>> call = endpoints.getAllReqNumbers();
-        System.out.println("HEREE12");
         call.enqueue(new Callback<List<GetReqNumbers>>() {
             @Override
-            public void onResponse(Call <List<GetReqNumbers>> call, Response<List<GetReqNumbers>> response) {
+            public void onResponse(Call<List<GetReqNumbers>> call, Response<List<GetReqNumbers>> response) {
                 try {
                     List<GetReqNumbers> it = response.body();
                     String[] arraySpinner = new String[it.size()];
-                    for(int i=0; i<it.size(); i++){
+                    for (int i = 0; i < it.size(); i++) {
 
-                        arraySpinner[i]= it.get(i).getItemIDs();
+                        arraySpinner[i] = it.get(i).getItemIDs();
                     }
                     Spinner s = (Spinner) findViewById(R.id.reqIDS);
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(Approve_Requisition.this, android.R.layout.simple_spinner_item, arraySpinner);
@@ -182,11 +178,29 @@ public class Approve_Requisition extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
+
             @Override
             public void onFailure(Call<List<GetReqNumbers>> call, Throwable t) {
-                System.out.println("ERROR::"+ t);
+                System.out.println("ERROR::" + t);
             }
         });
     }
 
+    public void requestingApproval(ReqApprovalModel[] rm) {
+
+        Call<ReqApprovalModel> call = endpoints.requestApproval(rm);
+
+        call.enqueue(new Callback<ReqApprovalModel>() {
+            @Override
+            public void onResponse(Call<ReqApprovalModel> call, Response<ReqApprovalModel> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<ReqApprovalModel> call, Throwable t) {
+
+            }
+        });
+
+    }
 }
