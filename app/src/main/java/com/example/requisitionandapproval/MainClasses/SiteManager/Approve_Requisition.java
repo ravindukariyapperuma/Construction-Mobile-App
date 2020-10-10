@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -22,6 +23,11 @@ import com.example.requisitionandapproval.model.GetReqNumbers;
 import com.example.requisitionandapproval.model.Itemcls;
 import com.example.requisitionandapproval.model.ItemsDetails;
 import com.example.requisitionandapproval.model.ReqApprovalModel;
+import com.example.requisitionandapproval.MainClasses.Order.place_Purchase_order;
+import com.google.gson.Gson;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,6 +46,7 @@ public class Approve_Requisition extends AppCompatActivity {
     ReqApprovalModel[] rm;
     ApiClient apiClient = new ApiClient();
     Button add_item;
+    static int val;
     private Retrofit retrofit;
     private Endpoints endpoints;
     private String Base_URL = apiClient.getBASE_URL();
@@ -129,15 +136,20 @@ public class Approve_Requisition extends AppCompatActivity {
 
                 try {
                     List<GetReqDetailsByID> it = response.body();
-                    rm  =  new ReqApprovalModel[it.size()];
+                    rm = new ReqApprovalModel[it.size()];
                     for (int i = 0; i < it.size(); i++) {
                         approveModels.add(new ApproveModel(it.get(i).getDes(), it.get(i).getQty(), it.get(i).getPrice()));
                         String nm = it.get(i).getPrice();
-                        rm[i] = new ReqApprovalModel(it.get(i).getDes(), it.get(i).getPrice(), it.get(i).getPrice(), it.get(i).getPrice());
-
+                        for (int j = 0; j < it.size(); j++) {
+                            if(i == 0){
+                                int itmprive = Integer.parseInt(it.get(j).getPrice());
+                                int quantity = Integer.parseInt(it.get(j).getPrice());
+                                val = itmprive * quantity;
+                            }
+                        }
+                        rm[i] = new ReqApprovalModel(reqID, it.get(i).getDes(), it.get(i).getPrice(),it.get(i).getQty() );
                     }
 
-                    // System.out.println(username[0]);
                     initRecyclerView();
                 } catch (Exception e) {
 
@@ -153,9 +165,8 @@ public class Approve_Requisition extends AppCompatActivity {
                 Toast.makeText(Approve_Requisition.this, "Error", Toast.LENGTH_LONG).show();
             }
         });
-
-
     }
+
 
     public void getAllReqNumbers() {
 
@@ -189,15 +200,30 @@ public class Approve_Requisition extends AppCompatActivity {
     public void requestingApproval(ReqApprovalModel[] rm) {
 
         Call<ReqApprovalModel> call = endpoints.requestApproval(rm);
-
         call.enqueue(new Callback<ReqApprovalModel>() {
             @Override
             public void onResponse(Call<ReqApprovalModel> call, Response<ReqApprovalModel> response) {
+                JSONObject jsonObject = null;
+                try {
+                    jsonObject = new JSONObject(new Gson().toJson(response.body()));
+                    String nme = jsonObject.getString("status");
+                    System.out.println("nme"+nme);
+                    if(nme.equals("PENDING")){
+                        System.out.println("Navigate to manager port");
 
+                    }else{
+                        Intent it = new Intent(getBaseContext(), com.example.requisitionandapproval.MainClasses.Order.place_Purchase_order.class);
+                        startActivity(it);
+                        System.out.println("Navigate to sitemanager payment");
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
             public void onFailure(Call<ReqApprovalModel> call, Throwable t) {
+                System.out.println("ERROR::"+t);
 
             }
         });

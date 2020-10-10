@@ -7,8 +7,9 @@ public class ReqApprovalModel {
     private String itemID;
     private String itemPrice;
     private String itemQty;
+    private String status;
 
-    public ReqApprovalModel(String reqID, String itemID, String itemPrice, String itemQty) {
+    public ReqApprovalModel( String reqID, String itemID, String itemPrice, String itemQty) {
         this.reqID = reqID;
         this.itemID = itemID;
         this.itemPrice = itemPrice;
@@ -29,5 +30,8 @@ public class ReqApprovalModel {
 
     public String getItemQty() {
         return itemQty;
+    }
+    public String getStatus() {
+        return status;
     }
 }
