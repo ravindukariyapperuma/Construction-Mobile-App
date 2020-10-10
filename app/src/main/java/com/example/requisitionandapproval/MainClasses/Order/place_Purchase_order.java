@@ -36,7 +36,6 @@ public class place_Purchase_order extends AppCompatActivity {
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                 updateLabel();
             }
-
         };
 
         requireDate.setOnClickListener(new View.OnClickListener() {
@@ -49,8 +48,6 @@ public class place_Purchase_order extends AppCompatActivity {
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
-
-
     }
 
     private void updateLabel() {

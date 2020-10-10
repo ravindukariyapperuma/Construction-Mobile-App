@@ -7,14 +7,13 @@ public class ReqApprovalModel {
     private String itemID;
     private String itemPrice;
     private String itemQty;
-    private Integer total;
+    private String status;
 
-    public ReqApprovalModel(Integer total, String reqID, String itemID, String itemPrice, String itemQty) {
+    public ReqApprovalModel( String reqID, String itemID, String itemPrice, String itemQty) {
         this.reqID = reqID;
         this.itemID = itemID;
         this.itemPrice = itemPrice;
         this.itemQty = itemQty;
-        this.total = total;
     }
 
     public String getReqID() {
@@ -31,5 +30,8 @@ public class ReqApprovalModel {
 
     public String getItemQty() {
         return itemQty;
+    }
+    public String getStatus() {
+        return status;
     }
 }

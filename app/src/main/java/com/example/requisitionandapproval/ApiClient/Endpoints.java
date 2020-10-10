@@ -40,10 +40,16 @@ public interface Endpoints {
     @GET("/items/getRequestingNumberList")
     Call<List<GetReqNumbers>> getAllReqNumbers();
 
+    //get all the items by request number
     @POST("/items/getItemsByReqNumbers")
     Call<List<GetReqDetailsByID>> getItemsByReqID(@Body HashMap<String, String> map);
 
+    //Site manager approve/reject endpoint
     @POST("/sitemanager/approveReq")
     Call<ReqApprovalModel> requestApproval(@Body ReqApprovalModel[] rm);
+
+    //Site Manager place purchase order
+    @POST("/sitemanager/placeorders")
+    Call<Void> placeOrder(@Body HashMap<String, String> map);
 
 }
