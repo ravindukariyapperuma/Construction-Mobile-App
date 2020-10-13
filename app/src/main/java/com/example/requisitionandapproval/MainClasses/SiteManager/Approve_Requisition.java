@@ -51,6 +51,8 @@ public class Approve_Requisition extends AppCompatActivity {
     private Endpoints endpoints;
     private String Base_URL = apiClient.getBASE_URL();
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,8 +85,8 @@ public class Approve_Requisition extends AppCompatActivity {
 //        ApproveAdapter adapter= new ApproveAdapter(approveModels,Approve_Requisition.this);
 //        recyclerView.setAdapter(adapter);
         // getdetails_from_reqID(RequisitionId);
-        final Spinner reqId = (Spinner) findViewById(R.id.reqIDS);
 
+        final Spinner reqId = (Spinner) findViewById(R.id.reqIDS);
         reqId.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -212,7 +214,10 @@ public class Approve_Requisition extends AppCompatActivity {
                         System.out.println("Navigate to manager port");
 
                     }else{
+                        Spinner reqId = (Spinner) findViewById(R.id.reqIDS);
+                        String RequisitionId = reqId.getSelectedItem().toString();
                         Intent it = new Intent(getBaseContext(), com.example.requisitionandapproval.MainClasses.Order.place_Purchase_order.class);
+                        it.putExtra("reqid",RequisitionId);
                         startActivity(it);
                         System.out.println("Navigate to sitemanager payment");
                     }
