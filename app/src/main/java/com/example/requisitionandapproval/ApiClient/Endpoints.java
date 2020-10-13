@@ -4,6 +4,8 @@ import com.example.requisitionandapproval.model.GetReqNumbers;
 import com.example.requisitionandapproval.model.ItemResult;
 
 import com.example.requisitionandapproval.model.ReqApprovalModel;
+import com.example.requisitionandapproval.model.getOrderedItemList;
+import com.example.requisitionandapproval.model.placedorderReqId;
 import com.example.requisitionandapproval.model.userLogin;
 
 import java.util.ArrayList;
@@ -51,5 +53,12 @@ public interface Endpoints {
     //Site Manager place purchase order
     @POST("/sitemanager/placeorders")
     Call<Void> placeOrder(@Body HashMap<String, String> map);
+
+    //Site Manager get req IDs of place purchase order
+    @POST("/sitemanager/getAllOrdersReqIds")
+    Call<placedorderReqId> getApprovedOrderIDs();
+
+    @POST("/sitemanager/getPlaceOrders")
+    Call<List<getOrderedItemList>> getOrderedItems(@Body HashMap<String, String> map);
 
 }

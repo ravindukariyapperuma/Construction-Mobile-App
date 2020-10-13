@@ -14,13 +14,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.requisitionandapproval.R;
 import com.example.requisitionandapproval.model.Itemcls;
 import com.example.requisitionandapproval.MainClasses.Order.place_purchase_order_Item_List;
+import com.example.requisitionandapproval.model.orderItemcls;
 
 public class place_Item_listAdapter extends RecyclerView.Adapter<place_Item_listAdapter.ViewHolder> {
 
-    Itemcls[] itemcls;
+    orderItemcls[] itemcls;
     Context context;
 
-    public place_Item_listAdapter(Itemcls[] itemcls, place_purchase_order_Item_List activity) {
+    public place_Item_listAdapter(orderItemcls[] itemcls, place_purchase_order_Item_List activity) {
         this.itemcls = itemcls;
         this.context =activity;
 
@@ -41,12 +42,12 @@ public class place_Item_listAdapter extends RecyclerView.Adapter<place_Item_list
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        final Itemcls itemclsList = itemcls[position];
+        final orderItemcls itemclsList = itemcls[position];
         holder.ItemName.setText(itemclsList.getItName());
         holder.Qty.setText(itemclsList.getQty());
         holder.PriceperItem.setText(itemclsList.getPrice());
-        holder.edit.setImageResource(itemclsList.getEditbtn());
-        holder.delete.setImageResource(itemclsList.getDeleteBtn());
+//        holder.edit.setImageResource(itemclsList.getEditbtn());
+//        holder.delete.setImageResource(itemclsList.getDeleteBtn());
 
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
