@@ -3,10 +3,14 @@ import com.example.requisitionandapproval.model.GetReqDetailsByID;
 import com.example.requisitionandapproval.model.GetReqNumbers;
 import com.example.requisitionandapproval.model.ItemResult;
 
+import com.example.requisitionandapproval.model.OrderDoneModel;
 import com.example.requisitionandapproval.model.ReqApprovalModel;
 import com.example.requisitionandapproval.model.getOrderedItemList;
 import com.example.requisitionandapproval.model.placedorderReqId;
 import com.example.requisitionandapproval.model.userLogin;
+import com.google.gson.JsonObject;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -61,4 +65,7 @@ public interface Endpoints {
     @POST("/sitemanager/getPlaceOrders")
     Call<List<getOrderedItemList>> getOrderedItems(@Body HashMap<String, String> map);
 
+    //Site Manager clicked received Items
+    @POST("/sitemanager/deleteReceivedItems")
+    Call<Void> orderDone(@Body HashMap<String, String[]> map);
 }
