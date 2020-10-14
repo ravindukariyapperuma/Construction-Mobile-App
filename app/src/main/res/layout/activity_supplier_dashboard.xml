@@ -31,4 +31,12 @@
         app:layout_constraintHorizontal_bias="0.302"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/supplierr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="supplier"
+        tools:layout_editor_absoluteX="70dp"
+        tools:layout_editor_absoluteY="81dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

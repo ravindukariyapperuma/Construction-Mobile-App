@@ -77,7 +77,7 @@ public class itemList extends AppCompatActivity {
                 assert it != null;
                 Itemcls[] itemcls  =  new Itemcls[it.size()];
                 for(int i =0 ; i<it.size(); i++){
-                    itemcls[i] =new Itemcls (it.get(i).getItemID(), it.get(i).getItem_Quantity(), it.get(i).getItem_AgreedPrice(), R.drawable.edit, R.drawable.delete);
+                    itemcls[i] =new Itemcls (it.get(i).getItem_Description(), it.get(i).getItem_Quantity(), it.get(i).getItem_AgreedPrice(), R.drawable.edit, R.drawable.delete);
                 }
                 itemAdapter adapter= new itemAdapter(itemcls,itemList.this);
                 recyclerView.setAdapter(adapter);
@@ -85,7 +85,7 @@ public class itemList extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<ItemResult>> call, Throwable t) {
-                System.out.println("failed");
+                System.out.println(t);
 
             }
 
