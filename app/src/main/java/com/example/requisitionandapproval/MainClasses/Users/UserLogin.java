@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +39,8 @@ public class UserLogin extends AppCompatActivity {
     Button login;
     TextView username;
     TextView password;
+    ImageView registerLinkArrow;
+    TextView registerLink;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,25 @@ public class UserLogin extends AppCompatActivity {
         setContentView(R.layout.content_user_login);
         retrofit = new Retrofit.Builder().baseUrl(Base_URL).addConverterFactory(GsonConverterFactory.create()).build();
         endpoints = retrofit.create(Endpoints.class);
+
+        registerLink = findViewById(R.id.registerLink);
+        registerLinkArrow = findViewById(R.id.RegisterLinkArrow);
+        registerLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),registerUsers.class);
+                startActivity(intent);
+            }
+        });
+        registerLinkArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),registerUsers.class);
+                startActivity(intent);
+            }
+        });
+
+
         login = findViewById(R.id.loginBtn);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
