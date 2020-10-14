@@ -45,7 +45,7 @@ public class Approve_Requisition extends AppCompatActivity {
     RecyclerView recyclerView;
     ReqApprovalModel[] rm;
     ApiClient apiClient = new ApiClient();
-    Button add_item;
+    Button add_item,decline_item;
     static int val;
     private Retrofit retrofit;
     private Endpoints endpoints;
@@ -65,6 +65,7 @@ public class Approve_Requisition extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         add_item = findViewById(R.id.add_item);
+        decline_item = findViewById(R.id.decline_item);
 
         getAllReqNumbers();
 
@@ -102,6 +103,12 @@ public class Approve_Requisition extends AppCompatActivity {
         });
 
 
+        decline_item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                decline_Request();
+            }
+        });
         // initdata();
 
     }
@@ -234,4 +241,34 @@ public class Approve_Requisition extends AppCompatActivity {
         });
 
     }
+
+    public void decline_Request(){
+
+
+        Spinner decSpin = findViewById(R.id.reqIDS);
+
+        HashMap<String, String> map = new HashMap<>();
+        map.put("reqID", decSpin.getSelectedItem().toString());
+
+
+        Call<Void> call = endpoints.declinesitemanagerRequsition(map);
+
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+
+                Toast.makeText(Approve_Requisition.this,"Decline Successful",Toast.LENGTH_LONG).show();
+
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                System.out.println("failed" + t);
+                Toast.makeText(Approve_Requisition.this,"Decline Faild",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+    }
+
 }

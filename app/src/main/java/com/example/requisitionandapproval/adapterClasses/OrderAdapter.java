@@ -5,8 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -17,11 +20,13 @@ import com.example.requisitionandapproval.R;
 import com.example.requisitionandapproval.model.ApproveModel;
 import com.example.requisitionandapproval.model.orderModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> {
     orderModel[] orderModels;
     Context context;
+    public ArrayList<String> checkedItems = new ArrayList<>();
     public OrderAdapter( orderModel[] orderModels, goods_receipt activity) {
 
         this.orderModels = orderModels;
@@ -63,6 +68,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         TextView ItemName;
+        CheckBox ordercheck;
 //        EditText qty, price;
 //        Button down;
 
@@ -73,6 +79,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             super(itemView);
 
             ItemName = itemView.findViewById(R.id.titleTextView);
+            ordercheck = itemView.findViewById(R.id.ordercheck);
 //            qty = itemView.findViewById(R.id.QTY);
 //            price = itemView.findViewById(R.id.PRICE);
 //            expandableLayout = itemView.findViewById(R.id.expandableLayout);
@@ -94,6 +101,22 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
 //
 //                }
 //            });
+            ordercheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked == true){
+                        checkedItems.add(ItemName.getText().toString());
+                        Toast.makeText(context,"Clicked",Toast.LENGTH_SHORT).show();
+                    }else{
+
+                            checkedItems.remove(ItemName.getText().toString());
+
+                        Toast.makeText(context,"Unclicked",Toast.LENGTH_SHORT).show();
+                    }
+
+                    System.out.println(checkedItems.size());
+                }
+            });
 
 
         }

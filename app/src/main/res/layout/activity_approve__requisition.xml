@@ -126,9 +126,21 @@
             android:textAlignment="center"
             android:background="@drawable/place_button"
             android:padding="15dp"
-            android:layout_margin="20dp"
+            android:layout_margin="15dp"
             android:textColor="#FFFFFF"
             android:text="Approve Requisition"
+            android:gravity="center_horizontal" />
+
+        <Button
+            android:id="@+id/decline_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:background="@drawable/declinebtn"
+            android:padding="15dp"
+            android:layout_margin="15dp"
+            android:textColor="#FFFFFF"
+            android:text="Decline Requisition"
             android:gravity="center_horizontal" />
 
     </LinearLayout>
