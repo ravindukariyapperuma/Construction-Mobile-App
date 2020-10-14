@@ -37,4 +37,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="apprive"/>
+
+    <Button
+        android:id="@+id/goods"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="goods"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/approve"
+        tools:layout_editor_absoluteY="7dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,14 +4,14 @@ import java.util.ArrayList;
 
 public class ReqApprovalModel {
     private String reqID;
-    private String itemID;
+    private String itemDescription;
     private String itemPrice;
     private String itemQty;
     private String status;
 
-    public ReqApprovalModel( String reqID, String itemID, String itemPrice, String itemQty) {
+    public ReqApprovalModel( String reqID, String itemDescription, String itemPrice, String itemQty) {
         this.reqID = reqID;
-        this.itemID = itemID;
+        this.itemDescription = itemDescription;
         this.itemPrice = itemPrice;
         this.itemQty = itemQty;
     }
@@ -21,7 +21,7 @@ public class ReqApprovalModel {
     }
 
     public String getItemID() {
-        return itemID;
+        return itemDescription;
     }
 
     public String getItemPrice() {

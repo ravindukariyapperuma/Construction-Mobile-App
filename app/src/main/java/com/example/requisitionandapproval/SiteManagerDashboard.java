@@ -8,9 +8,10 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.requisitionandapproval.MainClasses.SiteManager.Approve_Requisition;
+import com.example.requisitionandapproval.MainClasses.SiteManager.goods_receipt;
 
 public class SiteManagerDashboard extends AppCompatActivity {
-    Button approve;
+    Button approve,goods;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +25,14 @@ public class SiteManagerDashboard extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent1  = new Intent(SiteManagerDashboard.this, Approve_Requisition.class);
+                startActivity(intent1);
+            }
+        });
+        goods = findViewById(R.id.goods);
+        goods.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1  = new Intent(SiteManagerDashboard.this, goods_receipt.class);
                 startActivity(intent1);
             }
         });
