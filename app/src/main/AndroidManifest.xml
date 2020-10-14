@@ -15,6 +15,7 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
+
         <activity android:name=".SupplierDashboard">
 
         </activity>
@@ -32,6 +33,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainClasses.Suppliers.SupplierProfile" />
+
+        <activity android:name=".MainClasses.SiteManager.goods_receipt"></activity>
+        <activity android:name=".MainClasses.SiteManager.Approve_Requisition" />
+
         <activity android:name=".MainClasses.Items.itemList" />
         <activity android:name=".MainClasses.Users.registerUsers" />
         <activity android:name=".MainClasses.Order.place_Purchase_order" />
@@ -41,7 +46,13 @@
         <activity
             android:name=".MainClasses.SiteManager.place_purchase_Order_List"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
         <activity android:name=".MainClasses.SiteManager.Approve_Requisition" />
+
+        <activity android:name=".MainClasses.Managers.ManagerApprove">
+            
+        </activity>
+
     </application>
 
 </manifest>

@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
-    <LinearLayout
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="@drawable/background1"
         tools:context=".MainActivity">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -50,18 +61,23 @@
 
         </RelativeLayout>
 
-
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="50dp"
+                android:orientation="vertical">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:fontFamily="sans-serif"
+
             android:paddingTop="20dp"
 
 
 
 
-            android:text="Place Purchase Order"
+            android:text="Goods Receipt"
             android:textColor="@android:color/white"
             android:textSize="34sp"
 
@@ -69,8 +85,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView"
             android:gravity="center_horizontal" />
+            </LinearLayout>
+        </LinearLayout>
 
         <LinearLayout
+            android:paddingTop="25dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -86,7 +107,7 @@
                 android:text="Enter Requisition No" />
 
             <Spinner
-                android:id="@+id/reqNoSpin"
+                android:id="@+id/orderreqIDS"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:ems="10"
@@ -98,48 +119,45 @@
                 android:hint="Enter Requisition No "
 
                 />
-
-
-
-
-
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-
-            android:orientation="vertical">
-
-            <Button
-                android:id="@+id/ShowItemList"
+            <TextView
+                android:id="@+id/des"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_margin="10dp"
-                android:background="@drawable/button_show_btn"
-                android:text="Show Item List"
-                android:textColor="#FFFFFF" />
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:textSize="18dp"
+                android:textColor="#000000"
+                android:text="Item List" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/orderItemList"
+                android:paddingTop="10dp"
+                android:paddingBottom="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </androidx.recyclerview.widget.RecyclerView>
 
         </LinearLayout>
-
-<!--        <Button-->
-<!--            android:id="@+id/ppo"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:textAlignment="center"-->
-<!--            android:background="@drawable/place_button"-->
-<!--            android:padding="15dp"-->
-
-<!--            android:layout_margin="20dp"-->
-<!--            android:textColor="#FFFFFF"-->
-<!--            android:text="Place Purchase Order"-->
-<!--            android:gravity="center_horizontal" />-->
-
+        <Button
+            android:id="@+id/RecivedItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:background="@drawable/place_button"
+            android:padding="15dp"
+            android:layout_margin="20dp"
+            android:textColor="#FFFFFF"
+            android:text="Received Item"
+            android:gravity="center_horizontal" />
 
     </LinearLayout>
+
+
+
+
+
+
+
 
 </ScrollView>
