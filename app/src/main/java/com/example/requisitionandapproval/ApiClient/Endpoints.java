@@ -3,8 +3,10 @@ import com.example.requisitionandapproval.model.GetReqDetailsByID;
 import com.example.requisitionandapproval.model.GetReqNumbers;
 import com.example.requisitionandapproval.model.ItemResult;
 
+import com.example.requisitionandapproval.model.ManagerReqNumbers;
 import com.example.requisitionandapproval.model.OrderDoneModel;
 import com.example.requisitionandapproval.model.ReqApprovalModel;
+import com.example.requisitionandapproval.model.getDetaislByManagerReqID;
 import com.example.requisitionandapproval.model.getOrderedItemList;
 import com.example.requisitionandapproval.model.placedorderReqId;
 import com.example.requisitionandapproval.model.userLogin;
@@ -68,4 +70,20 @@ public interface Endpoints {
     //Site Manager clicked received Items
     @POST("/sitemanager/deleteReceivedItems")
     Call<Void> orderDone(@Body HashMap<String, String[]> map);
+
+    //Manager's ENDPOINTS
+    @GET("/items/getAllPendingReqNumberList")
+    Call<List<ManagerReqNumbers>> getAllManagerReqNumbers();
+
+    @POST("/items/getPendingItemByReqID")
+    Call<List<getDetaislByManagerReqID>> getItemsByManagerReqID(@Body HashMap<String, String> map);
+
+    @POST("/manager/approval")
+    Call<Void> placeManagerOrder(@Body HashMap<String, String> map);
+
+    @POST("/sitemanager/declineRequest")
+    Call<Void> declinesitemanagerRequsition(@Body HashMap<String, String> map);
+
+    @POST("/manager/declineRequest")
+    Call<Void> declinemanagerRequsition(@Body HashMap<String, String> map);
 }

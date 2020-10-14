@@ -1,9 +1,11 @@
 package com.example.requisitionandapproval.MainClasses.SiteManager;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,12 +23,14 @@ import com.example.requisitionandapproval.R;
 import com.example.requisitionandapproval.adapterClasses.ApproveAdapter;
 import com.example.requisitionandapproval.adapterClasses.OrderAdapter;
 import com.example.requisitionandapproval.adapterClasses.place_Item_listAdapter;
+import com.example.requisitionandapproval.dialog;
 import com.example.requisitionandapproval.model.ApproveModel;
 import com.example.requisitionandapproval.model.OrderDoneModel;
 import com.example.requisitionandapproval.model.getOrderedItemList;
 import com.example.requisitionandapproval.model.orderItemcls;
 import com.example.requisitionandapproval.model.orderModel;
 import com.example.requisitionandapproval.model.placedorderReqId;
+import com.example.requisitionandapproval.popup;
 import com.google.gson.JsonObject;
 
 import org.json.JSONException;
@@ -215,6 +219,13 @@ public class goods_receipt extends AppCompatActivity {
                         System.out.println(response.body());
 
                         getitems();
+
+                        dialog();
+
+//                        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+//                        fragmentTransaction.add(R.id.RecivedItem, new popup() );
+//                        fragmentTransaction.commit();
+
                     }
                     @Override
                     public void onFailure(Call<Void> call, Throwable t) {
@@ -266,6 +277,11 @@ public class goods_receipt extends AppCompatActivity {
 
 
 
+    }
+
+    public void dialog(){
+        dialog di = new dialog();
+        di.show(getSupportFragmentManager(),"Dialog");
     }
 
 }

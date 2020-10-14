@@ -60,7 +60,7 @@
 
 
 
-            android:text="Approve Requisition"
+            android:text="Manager  Approve Requisition"
             android:textColor="@android:color/white"
             android:textSize="34sp"
 
@@ -87,7 +87,7 @@
                 android:text="Enter Requisition No" />
 
             <Spinner
-                android:id="@+id/reqIDS"
+                android:id="@+id/ManagerreqIDS"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:ems="10"
@@ -110,7 +110,7 @@
                 android:text="Item List" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/approveRV"
+                android:id="@+id/ManagerapproveRV"
                 android:paddingTop="10dp"
                 android:paddingBottom="30dp"
                 android:layout_width="match_parent"
@@ -132,7 +132,7 @@
             android:gravity="center_horizontal" />
 
         <Button
-            android:id="@+id/decline_item"
+            android:id="@+id/decline_Requsition"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
