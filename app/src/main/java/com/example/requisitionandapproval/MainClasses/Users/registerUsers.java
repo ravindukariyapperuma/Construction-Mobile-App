@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,6 +35,8 @@ public class registerUsers extends AppCompatActivity {
     TextView email;
     TextView password;
     Spinner sp;
+    ImageView loginLinkArrow;
+    TextView loginLink;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,24 @@ public class registerUsers extends AppCompatActivity {
         setContentView(R.layout.activity_register_users);
         retrofit = new Retrofit.Builder().baseUrl(Base_URL).addConverterFactory(GsonConverterFactory.create()).build();
         endpoints = retrofit.create(Endpoints.class);
+
+        loginLink = findViewById(R.id.loginLink);
+        loginLinkArrow = findViewById(R.id.LoginLinkArrow);
+        loginLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),UserLogin.class);
+                startActivity(intent);
+            }
+        });
+        loginLinkArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),UserLogin.class);
+                startActivity(intent);
+            }
+        });
+
         regBtn = findViewById(R.id.registerBtn);
         regBtn.setOnClickListener(new View.OnClickListener() {
             @Override
