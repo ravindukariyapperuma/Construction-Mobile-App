@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.requisitionandapproval.ApiClient.ApiClient;
 import com.example.requisitionandapproval.ApiClient.Endpoints;
 import com.example.requisitionandapproval.model.ItemResult;
 
@@ -22,10 +23,10 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
-
+    ApiClient apiClient = new ApiClient();
     private Retrofit retrofit;
     private Endpoints endpoints;
-    private String Base_URL = "http://10.0.2.2:3000";
+    private String Base_URL = apiClient.getBASE_URL();
     private TextView destxt,qty1,price, sef;
     public String username, userID;
     @Override
@@ -90,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                 map.put("username", username);
                 map.put("ItemID", userID);
                 map.put("Item_Description", destxt.getText().toString());
-                map.put("Item_Quantity", price.getText().toString());
+                map.put("Item_Quantity", qty1.getText().toString());
                 map.put("Item_AgreedPrice", price.getText().toString());
 
                 Call<Void> call = endpoints.saveItemList(map);

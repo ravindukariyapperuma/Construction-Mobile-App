@@ -116,8 +116,8 @@ public class place_Purchase_order extends AppCompatActivity {
     }
     public void placeOrder(){
 
-        Spinner Suplier = findViewById(R.id.selectcity);
-        Spinner city = findViewById(R.id.supplyspin);
+        Spinner Suplier = findViewById(R.id.supplyspin);
+        Spinner city = findViewById(R.id.selectcity);
         EditText addline1 = findViewById(R.id.addLine1);
         EditText addline2 = findViewById(R.id.addLine2);
         EditText requireDate = findViewById(R.id.requireDate);

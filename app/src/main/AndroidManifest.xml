@@ -47,7 +47,7 @@
             android:name=".MainClasses.SiteManager.place_purchase_Order_List"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
-        <activity android:name=".MainClasses.SiteManager.Approve_Requisition" />
+<!--        <activity android:name=".MainClasses.SiteManager.Approve_Requisition" />-->
 
         <activity android:name=".MainClasses.Managers.ManagerApprove">
             

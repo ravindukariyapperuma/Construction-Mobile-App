@@ -4,7 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.requisitionandapproval.ApiClient.Endpoints;
+import com.example.requisitionandapproval.EmployeeDashboard;
 import com.example.requisitionandapproval.R;
+import com.example.requisitionandapproval.SiteManagerDashboard;
+import com.example.requisitionandapproval.SupplierDashboard;
 import com.example.requisitionandapproval.model.userLogin;
 import com.example.requisitionandapproval.MainClasses.Order.place_Purchase_order;
 import com.google.gson.Gson;
@@ -100,15 +103,18 @@ public class UserLogin extends AppCompatActivity {
 
                     if(nme.equals("supplier")){
                         System.out.println("Supplier Login");
+                        Intent it = new Intent(getBaseContext(), SupplierDashboard.class);
+                        it.putExtra("EXTRA_SESSION_ID", jsonObject.getString("username"));
+                        startActivity(it);
                     }else if(nme.equals("sitemanager")){
-                        Intent it = new Intent(getBaseContext(), place_Purchase_order.class);
+                        Intent it = new Intent(getBaseContext(), SiteManagerDashboard.class);
                         it.putExtra("EXTRA_SESSION_ID", jsonObject.getString("username"));
                         startActivity(it);
 
                         System.out.println("sitemanager Login");
 
                     }else if(nme.equals("employee")){
-                        Intent it = new Intent(getBaseContext(), com.example.requisitionandapproval.MainActivity.class);
+                        Intent it = new Intent(UserLogin.this, EmployeeDashboard.class);
                         it.putExtra("username", jsonObject.getString("username"));
                         it.putExtra("userID", jsonObject.getString("userID"));
                         startActivity(it);
