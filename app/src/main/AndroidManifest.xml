@@ -15,17 +15,11 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-
-        <activity android:name=".SupplierDashboard">
-
-        </activity>
-        <activity android:name=".EmployeeDashboard">
-
-        </activity>
-        <activity android:name=".SiteManagerDashboard">
-
-        </activity>
-        <activity android:name=".welcomeScreen" >
+        <activity android:name=".ManagerDashBoard"></activity>
+        <activity android:name=".SupplierDashboard"></activity>
+        <activity android:name=".EmployeeDashboard"></activity>
+        <activity android:name=".SiteManagerDashboard"></activity>
+        <activity android:name=".welcomeScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -33,10 +27,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainClasses.Suppliers.SupplierProfile" />
-
-        <activity android:name=".MainClasses.SiteManager.goods_receipt"></activity>
+        <activity android:name=".MainClasses.SiteManager.goods_receipt" />
         <activity android:name=".MainClasses.SiteManager.Approve_Requisition" />
-
         <activity android:name=".MainClasses.Items.itemList" />
         <activity android:name=".MainClasses.Users.registerUsers" />
         <activity android:name=".MainClasses.Order.place_Purchase_order" />
@@ -45,14 +37,8 @@
         <activity android:name=".MainClasses.Order.place_purchase_order_Item_List" />
         <activity
             android:name=".MainClasses.SiteManager.place_purchase_Order_List"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-
-<!--        <activity android:name=".MainClasses.SiteManager.Approve_Requisition" />-->
-
-        <activity android:name=".MainClasses.Managers.ManagerApprove">
-            
-        </activity>
-
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" /> <!-- <activity android:name=".MainClasses.SiteManager.Approve_Requisition" /> -->
+        <activity android:name=".MainClasses.Managers.ManagerApprove"></activity>
     </application>
 
 </manifest>
