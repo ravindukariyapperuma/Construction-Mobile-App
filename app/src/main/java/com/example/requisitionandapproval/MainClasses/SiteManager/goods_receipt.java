@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.requisitionandapproval.ApiClient.ApiClient;
 import com.example.requisitionandapproval.ApiClient.Endpoints;
@@ -56,12 +57,19 @@ public class goods_receipt extends AppCompatActivity {
     private Retrofit retrofit;
     private Endpoints endpoints;
     private String Base_URL = apiClient.getBASE_URL();
-
+    String name;
+    TextView uname;
     Context context = this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goods_receipt);
+
+        Intent intent = getIntent();
+        name = intent.getStringExtra("name");
+        uname = findViewById(R.id.uname);
+        uname.setText("Site Manager : "+name );
+
         recyclerView = findViewById(R.id.orderItemList);
         retrofit = new Retrofit.Builder().baseUrl(Base_URL).addConverterFactory(GsonConverterFactory.create()).build();
         endpoints = retrofit.create(Endpoints.class);

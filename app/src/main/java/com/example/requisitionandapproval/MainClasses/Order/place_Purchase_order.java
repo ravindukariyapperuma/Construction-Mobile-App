@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.requisitionandapproval.ApiClient.ApiClient;
@@ -43,10 +44,18 @@ public class place_Purchase_order extends AppCompatActivity {
     private Retrofit retrofit;
     private Endpoints endpoints;
     private String Base_URL = apiClient.getBASE_URL();
+    String name;
+    TextView uname;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_place__purchase_order);
+
+        Intent intent = getIntent();
+        name = intent.getStringExtra("name1");
+        uname = findViewById(R.id.uname);
+
+        uname.setText("Site Manager : "+name );
 
         retrofit = new Retrofit.Builder().baseUrl(Base_URL).addConverterFactory(GsonConverterFactory.create()).build();
         endpoints = retrofit.create(Endpoints.class);
@@ -174,6 +183,7 @@ public class place_Purchase_order extends AppCompatActivity {
                         System.out.println("adawqq"+response.code() );
 
                         Intent intent1 = new Intent(place_Purchase_order.this, place_purchase_Order_List.class);
+                        intent1.putExtra("name",name);
                         startActivity(intent1);
                     }
                 }

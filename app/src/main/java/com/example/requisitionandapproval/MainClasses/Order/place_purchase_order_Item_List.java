@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.example.requisitionandapproval.ApiClient.ApiClient;
 import com.example.requisitionandapproval.ApiClient.Endpoints;
@@ -36,10 +37,19 @@ public class place_purchase_order_Item_List extends AppCompatActivity {
     private Endpoints endpoints;
     private String Base_URL = apiClient.getBASE_URL();
     Context context = this;
+    String name;
+    TextView uname;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_place_purchase_order__item__list);
+
+        Intent intent1 = getIntent();
+        name= intent1.getStringExtra("name");
+        uname = findViewById(R.id.uname);
+        uname.setText("Site Manager : "+name );
+
 
         retrofit = new Retrofit.Builder().baseUrl(Base_URL).addConverterFactory(GsonConverterFactory.create()).build();
         endpoints = retrofit.create(Endpoints.class);

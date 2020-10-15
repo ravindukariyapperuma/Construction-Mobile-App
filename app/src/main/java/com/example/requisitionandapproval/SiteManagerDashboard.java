@@ -18,14 +18,15 @@ public class SiteManagerDashboard extends AppCompatActivity {
         setContentView(R.layout.activity_site_manager_dashboard);
 
         final Intent intent = getIntent();
-        String un = intent.getStringExtra("EXTRA_SESSION_ID");
+        final String un = intent.getStringExtra("EXTRA_SESSION_ID");
 
         approve = findViewById(R.id.approve);
         approve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1  = new Intent(SiteManagerDashboard.this, Approve_Requisition.class);
-                startActivity(intent1);
+                Intent intent  = new Intent(SiteManagerDashboard.this, Approve_Requisition.class);
+                intent.putExtra("name",un);
+                startActivity(intent);
             }
         });
         goods = findViewById(R.id.goods);
@@ -33,6 +34,7 @@ public class SiteManagerDashboard extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent1  = new Intent(SiteManagerDashboard.this, goods_receipt.class);
+                intent1.putExtra("name",un);
                 startActivity(intent1);
             }
         });

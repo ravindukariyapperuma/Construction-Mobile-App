@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private Retrofit retrofit;
     private Endpoints endpoints;
     private String Base_URL = apiClient.getBASE_URL();
-    private TextView destxt,qty1,price, sef;
+    private TextView destxt,qty1,price, sef,name;
     public String username, userID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +49,9 @@ public class MainActivity extends AppCompatActivity {
         //get the username and userID when user login to the system
         username = intent.getStringExtra("username");
         userID = intent.getStringExtra("userID");
+
+        name = findViewById(R.id.name);
+        name.setText("Employee : "+username);
 
         add_item.setOnClickListener(new View.OnClickListener() {
 

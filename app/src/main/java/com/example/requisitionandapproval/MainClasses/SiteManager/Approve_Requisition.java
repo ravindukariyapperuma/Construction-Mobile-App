@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.requisitionandapproval.ApiClient.ApiClient;
@@ -57,6 +58,13 @@ public class Approve_Requisition extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_approve__requisition);
+
+        Intent intent = getIntent();
+        String name = intent.getStringExtra("name");
+
+        TextView uname = findViewById(R.id.name);
+        uname.setText("Site Manager : "+name );
+
 
         retrofit = new Retrofit.Builder().baseUrl(Base_URL).addConverterFactory(GsonConverterFactory.create()).build();
         endpoints = retrofit.create(Endpoints.class);
@@ -221,10 +229,13 @@ public class Approve_Requisition extends AppCompatActivity {
                         System.out.println("Navigate to manager port");
 
                     }else{
+                        Intent intent = getIntent();
+                        String name = intent.getStringExtra("name");
                         Spinner reqId = (Spinner) findViewById(R.id.reqIDS);
                         String RequisitionId = reqId.getSelectedItem().toString();
                         Intent it = new Intent(getBaseContext(), com.example.requisitionandapproval.MainClasses.Order.place_Purchase_order.class);
                         it.putExtra("reqid",RequisitionId);
+                        it.putExtra("name1",name);
                         startActivity(it);
                         System.out.println("Navigate to sitemanager payment");
                     }

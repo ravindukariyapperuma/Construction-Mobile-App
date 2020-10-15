@@ -32,7 +32,7 @@ public class itemList extends AppCompatActivity {
     private Retrofit retrofit;
     private Endpoints endpoints;
     private String Base_URL = apiClient.getBASE_URL();
-    private TextView destxt,qty1,price, sef;
+    private TextView destxt,qty1,price, sef,name;
     private String username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +45,7 @@ public class itemList extends AppCompatActivity {
 
         Button add_item = findViewById(R.id.add_item);
         Button button = findViewById(R.id.showBtn);
+        name = findViewById(R.id.name);
 
         destxt = findViewById(R.id.destxt);
         qty1 = findViewById(R.id.qty1);
@@ -52,6 +53,8 @@ public class itemList extends AppCompatActivity {
         sendGETRequest();
         Intent intent = getIntent();
         username = intent.getStringExtra("username");
+
+        name.setText("Employee : "+username);
 
         final RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
