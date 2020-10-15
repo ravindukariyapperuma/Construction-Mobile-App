@@ -2,6 +2,7 @@ package com.example.requisitionandapproval.MainClasses.Users;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -39,6 +40,7 @@ public class registerUsers extends AppCompatActivity {
     Spinner sp;
     ImageView loginLinkArrow;
     TextView loginLink;
+    Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,10 +108,11 @@ public class registerUsers extends AppCompatActivity {
                                 .show();
 
                     }else {
+
                         new SweetAlertDialog(registerUsers.this,SweetAlertDialog.SUCCESS_TYPE)
                                 .setTitleText("Registration Successful !")
                                 .show();
-                        Intent intent = new Intent(registerUsers.this, UserLogin.class);
+                        Intent intent = new Intent(context, UserLogin.class);
                         startActivity(intent);
                     }
                 }
