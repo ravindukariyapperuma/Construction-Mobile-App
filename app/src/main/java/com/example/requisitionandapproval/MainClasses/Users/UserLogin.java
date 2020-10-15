@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import com.example.requisitionandapproval.ApiClient.Endpoints;
 import com.example.requisitionandapproval.EmployeeDashboard;
+import com.example.requisitionandapproval.ManagerDashBoard;
 import com.example.requisitionandapproval.R;
 import com.example.requisitionandapproval.SiteManagerDashboard;
 import com.example.requisitionandapproval.SupplierDashboard;
@@ -119,6 +120,13 @@ public class UserLogin extends AppCompatActivity {
                         it.putExtra("userID", jsonObject.getString("userID"));
                         startActivity(it);
                         System.out.println("employee");
+
+                    }else if(nme.equals("manager")){
+                        Intent it = new Intent(UserLogin.this, ManagerDashBoard.class);
+                        it.putExtra("username", jsonObject.getString("username"));
+                        it.putExtra("userID", jsonObject.getString("userID"));
+                        startActivity(it);
+                        System.out.println("manager");
 
                     }else {
                         Toast.makeText(UserLogin.this, "Invlaid Login", Toast.LENGTH_LONG).show();

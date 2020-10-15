@@ -17,7 +17,8 @@
     <string-array name="userTypes">
         <item>sitemanager</item>
         <item>supplier</item>
-        <item>accountant</item>
+        <item>employee</item>
+        <item>manager</item>
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
