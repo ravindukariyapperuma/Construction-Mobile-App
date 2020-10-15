@@ -20,10 +20,13 @@ import com.example.requisitionandapproval.MainClasses.SiteManager.place_purchase
 import com.example.requisitionandapproval.MainClasses.Users.UserLogin;
 import com.example.requisitionandapproval.MainClasses.Users.registerUsers;
 import com.example.requisitionandapproval.R;
+import com.example.requisitionandapproval.model.GetReqNumbers;
+import com.example.requisitionandapproval.model.supplierModel;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 
 import retrofit2.Call;
@@ -51,14 +54,7 @@ public class place_Purchase_order extends AppCompatActivity {
         Button Addrequisition = findViewById(R.id.Addrequisition);
 
         requireDate= findViewById(R.id.requireDate);
-
-
-        String []supplier = {"Vishaka","Anuj","Lahiru","Ravindu"};
-
-        Spinner supplyspin = findViewById(R.id.supplyspin);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(place_Purchase_order.this, android.R.layout.simple_spinner_item, supplier);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        supplyspin.setAdapter(adapter);
+        getAllSuppliers();
 
         String []city = {"Jaffna","Kilinochchi","Mannar","Mullaitivu","Vavuniya","Puttalam","Kurunegala","Gampaha","Colombo","Kalutara","Anuradhapura","Polonnaruwa","Matale","Kandy","Nuwara Eliya","Kegalle","Ratnapura","Trincomalee","Batticaloa","Ampara","Badulla","Monaragala","Hambantota","Matara","Galle"};
 
@@ -66,14 +62,6 @@ public class place_Purchase_order extends AppCompatActivity {
         ArrayAdapter<String> cityadapter = new ArrayAdapter<String>(place_Purchase_order.this, android.R.layout.simple_spinner_item, city);
         cityadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         selectcity.setAdapter(cityadapter);
-
-
-
-
-
-
-
-
 
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
 
@@ -114,6 +102,36 @@ public class place_Purchase_order extends AppCompatActivity {
 
 
     }
+
+    public void getAllSuppliers() {
+
+        Call<List<supplierModel>> call = endpoints.getAllsuppliers();
+        call.enqueue(new Callback<List<supplierModel>>() {
+            @Override
+            public void onResponse(Call<List<supplierModel>> call, Response<List<supplierModel>> response) {
+                try {
+                    List<supplierModel> it = response.body();
+                    String[] arraySpinner = new String[it.size()];
+                    for (int i = 0; i < it.size(); i++) {
+
+                        arraySpinner[i] = it.get(i).getUsername();
+                    }
+                    Spinner supplyspin = findViewById(R.id.supplyspin);
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(place_Purchase_order.this, android.R.layout.simple_spinner_item, arraySpinner);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    supplyspin.setAdapter(adapter);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<supplierModel>> call, Throwable t) {
+                System.out.println("ERROR::" + t);
+            }
+        });
+    }
+
     public void placeOrder(){
 
         Spinner Suplier = findViewById(R.id.supplyspin);
