@@ -202,6 +202,13 @@ public class Approve_Requisition extends AppCompatActivity {
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(Approve_Requisition.this, android.R.layout.simple_spinner_item, arraySpinner);
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     s.setAdapter(adapter);
+
+                    if (arraySpinner.length==0){
+
+                        decline_item.setClickable(false);
+                        add_item.setClickable(false);
+
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -227,8 +234,10 @@ public class Approve_Requisition extends AppCompatActivity {
                     System.out.println("nme"+nme);
                     if(nme.equals("PENDING")){
                         System.out.println("Navigate to manager port");
+                        Toast.makeText(Approve_Requisition.this,"Order Approval Navigates to Manager",Toast.LENGTH_SHORT).show();
 
                     }else{
+                        Toast.makeText(Approve_Requisition.this,"Order Approval Successful",Toast.LENGTH_SHORT).show();
                         Intent intent = getIntent();
                         String name = intent.getStringExtra("name");
                         Spinner reqId = (Spinner) findViewById(R.id.reqIDS);
@@ -247,6 +256,7 @@ public class Approve_Requisition extends AppCompatActivity {
             @Override
             public void onFailure(Call<ReqApprovalModel> call, Throwable t) {
                 System.out.println("ERROR::"+t);
+                Toast.makeText(Approve_Requisition.this,"Order Approval Unsuccessful",Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -267,7 +277,9 @@ public class Approve_Requisition extends AppCompatActivity {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-
+                final Spinner reqId = (Spinner) findViewById(R.id.reqIDS);
+                String RequisitionId = reqId.getSelectedItem().toString();
+                getdetails_from_reqID(RequisitionId);
                 Toast.makeText(Approve_Requisition.this,"Decline Successful",Toast.LENGTH_LONG).show();
 
             }

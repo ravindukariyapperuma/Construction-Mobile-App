@@ -4,12 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.requisitionandapproval.ApiClient.ApiClient;
@@ -43,10 +45,17 @@ public class ManagerApprove extends AppCompatActivity {
     private Retrofit retrofit;
     private Endpoints endpoints;
     private String Base_URL = apiClient.getBASE_URL();
+    String username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manager_approve);
+
+        Intent intent = getIntent();
+        username = intent.getStringExtra("username");
+
+        TextView uname = findViewById(R.id.uname);
+        uname.setText("Manager : "+username);
 
         retrofit = new Retrofit.Builder().baseUrl(Base_URL).addConverterFactory(GsonConverterFactory.create()).build();
         endpoints = retrofit.create(Endpoints.class);
@@ -107,6 +116,15 @@ public class ManagerApprove extends AppCompatActivity {
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(ManagerApprove.this, android.R.layout.simple_spinner_item, arraySpinner);
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     s.setAdapter(adapter);
+                    Button decline_Requsition = findViewById(R.id.decline_Requsition);
+                    Button add_item = findViewById(R.id.add_item);
+                    if (arraySpinner.length==0){
+
+                        decline_Requsition.setClickable(false);
+                        add_item.setClickable(false);
+
+                    }
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -244,8 +262,10 @@ public class ManagerApprove extends AppCompatActivity {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-
+                final Spinner reqId = (Spinner) findViewById(R.id.ManagerreqIDS);
                 Toast.makeText(ManagerApprove.this,"Decline Successful",Toast.LENGTH_LONG).show();
+                String RequisitionId = reqId.getSelectedItem().toString();
+                getdetails_from_reqID(RequisitionId);
 
             }
 

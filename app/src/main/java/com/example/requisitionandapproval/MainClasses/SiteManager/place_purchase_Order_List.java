@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.requisitionandapproval.ApiClient.ApiClient;
 import com.example.requisitionandapproval.ApiClient.Endpoints;
@@ -65,10 +66,16 @@ public class place_purchase_Order_List extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Spinner reqidspin = findViewById(R.id.reqNoSpin);
-                Intent intent = new Intent(place_purchase_Order_List.this, place_purchase_order_Item_List.class);
-                intent.putExtra("orderReqId",reqidspin.getSelectedItem().toString());
-                intent.putExtra("name",name);
-                startActivity(intent);
+                if (reqidspin.getCount()==0){
+                    Toast.makeText(place_purchase_Order_List.this,"No Item Selected",Toast.LENGTH_SHORT).show();
+                }else{
+
+                    Intent intent = new Intent(place_purchase_Order_List.this, place_purchase_order_Item_List.class);
+                    intent.putExtra("orderReqId",reqidspin.getSelectedItem().toString());
+                    intent.putExtra("name",name);
+                    startActivity(intent);
+                }
+
 
 
             }
