@@ -6,9 +6,11 @@ import com.example.requisitionandapproval.model.ItemResult;
 import com.example.requisitionandapproval.model.ManagerReqNumbers;
 import com.example.requisitionandapproval.model.OrderDoneModel;
 import com.example.requisitionandapproval.model.ReqApprovalModel;
+import com.example.requisitionandapproval.model.SupplierItemDetails;
 import com.example.requisitionandapproval.model.getDetaislByManagerReqID;
 import com.example.requisitionandapproval.model.getOrderedItemList;
 import com.example.requisitionandapproval.model.placedorderReqId;
+import com.example.requisitionandapproval.model.reqIDbysupplier;
 import com.example.requisitionandapproval.model.supplierModel;
 import com.example.requisitionandapproval.model.userLogin;
 import com.google.gson.JsonObject;
@@ -90,4 +92,11 @@ public interface Endpoints {
 
     @GET("/supplier/getSuppliers")
     Call<List<supplierModel>> getAllsuppliers();
+
+    @POST("/supplier/getAllItemsBySupplierName")
+    Call<reqIDbysupplier> reqIDbysupplierName(@Body HashMap<String, String> map);
+
+    //get all the items by request number
+    @POST("/supplier/getInfo")
+    Call<List<SupplierItemDetails>> getItemsByReqIDSupplier(@Body HashMap<String, String> map);
 }
