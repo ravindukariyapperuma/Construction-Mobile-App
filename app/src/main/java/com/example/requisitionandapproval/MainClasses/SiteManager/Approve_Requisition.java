@@ -51,7 +51,7 @@ public class Approve_Requisition extends AppCompatActivity {
     private Retrofit retrofit;
     private Endpoints endpoints;
     private String Base_URL = apiClient.getBASE_URL();
-
+    String name;
 
 
     @Override
@@ -60,7 +60,7 @@ public class Approve_Requisition extends AppCompatActivity {
         setContentView(R.layout.activity_approve__requisition);
 
         Intent intent = getIntent();
-        String name = intent.getStringExtra("name");
+        name = intent.getStringExtra("name");
 
         TextView uname = findViewById(R.id.name);
         uname.setText("Site Manager : "+name );
@@ -164,7 +164,7 @@ public class Approve_Requisition extends AppCompatActivity {
                                 val = itmprive * quantity;
                             }
                         }
-                        rm[i] = new ReqApprovalModel(reqID, it.get(i).getDes(), it.get(i).getPrice(),it.get(i).getQty() );
+                        rm[i] = new ReqApprovalModel(reqID, name,it.get(i).getDes(), it.get(i).getPrice(),it.get(i).getQty() );
                     }
 
                     initRecyclerView();
