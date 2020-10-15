@@ -42,6 +42,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -216,7 +217,11 @@ public class goods_receipt extends AppCompatActivity {
 
                         getitems();
 
-                        dialog();
+                        new SweetAlertDialog(goods_receipt.this,SweetAlertDialog.SUCCESS_TYPE)
+                                .setTitleText("Item Received Successful")
+                                .show();
+
+                       // dialog();
 
 //                        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
 //                        fragmentTransaction.add(R.id.RecivedItem, new popup() );

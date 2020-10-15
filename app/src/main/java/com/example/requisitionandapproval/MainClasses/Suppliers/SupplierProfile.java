@@ -215,6 +215,7 @@ public class SupplierProfile extends AppCompatActivity {
                     String nme = jsonObject.getString("status");
                     System.out.println("nme"+nme);
                     if(nme.equals("PENDING")){
+
                         System.out.println("Navigate to manager port");
 
                     }else{
