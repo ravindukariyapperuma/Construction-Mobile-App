@@ -16,6 +16,7 @@ import com.example.requisitionandapproval.ApiClient.Endpoints;
 import com.example.requisitionandapproval.MainClasses.Order.place_Purchase_order;
 import com.example.requisitionandapproval.MainClasses.Order.place_purchase_order_Item_List;
 import com.example.requisitionandapproval.R;
+import com.example.requisitionandapproval.SiteManagerDashboard;
 import com.example.requisitionandapproval.model.GetReqNumbers;
 import com.example.requisitionandapproval.model.ItemResult;
 
@@ -119,5 +120,11 @@ public class place_purchase_Order_List extends AppCompatActivity {
     public void getReqIdByItems(){
 
 
+    }
+
+    @Override
+    public void onBackPressed(){
+       Intent intent = new Intent(place_purchase_Order_List.this, SiteManagerDashboard.class);
+       startActivity(intent);
     }
 }
