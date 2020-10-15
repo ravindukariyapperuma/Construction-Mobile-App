@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.requisitionandapproval.ApiClient.ApiClient;
 import com.example.requisitionandapproval.ApiClient.Endpoints;
+import com.example.requisitionandapproval.MainActivity;
 import com.example.requisitionandapproval.MainClasses.SiteManager.Approve_Requisition;
 import com.example.requisitionandapproval.MainClasses.SiteManager.place_purchase_Order_List;
 import com.example.requisitionandapproval.MainClasses.Users.UserLogin;
@@ -99,8 +100,22 @@ public class place_Purchase_order extends AppCompatActivity {
         Addrequisition.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                EditText addline1 = findViewById(R.id.addLine1);
+                EditText addline2 = findViewById(R.id.addLine2);
+                EditText requireDate = findViewById(R.id.requireDate);
+                Spinner Suplier = findViewById(R.id.supplyspin);
 
-                placeOrder();
+                if (addline1.getText().toString().isEmpty() || addline2.getText().toString().isEmpty()|| requireDate.getText().toString().isEmpty()|| Suplier.getCount()==0){
+                    Toast.makeText(place_Purchase_order.this,"Please Fill All fields",Toast.LENGTH_LONG).show();
+                }else{
+
+                    placeOrder();
+                    Toast.makeText(place_Purchase_order.this,"Order Placed Successful",Toast.LENGTH_LONG).show();
+
+                }
+
+
+
 
             }
         });

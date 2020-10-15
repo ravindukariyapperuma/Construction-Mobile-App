@@ -57,7 +57,13 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                sendPostRequest();
+                if (destxt.getText().toString().isEmpty() || qty1.getText().toString().isEmpty()|| price.getText().toString().isEmpty()){
+                    Toast.makeText(MainActivity.this,"Please Fill All fields",Toast.LENGTH_LONG).show();
+                }else{
+                    sendPostRequest();
+
+                }
+
             }
         });
 
@@ -101,7 +107,11 @@ public class MainActivity extends AppCompatActivity {
                 call.enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
-                        System.out.println("pass");
+                        System.out.println(response.body());
+                        dialog();
+                        destxt.setText("");
+                        qty1.setText("");
+                        price.setText("");
                     }
                     @Override
                     public void onFailure(Call<Void> call, Throwable t) {
@@ -143,4 +153,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+    public void dialog(){
+        dialog di = new dialog();
+        di.show(getSupportFragmentManager(),"Dialog");
+    }
+
 }
