@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.requisitionandapproval.ApiClient.ApiClient;
 import com.example.requisitionandapproval.ApiClient.Endpoints;
@@ -41,11 +42,18 @@ public class place_purchase_Order_List extends AppCompatActivity {
     private Endpoints endpoints;
     private String Base_URL = apiClient.getBASE_URL();
     Button ShowItemList;
+    String name;
+    TextView uname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_place_purchase__order__list);
+
+        Intent intent = getIntent();
+        name= intent.getStringExtra("name");
+        uname = findViewById(R.id.uname);
+        uname.setText("Site Manager : "+name );
 
         retrofit = new Retrofit.Builder().baseUrl(Base_URL).addConverterFactory(GsonConverterFactory.create()).build();
         endpoints = retrofit.create(Endpoints.class);
@@ -59,6 +67,7 @@ public class place_purchase_Order_List extends AppCompatActivity {
                 Spinner reqidspin = findViewById(R.id.reqNoSpin);
                 Intent intent = new Intent(place_purchase_Order_List.this, place_purchase_order_Item_List.class);
                 intent.putExtra("orderReqId",reqidspin.getSelectedItem().toString());
+                intent.putExtra("name",name);
                 startActivity(intent);
 
 
