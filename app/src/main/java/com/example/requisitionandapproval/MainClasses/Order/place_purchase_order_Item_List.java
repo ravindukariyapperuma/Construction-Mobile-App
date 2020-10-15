@@ -48,14 +48,6 @@ public class place_purchase_order_Item_List extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-//        Itemcls[] itemcls = new Itemcls[]{
-//                new Itemcls("Tokyo Cement","10","1250.00/= (PER)", R.drawable.edit, R.drawable.delete),
-//                new Itemcls("Pipes","10","750.00/= (PER)", R.drawable.edit, R.drawable.delete),
-//                new Itemcls("Bricks","10","1250.00/= (PER)", R.drawable.edit, R.drawable.delete),
-//                new Itemcls("Tokyo Cement","10","1250.00/= (PER)", R.drawable.edit, R.drawable.delete)
-//
-//
-//        };
 
         Intent intent = getIntent();
         String orderId = intent.getStringExtra("orderReqId");
@@ -97,44 +89,6 @@ public class place_purchase_order_Item_List extends AppCompatActivity {
 
 
     }
-//
-//    public void itemList(){
-//        Intent intent = getIntent();
-//        String orderId = intent.getStringExtra("orderReqId");
-//        HashMap<String, String> map = new HashMap<>();
-//
-//        map.put("reqID", orderId);
-//
-//        Call<List<getOrderedItemList>> call = endpoints.getOrderedItems(map);
-//        ArrayList<String> arlist = new ArrayList<>( );
-//
-//        call.enqueue(new Callback<List<getOrderedItemList>>() {
-//            @Override
-//            public void onResponse(Call<List<getOrderedItemList>> call, Response<List<getOrderedItemList>> response) {
-//                System.out.println("passssed");
-//                if(response.code() ==200){
-//                }
-//                List<getOrderedItemList> it = response.body();
-//                assert it != null;
-//                Itemcls[] itemcls  =  new Itemcls[it.size()];
-//                for(int i =0 ; i<it.size(); i++){
-//                    itemcls[i] =new Itemcls (it.get(i).getItemID(), it.get(i).getItem_Quantity(), it.get(i).getItem_AgreedPrice(), R.drawable.edit, R.drawable.delete);
-//                }
-//                itemAdapter adapter= new itemAdapter(itemcls, place_purchase_order_Item_List.this);
-//                recyclerView.setAdapter(adapter);
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<getOrderedItemList>> call, Throwable t) {
-//                System.out.println("failed");
-//
-//            }
-//
-//        });
-//
-//
-//    }
-
 
 
 }

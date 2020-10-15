@@ -9,6 +9,7 @@ import com.example.requisitionandapproval.model.ReqApprovalModel;
 import com.example.requisitionandapproval.model.getDetaislByManagerReqID;
 import com.example.requisitionandapproval.model.getOrderedItemList;
 import com.example.requisitionandapproval.model.placedorderReqId;
+import com.example.requisitionandapproval.model.supplierModel;
 import com.example.requisitionandapproval.model.userLogin;
 import com.google.gson.JsonObject;
 
@@ -86,4 +87,7 @@ public interface Endpoints {
 
     @POST("/manager/declineRequest")
     Call<Void> declinemanagerRequsition(@Body HashMap<String, String> map);
+
+    @GET("/supplier/getSuppliers")
+    Call<List<supplierModel>> getAllsuppliers();
 }

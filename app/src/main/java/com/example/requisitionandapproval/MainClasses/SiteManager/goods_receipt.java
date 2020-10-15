@@ -129,19 +129,7 @@ public class goods_receipt extends AppCompatActivity {
 
     }
 
-//    private void initRecyclerView() {
-//        OrderAdapter orderAdapter = new OrderAdapter(orderModels);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        recyclerView.setAdapter(orderAdapter);
-//    }
-//
-//    private void initdata() {
-//        orderModels = new ArrayList<>();
-//        orderModels.add(new orderModel("Tokya Cementt"));
-//        orderModels.add(new orderModel("Pipes"));
-//        orderModels.add(new orderModel("Brikes"));
-//
-//    }
+
 
     public void getAllReqNumbers() {
         System.out.println("HEREE");
