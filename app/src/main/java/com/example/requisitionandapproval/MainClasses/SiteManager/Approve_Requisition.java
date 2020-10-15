@@ -234,6 +234,9 @@ public class Approve_Requisition extends AppCompatActivity {
                     System.out.println("nme"+nme);
                     if(nme.equals("PENDING")){
                         System.out.println("Navigate to manager port");
+                        final Spinner reqId = (Spinner) findViewById(R.id.reqIDS);
+                        String RequisitionId = reqId.getSelectedItem().toString();
+                        getdetails_from_reqID(RequisitionId);
                         Toast.makeText(Approve_Requisition.this,"Order Approval Navigates to Manager",Toast.LENGTH_SHORT).show();
 
                     }else{

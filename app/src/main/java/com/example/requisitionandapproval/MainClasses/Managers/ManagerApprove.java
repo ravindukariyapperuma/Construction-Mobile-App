@@ -230,7 +230,7 @@ public class ManagerApprove extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
                         System.out.println(response.body());
-
+                        Toast.makeText(ManagerApprove.this,"Order Approve Successful",Toast.LENGTH_LONG).show();
 
 //                        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
 //                        fragmentTransaction.add(R.id.RecivedItem, new popup() );
