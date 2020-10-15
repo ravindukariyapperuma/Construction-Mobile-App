@@ -225,7 +225,7 @@ public class ManagerApprove extends AppCompatActivity {
 
                 HashMap <String, String> map = new HashMap<>();
                 map.put("reqID",ManagerreqIDS.getSelectedItem().toString() );
-                map.put("username",ManagerreqIDS.getSelectedItem().toString() );
+                map.put("username",username);
 
                 map.put("status", "APPROVED");
 
