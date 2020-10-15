@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.requisitionandapproval.ApiClient.ApiClient;
@@ -48,11 +49,18 @@ public class SupplierProfile extends AppCompatActivity {
     private Retrofit retrofit;
     private Endpoints endpoints;
     private String Base_URL = apiClient.getBASE_URL();
+    String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_supplier_profile);
+
+        Intent intent = getIntent();
+        username = intent.getStringExtra("username");
+
+        TextView user = findViewById(R.id.supplier);
+        user.setText("Supplier : "+username);
 
         retrofit = new Retrofit.Builder().baseUrl(Base_URL).addConverterFactory(GsonConverterFactory.create()).build();
         endpoints = retrofit.create(Endpoints.class);
@@ -145,7 +153,7 @@ public class SupplierProfile extends AppCompatActivity {
                                 val = itmprive * quantity;
                             }
                         }
-                        rm[i] = new ReqApprovalModel(reqID, it.get(i).getDes(), it.get(i).getPrice(),it.get(i).getQty() );
+                        rm[i] = new ReqApprovalModel(reqID, username,it.get(i).getDes(), it.get(i).getPrice(),it.get(i).getQty() );
                     }
 
                     initRecyclerView();

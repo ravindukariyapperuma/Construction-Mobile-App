@@ -166,7 +166,7 @@ public class ManagerApprove extends AppCompatActivity {
                                 val = itmprive * quantity;
                             }
                         }
-                        rm[i] = new ReqApprovalModel(reqID, it.get(i).getDes(), it.get(i).getPrice(),it.get(i).getQty() );
+                        rm[i] = new ReqApprovalModel(reqID, username,it.get(i).getDes(), it.get(i).getPrice(),it.get(i).getQty() );
                     }
 
                     initRecyclerView();
@@ -223,6 +223,8 @@ public class ManagerApprove extends AppCompatActivity {
 
                 HashMap <String, String> map = new HashMap<>();
                 map.put("reqID",ManagerreqIDS.getSelectedItem().toString() );
+                map.put("username",ManagerreqIDS.getSelectedItem().toString() );
+
                 map.put("status", "APPROVED");
 
                 Call<Void> call = endpoints.placeManagerOrder(map);
