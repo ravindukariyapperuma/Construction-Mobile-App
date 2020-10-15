@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -93,6 +94,7 @@ public class ManagerApprove extends AppCompatActivity {
         decline_Requsition.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 decline_Request();
             }
         });
@@ -232,7 +234,10 @@ public class ManagerApprove extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
                         System.out.println(response.body());
-                        Toast.makeText(ManagerApprove.this,"Order Approve Successful",Toast.LENGTH_LONG).show();
+                       // Toast.makeText(ManagerApprove.this,"Order Approve Successful",Toast.LENGTH_LONG).show();
+                        new SweetAlertDialog(ManagerApprove.this,SweetAlertDialog.SUCCESS_TYPE)
+                                .setTitleText("Order Approval Successful")
+                                .show();
 
 //                        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
 //                        fragmentTransaction.add(R.id.RecivedItem, new popup() );
@@ -241,6 +246,9 @@ public class ManagerApprove extends AppCompatActivity {
                     }
                     @Override
                     public void onFailure(Call<Void> call, Throwable t) {
+                        new SweetAlertDialog(ManagerApprove.this,SweetAlertDialog.ERROR_TYPE)
+                                .setTitleText("Order Approval Unsuccessful")
+                                .show();
                         System.out.println("fail");
                     }
                 });
@@ -265,7 +273,10 @@ public class ManagerApprove extends AppCompatActivity {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 final Spinner reqId = (Spinner) findViewById(R.id.ManagerreqIDS);
-                Toast.makeText(ManagerApprove.this,"Decline Successful",Toast.LENGTH_LONG).show();
+                new SweetAlertDialog(ManagerApprove.this,SweetAlertDialog.SUCCESS_TYPE)
+                        .setTitleText("Order Decline Successful")
+                        .show();
+                //Toast.makeText(ManagerApprove.this,"Decline Successful",Toast.LENGTH_LONG).show();
                 String RequisitionId = reqId.getSelectedItem().toString();
                 getdetails_from_reqID(RequisitionId);
 

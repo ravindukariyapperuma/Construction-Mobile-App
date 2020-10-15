@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.requisitionandapproval.ApiClient.ApiClient;
 import com.example.requisitionandapproval.ApiClient.Endpoints;
+import com.example.requisitionandapproval.MainActivity;
 import com.example.requisitionandapproval.R;
 import com.example.requisitionandapproval.adapterClasses.ApproveAdapter;
 import com.example.requisitionandapproval.model.ApproveModel;
@@ -34,6 +35,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -237,10 +239,16 @@ public class Approve_Requisition extends AppCompatActivity {
                         final Spinner reqId = (Spinner) findViewById(R.id.reqIDS);
                         String RequisitionId = reqId.getSelectedItem().toString();
                         getdetails_from_reqID(RequisitionId);
-                        Toast.makeText(Approve_Requisition.this,"Order Approval Navigates to Manager",Toast.LENGTH_SHORT).show();
+                        new SweetAlertDialog(Approve_Requisition.this,SweetAlertDialog.SUCCESS_TYPE)
+                                .setTitleText("Order Approval Navigates to Manager")
+                                .show();
+                        //Toast.makeText(Approve_Requisition.this,"Order Approval Navigates to Manager",Toast.LENGTH_SHORT).show();
 
                     }else{
-                        Toast.makeText(Approve_Requisition.this,"Order Approval Successful",Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(Approve_Requisition.this,"Order Approval Successful",Toast.LENGTH_SHORT).show();
+                        new SweetAlertDialog(Approve_Requisition.this,SweetAlertDialog.SUCCESS_TYPE)
+                                .setTitleText("Order Approval Successful")
+                                .show();
                         Intent intent = getIntent();
                         String name = intent.getStringExtra("name");
                         Spinner reqId = (Spinner) findViewById(R.id.reqIDS);
@@ -249,6 +257,7 @@ public class Approve_Requisition extends AppCompatActivity {
                         it.putExtra("reqid",RequisitionId);
                         it.putExtra("name1",name);
                         startActivity(it);
+
                         System.out.println("Navigate to sitemanager payment");
                     }
                 } catch (JSONException e) {
@@ -259,7 +268,10 @@ public class Approve_Requisition extends AppCompatActivity {
             @Override
             public void onFailure(Call<ReqApprovalModel> call, Throwable t) {
                 System.out.println("ERROR::"+t);
-                Toast.makeText(Approve_Requisition.this,"Order Approval Unsuccessful",Toast.LENGTH_SHORT).show();
+                new SweetAlertDialog(Approve_Requisition.this,SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("Order Approval Unsuccessful")
+                        .show();
+                //Toast.makeText(Approve_Requisition.this,"Order Approval Unsuccessful",Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -283,8 +295,10 @@ public class Approve_Requisition extends AppCompatActivity {
                 final Spinner reqId = (Spinner) findViewById(R.id.reqIDS);
                 String RequisitionId = reqId.getSelectedItem().toString();
                 getdetails_from_reqID(RequisitionId);
-                Toast.makeText(Approve_Requisition.this,"Decline Successful",Toast.LENGTH_LONG).show();
-
+                //Toast.makeText(Approve_Requisition.this,"Decline Successful",Toast.LENGTH_LONG).show();
+                new SweetAlertDialog(Approve_Requisition.this,SweetAlertDialog.SUCCESS_TYPE)
+                        .setTitleText("Order Decline Successful")
+                        .show();
             }
 
             @Override

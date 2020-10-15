@@ -13,10 +13,12 @@ import android.widget.Toast;
 
 import com.example.requisitionandapproval.ApiClient.ApiClient;
 import com.example.requisitionandapproval.ApiClient.Endpoints;
+import com.example.requisitionandapproval.MainClasses.Order.place_Purchase_order;
 import com.example.requisitionandapproval.R;
 
 import java.util.HashMap;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -93,14 +95,20 @@ public class registerUsers extends AppCompatActivity {
                 public void onResponse(Call<Void> call, Response<Void> response) {
                     System.out.println("PAAAAAAAAS");
 
-                    Toast.makeText(registerUsers.this, response.message(), Toast.LENGTH_LONG).show();
+                    //Toast.makeText(registerUsers.this, response.message(), Toast.LENGTH_LONG).show();
 
 
                     System.out.println("adawqq"+response.code() );
                     if(response.code() == 404){
                         Toast.makeText(registerUsers.this, "Please fill all required fields!", Toast.LENGTH_LONG).show();
+                        new SweetAlertDialog(registerUsers.this,SweetAlertDialog.WARNING_TYPE)
+                                .setTitleText("Please fill all required fields!")
+                                .show();
 
                     }else {
+                        new SweetAlertDialog(registerUsers.this,SweetAlertDialog.SUCCESS_TYPE)
+                                .setTitleText("Registration Successful !")
+                                .show();
                         Intent intent = new Intent(registerUsers.this, UserLogin.class);
                         startActivity(intent);
                     }

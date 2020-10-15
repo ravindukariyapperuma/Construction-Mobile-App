@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.example.requisitionandapproval.ApiClient.ApiClient;
 import com.example.requisitionandapproval.ApiClient.Endpoints;
 import com.example.requisitionandapproval.MainActivity;
+import com.example.requisitionandapproval.MainClasses.Managers.ManagerApprove;
 import com.example.requisitionandapproval.MainClasses.SiteManager.Approve_Requisition;
 import com.example.requisitionandapproval.MainClasses.SiteManager.place_purchase_Order_List;
 import com.example.requisitionandapproval.MainClasses.Users.UserLogin;
@@ -31,6 +32,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -51,7 +53,9 @@ public class place_Purchase_order extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_place__purchase_order);
-
+        new SweetAlertDialog(place_Purchase_order.this,SweetAlertDialog.SUCCESS_TYPE)
+                .setTitleText("Order Approval Successful")
+                .show();
         Intent intent = getIntent();
         name = intent.getStringExtra("name1");
         uname = findViewById(R.id.uname);
@@ -106,11 +110,17 @@ public class place_Purchase_order extends AppCompatActivity {
                 Spinner Suplier = findViewById(R.id.supplyspin);
 
                 if (addline1.getText().toString().isEmpty() || addline2.getText().toString().isEmpty()|| requireDate.getText().toString().isEmpty()|| Suplier.getCount()==0){
-                    Toast.makeText(place_Purchase_order.this,"Please Fill All fields",Toast.LENGTH_LONG).show();
+                    //Toast.makeText(place_Purchase_order.this,"Please Fill All fields",Toast.LENGTH_LONG).show();
+                    new SweetAlertDialog(place_Purchase_order.this,SweetAlertDialog.WARNING_TYPE)
+                            .setTitleText("Please Fill All fields")
+                            .show();
                 }else{
 
                     placeOrder();
-                    Toast.makeText(place_Purchase_order.this,"Order Placed Successful",Toast.LENGTH_LONG).show();
+                    new SweetAlertDialog(place_Purchase_order.this,SweetAlertDialog.SUCCESS_TYPE)
+                            .setTitleText("Order Placed Successful")
+                            .show();
+                    //Toast.makeText(place_Purchase_order.this,"Order Placed Successful",Toast.LENGTH_LONG).show();
 
                 }
 
@@ -190,11 +200,17 @@ public class place_Purchase_order extends AppCompatActivity {
 
 
                     if(response.code() == 404){
-                        Toast.makeText(place_Purchase_order.this, "Please fill all required fields!", Toast.LENGTH_LONG).show();
+                       // Toast.makeText(place_Purchase_order.this, "Please fill all required fields!", Toast.LENGTH_LONG).show();
+                        new SweetAlertDialog(place_Purchase_order.this,SweetAlertDialog.WARNING_TYPE)
+                                .setTitleText("Please Fill All fields")
+                                .show();
                         System.out.println("PAAAAAAAAS");
 
                     }else {
-                        Toast.makeText(place_Purchase_order.this, "Order placed successful!", Toast.LENGTH_LONG).show();
+                        new SweetAlertDialog(place_Purchase_order.this,SweetAlertDialog.SUCCESS_TYPE)
+                                .setTitleText("Order placed successful!")
+                                .show();
+                        //Toast.makeText(place_Purchase_order.this, "Order placed successful!", Toast.LENGTH_LONG).show();
                         System.out.println("adawqq"+response.code() );
 
                         Intent intent1 = new Intent(place_Purchase_order.this, place_purchase_Order_List.class);

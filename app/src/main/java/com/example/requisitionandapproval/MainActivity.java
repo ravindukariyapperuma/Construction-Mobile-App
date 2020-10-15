@@ -11,11 +11,14 @@ import android.widget.Toast;
 
 import com.example.requisitionandapproval.ApiClient.ApiClient;
 import com.example.requisitionandapproval.ApiClient.Endpoints;
+import com.example.requisitionandapproval.MainClasses.Order.place_Purchase_order;
+import com.example.requisitionandapproval.MainClasses.SiteManager.goods_receipt;
 import com.example.requisitionandapproval.model.ItemResult;
 
 import java.util.HashMap;
 import java.util.List;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -58,7 +61,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (destxt.getText().toString().isEmpty() || qty1.getText().toString().isEmpty()|| price.getText().toString().isEmpty()){
-                    Toast.makeText(MainActivity.this,"Please Fill All fields",Toast.LENGTH_LONG).show();
+                    new SweetAlertDialog(MainActivity.this,SweetAlertDialog.WARNING_TYPE)
+                            .setTitleText("Please Fill All fields")
+                            .show();
+                    //Toast.makeText(MainActivity.this,"Please Fill All fields",Toast.LENGTH_LONG).show();
                 }else{
                     sendPostRequest();
 
@@ -108,7 +114,10 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
                         System.out.println(response.body());
-                        dialog();
+//                        dialog();
+                        new SweetAlertDialog(MainActivity.this,SweetAlertDialog.SUCCESS_TYPE)
+                                .setTitleText("Item Adding Successful")
+                                .show();
                         destxt.setText("");
                         qty1.setText("");
                         price.setText("");
@@ -116,6 +125,9 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(Call<Void> call, Throwable t) {
                         System.out.println("fail");
+                        new SweetAlertDialog(MainActivity.this,SweetAlertDialog.ERROR_TYPE)
+                                .setTitleText("Item Adding Unsuccessful")
+                                .show();
                     }
                 });
             }
