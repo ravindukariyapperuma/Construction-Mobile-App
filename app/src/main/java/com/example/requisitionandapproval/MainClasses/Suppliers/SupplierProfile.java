@@ -23,6 +23,8 @@ import com.example.requisitionandapproval.model.ApproveModel;
 import com.example.requisitionandapproval.model.GetReqDetailsByID;
 import com.example.requisitionandapproval.model.GetReqNumbers;
 import com.example.requisitionandapproval.model.ReqApprovalModel;
+import com.example.requisitionandapproval.model.SupplierItemDetails;
+import com.example.requisitionandapproval.model.reqIDbysupplier;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -70,7 +72,7 @@ public class SupplierProfile extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         add_item = findViewById(R.id.add_item);
 
-        getAllReqNumbers();
+        getAllsupplierReqNumbers();
 
         add_item.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,7 +97,7 @@ public class SupplierProfile extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String RequisitionId = reqId.getSelectedItem().toString();
-                getdetails_from_reqID(RequisitionId);
+                getdetails_from_reqIDSupplier(RequisitionId);
 
             }
 
@@ -124,24 +126,24 @@ public class SupplierProfile extends AppCompatActivity {
 
     }
 
-    public void getdetails_from_reqID(final String reqID) {
+    public void getdetails_from_reqIDSupplier(final String reqID) {
 
         HashMap<String, String> map = new HashMap<>();
-        map.put("ItemID", reqID);
+        map.put("reqID", reqID);
 
 
-        Call<List<GetReqDetailsByID>> call = endpoints.getItemsByReqID(map);
+        Call<List<SupplierItemDetails>> call = endpoints.getItemsByReqIDSupplier(map);
 
-        call.enqueue(new Callback<List<GetReqDetailsByID>>() {
+        call.enqueue(new Callback<List<SupplierItemDetails>>() {
             @Override
-            public void onResponse(Call<List<GetReqDetailsByID>> call, Response<List<GetReqDetailsByID>> response) {
+            public void onResponse(Call<List<SupplierItemDetails>> call, Response<List<SupplierItemDetails>> response) {
                 if (response.code() == 200) {
                     Toast.makeText(SupplierProfile.this, response.message(), Toast.LENGTH_LONG).show();
                 }
                 approveModels = new ArrayList<>();
 
                 try {
-                    List<GetReqDetailsByID> it = response.body();
+                    List<SupplierItemDetails> it = response.body();
                     rm = new ReqApprovalModel[it.size()];
                     for (int i = 0; i < it.size(); i++) {
                         approveModels.add(new ApproveModel(it.get(i).getDes(), it.get(i).getQty(), it.get(i).getPrice()));
@@ -166,7 +168,7 @@ public class SupplierProfile extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<GetReqDetailsByID>> call, Throwable t) {
+            public void onFailure(Call<List<SupplierItemDetails>> call, Throwable t) {
                 System.out.println("failed" + t);
                 Toast.makeText(SupplierProfile.this, "Error", Toast.LENGTH_LONG).show();
             }
@@ -174,21 +176,23 @@ public class SupplierProfile extends AppCompatActivity {
     }
 
 
-    public void getAllReqNumbers() {
+    public void getAllsupplierReqNumbers() {
+        HashMap<String, String> map = new HashMap<>();
+        map.put("username", username);
 
-        Call<List<GetReqNumbers>> call = endpoints.getAllReqNumbers();
-        call.enqueue(new Callback<List<GetReqNumbers>>() {
+        Call<reqIDbysupplier> call = endpoints.reqIDbysupplierName(map);
+        call.enqueue(new Callback<reqIDbysupplier>() {
             @Override
-            public void onResponse(Call<List<GetReqNumbers>> call, Response<List<GetReqNumbers>> response) {
+            public void onResponse(Call<reqIDbysupplier> call, Response<reqIDbysupplier> response) {
                 try {
-                    List<GetReqNumbers> it = response.body();
-                    String[] arraySpinner = new String[it.size()];
-                    for (int i = 0; i < it.size(); i++) {
-
-                        arraySpinner[i] = it.get(i).getItemIDs();
-                    }
+                    reqIDbysupplier it = response.body();
+//                    String[] arraySpinner = new String[it.size()];
+//                    for (int i = 0; i < it.size(); i++) {
+//
+//                        arraySpinner[i] = it.get(i).getItemID();
+//                    }
                     Spinner s = (Spinner) findViewById(R.id.reqIDS);
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(SupplierProfile.this, android.R.layout.simple_spinner_item, arraySpinner);
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(SupplierProfile.this, android.R.layout.simple_spinner_item, it.getItemID());
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     s.setAdapter(adapter);
                 } catch (Exception e) {
@@ -197,7 +201,7 @@ public class SupplierProfile extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<GetReqNumbers>> call, Throwable t) {
+            public void onFailure(Call<reqIDbysupplier> call, Throwable t) {
                 System.out.println("ERROR::" + t);
             }
         });
