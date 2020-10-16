@@ -8,6 +8,7 @@ import com.example.requisitionandapproval.model.ManagerReqNumbers;
 import com.example.requisitionandapproval.model.OrderDoneModel;
 import com.example.requisitionandapproval.model.ReqApprovalModel;
 import com.example.requisitionandapproval.model.SupplierItemDetails;
+import com.example.requisitionandapproval.model.deliverItemModel;
 import com.example.requisitionandapproval.model.getDetaislByManagerReqID;
 import com.example.requisitionandapproval.model.getOrderedItemList;
 import com.example.requisitionandapproval.model.inprogressItemIDModel;
@@ -108,6 +109,12 @@ public interface Endpoints {
     @GET("/supplier/getPendingOrderListIds")
     Call<inprogressItemIDModel> getallInprogressIDs();
 
+    @GET("/supplier/getAllDeliveredItemsId")
+    Call<deliverItemModel> getallDeliverIDs();
+
     @POST("/supplier/getPendingItems")
     Call<List<InprogressResponseModel>> getItemsDetailsByReqIDSupplier(@Body HashMap<String, String> map);
+
+    @POST("/supplier/getDeliveredItems")
+    Call<List<InprogressResponseModel>> getDeliveredItemsDetailsByReqIDSupplier(@Body HashMap<String, String> map);
 }
