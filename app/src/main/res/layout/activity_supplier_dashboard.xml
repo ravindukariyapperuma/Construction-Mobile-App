@@ -23,7 +23,7 @@
         android:id="@+id/supplierr"
         android:layout_width="170dp"
         android:layout_height="165dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="60dp"
         android:background="@drawable/supitems"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,6 +42,51 @@
         app:layout_constraintHorizontal_bias="0.302"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:layout_width="195dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@+id/txtUsername"
+        app:layout_constraintTop_toBottomOf="@+id/txtUsername">
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/rbAvailable"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@drawable/radio_button_left_selector"
+            android:button="@android:color/transparent"
+            android:checked="false"
+            android:onClick="onRadioButtonClick"
+            android:paddingLeft="8dp"
+            android:text="Available"
+            android:textColor="@android:color/black" />
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/rbNotAvailable"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@drawable/radio_button_right_selector"
+            android:button="@android:color/transparent"
+            android:checked="false"
+            android:onClick="onRadioButtonClick"
+            android:paddingLeft="8dp"
+            android:text="Not available"
+            android:textColor="@android:color/black" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/txtUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="@+id/textView14"
+        app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
