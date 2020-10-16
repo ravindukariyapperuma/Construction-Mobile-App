@@ -135,12 +135,26 @@ public class SupplierProfile extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<SupplierItemDetails>> call, final Response<List<SupplierItemDetails>> response) {
 
+                TextView requreDate = findViewById(R.id.requreDate);
+                TextView line1 = findViewById(R.id.line1);
+                TextView line2 = findViewById(R.id.line2);
+                TextView line3 = findViewById(R.id.linecity);
                 System.out.println("passssed");
                 if(response.code() ==200){
                 }
                 List<SupplierItemDetails> it = response.body();
                 assert it != null;
                 SupplierOrderMdel[] itemcls  =  new SupplierOrderMdel[it.size()];
+
+                if (it.size()>0) {
+                    requreDate.setText(it.get(0).getRequiredDate());
+                    line1.setText(it.get(0).getAddressline1() + ", ");
+                    line2.setText(it.get(0).getAddressline2() + ", ");
+                    line3.setText(it.get(0).getOther());
+                }
+
+
+
                 for(int i =0 ; i<it.size(); i++){
                     itemcls[i] =new SupplierOrderMdel(it.get(i).getDes(), it.get(i).getQty(), it.get(i).getPrice());
                 }
