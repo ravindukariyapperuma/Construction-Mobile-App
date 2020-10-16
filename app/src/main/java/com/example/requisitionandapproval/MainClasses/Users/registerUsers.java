@@ -15,17 +15,8 @@ import android.widget.Toast;
 
 import com.example.requisitionandapproval.ApiClient.ApiClient;
 import com.example.requisitionandapproval.ApiClient.Endpoints;
-import com.example.requisitionandapproval.EmployeeDashboard;
-import com.example.requisitionandapproval.MainClasses.Order.place_Purchase_order;
-import com.example.requisitionandapproval.ManagerDashBoard;
 import com.example.requisitionandapproval.R;
-import com.example.requisitionandapproval.SiteManagerDashboard;
-import com.example.requisitionandapproval.SupplierDashboard;
-import com.example.requisitionandapproval.progressBar;
-import com.google.gson.Gson;
-
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.example.requisitionandapproval.Notification.progressBar;
 
 import java.util.HashMap;
 
@@ -106,19 +97,11 @@ public class registerUsers extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<Void> call, final Response<Void> response) {
 
-
-
-
                     final progressBar pbar = new progressBar(registerUsers.this);
                     new CountDownTimer(2000, 1000) {
                         public void onFinish() {
                             pbar.dismissProgress();
-                            // my whole code
                             System.out.println("PAAAAAAAAS");
-
-                            //Toast.makeText(registerUsers.this, response.message(), Toast.LENGTH_LONG).show();
-
-
                             System.out.println("adawqq"+response.code() );
                             if(response.code() == 404){
                                 Toast.makeText(registerUsers.this, "Please fill all required fields!", Toast.LENGTH_LONG).show();
@@ -134,18 +117,12 @@ public class registerUsers extends AppCompatActivity {
                                 Intent intent = new Intent(context, UserLogin.class);
                                 startActivity(intent);
                             }
-
-
                         }
-
                         public void onTick(long millisUntilFinished) {
                             pbar.StartLoading();
 
                         }
                     }.start();
-
-
-
 
                 }
 

@@ -1,4 +1,4 @@
-package com.example.requisitionandapproval;
+package com.example.requisitionandapproval.Notification;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,13 +12,8 @@ import android.widget.Toast;
 
 import com.example.requisitionandapproval.ApiClient.ApiClient;
 import com.example.requisitionandapproval.ApiClient.Endpoints;
-import com.example.requisitionandapproval.MainClasses.Order.place_Purchase_order;
-import com.example.requisitionandapproval.MainClasses.Order.place_purchase_order_Item_List;
-import com.example.requisitionandapproval.MainClasses.SiteManager.goods_receipt;
-import com.example.requisitionandapproval.adapterClasses.place_Item_listAdapter;
+import com.example.requisitionandapproval.R;
 import com.example.requisitionandapproval.model.ItemResult;
-import com.example.requisitionandapproval.model.getOrderedItemList;
-import com.example.requisitionandapproval.model.orderItemcls;
 
 import java.util.HashMap;
 import java.util.List;
@@ -54,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
         price = findViewById(R.id.price);
         Intent intent = getIntent();
 
-        //get the username and userID when user login to the system
         username = intent.getStringExtra("username");
         userID = intent.getStringExtra("userID");
 
@@ -69,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
                     new SweetAlertDialog(MainActivity.this,SweetAlertDialog.WARNING_TYPE)
                             .setTitleText("Please Fill All fields")
                             .show();
-                    //Toast.makeText(MainActivity.this,"Please Fill All fields",Toast.LENGTH_LONG).show();
                 }else{
                     sendPostRequest();
 
@@ -133,21 +126,11 @@ public class MainActivity extends AppCompatActivity {
                                 qty1.setText("");
                                 price.setText("");
 
-
-
-
                             }
-
                             public void onTick(long millisUntilFinished) {
                                 pbar.StartLoading();
-
                             }
                         }.start();
-
-
-
-
-
                     }
                     @Override
                     public void onFailure(Call<Void> call, Throwable t) {

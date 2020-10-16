@@ -1,10 +1,12 @@
-package com.example.requisitionandapproval;
+package com.example.requisitionandapproval.Notification;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.view.LayoutInflater;
 
-import java.util.logging.Handler;
+import com.example.requisitionandapproval.R;
+
+
 
 public class progressBar {
     Activity activity;
@@ -26,9 +28,6 @@ public class progressBar {
     }
 
     public void dismissProgress(){
-
-
-
 
         dialog.dismiss();
     }

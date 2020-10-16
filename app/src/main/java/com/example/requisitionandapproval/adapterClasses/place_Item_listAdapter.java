@@ -46,9 +46,6 @@ public class place_Item_listAdapter extends RecyclerView.Adapter<place_Item_list
         holder.ItemName.setText(itemclsList.getItName());
         holder.Qty.setText(itemclsList.getQty());
         holder.PriceperItem.setText(itemclsList.getPrice());
-//        holder.edit.setImageResource(itemclsList.getEditbtn());
-//        holder.delete.setImageResource(itemclsList.getDeleteBtn());
-
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,10 +68,6 @@ public class place_Item_listAdapter extends RecyclerView.Adapter<place_Item_list
         ImageView edit;
         ImageView delete;
 
-
-
-
-
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -83,7 +76,6 @@ public class place_Item_listAdapter extends RecyclerView.Adapter<place_Item_list
             PriceperItem = itemView.findViewById(R.id.placepriceperItem);
             edit = itemView.findViewById(R.id.placeeditBtn);
             delete = itemView.findViewById(R.id.placedeleteBtn);
-
 
         }
     }

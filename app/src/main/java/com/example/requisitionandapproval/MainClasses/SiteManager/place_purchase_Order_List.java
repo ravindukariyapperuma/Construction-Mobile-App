@@ -13,22 +13,11 @@ import android.widget.Toast;
 
 import com.example.requisitionandapproval.ApiClient.ApiClient;
 import com.example.requisitionandapproval.ApiClient.Endpoints;
-import com.example.requisitionandapproval.MainClasses.Order.place_Purchase_order;
 import com.example.requisitionandapproval.MainClasses.Order.place_purchase_order_Item_List;
 import com.example.requisitionandapproval.R;
-import com.example.requisitionandapproval.SiteManagerDashboard;
-import com.example.requisitionandapproval.model.GetReqNumbers;
-import com.example.requisitionandapproval.model.ItemResult;
+import com.example.requisitionandapproval.DashBoards.SiteManagerDashboard;
 
 import com.example.requisitionandapproval.model.placedorderReqId;
-import com.example.requisitionandapproval.model.userLogin;
-import com.google.gson.Gson;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -77,8 +66,6 @@ public class place_purchase_Order_List extends AppCompatActivity {
                     startActivity(intent);
                 }
 
-
-
             }
         });
     }
@@ -101,9 +88,6 @@ public class place_purchase_Order_List extends AppCompatActivity {
                     reqadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     reqidspin.setAdapter(reqadapter);
 
-//                    for(int i=0; i<it.size(); i++){
-//                        System.out.println("ITEMSCC" + it.get(i).getItemIDs());
-//                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

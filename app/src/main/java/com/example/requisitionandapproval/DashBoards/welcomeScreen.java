@@ -1,4 +1,4 @@
-package com.example.requisitionandapproval;
+package com.example.requisitionandapproval.DashBoards;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,24 +7,20 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.example.requisitionandapproval.MainClasses.SiteManager.Approve_Requisition;
 import com.example.requisitionandapproval.MainClasses.Users.UserLogin;
-import com.example.requisitionandapproval.MainClasses.Users.registerUsers;
+import com.example.requisitionandapproval.R;
 
 public class welcomeScreen extends AppCompatActivity {
 
-    private int SLEEP_TIMER = 5;
+    private int SLEEP_TIMER = 3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_welcome_screen);
-        //Objects.requireNonNull(getSupportActionBar()).hide();
         LogoLauncher logoLauncher = new LogoLauncher();
         logoLauncher.start();
     }
