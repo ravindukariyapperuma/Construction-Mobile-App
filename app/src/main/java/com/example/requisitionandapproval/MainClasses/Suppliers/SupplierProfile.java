@@ -83,12 +83,8 @@ public class SupplierProfile extends AppCompatActivity {
 
         getAllsupplierReqNumbers();
 
-        add_item.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+
                 deliverItem();
-            }
-        });
 
         final Spinner reqId = (Spinner) findViewById(R.id.reqIDS);
 
@@ -149,8 +145,8 @@ public class SupplierProfile extends AppCompatActivity {
                     itemcls[i] =new SupplierOrderMdel(it.get(i).getDes(), it.get(i).getQty(), it.get(i).getPrice());
                 }
 
-                supplierOrderAdaptor adapter= new supplierOrderAdaptor(itemcls, SupplierProfile.this);
-                recyclerView.setAdapter(adapter);
+                 adaptor= new supplierOrderAdaptor(itemcls, SupplierProfile.this);
+                recyclerView.setAdapter(adaptor);
 
             }
 
@@ -196,39 +192,47 @@ public class SupplierProfile extends AppCompatActivity {
 
         final Spinner orderreqIDS = findViewById(R.id.reqIDS);
 
+            add_item.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
 
-                String[] itmarr = new String[adaptor.checkedItems.size()];
-                for (int i = 0 ; i< adaptor.checkedItems.size(); i++){
+                    String[] itmarr = new String[adaptor.checkedItems.size()];
+                    for (int i = 0 ; i< adaptor.checkedItems.size(); i++){
 
-                    itmarr[i]= adaptor.checkedItems.get(i).toString();
+                        itmarr[i]= adaptor.checkedItems.get(i).toString();
+                    }
+                    System.out.println(itmarr);
+
+                    String[] reqarr ={orderreqIDS.getSelectedItem().toString()};
+
+                    HashMap <String, String[]> map = new HashMap<>();
+                    map.put("reqID",reqarr );
+                    map.put("itemDescription", itmarr);
+
+                    Call<Void> call = endpoints.deliverItem(map);
+                    call.enqueue(new Callback<Void>() {
+                        @Override
+                        public void onResponse(Call<Void> call, Response<Void> response) {
+                            System.out.println(response.body());
+
+                            getdetails_from_reqIDSupplier(orderreqIDS.getSelectedItem().toString());
+
+                            new SweetAlertDialog(SupplierProfile.this,SweetAlertDialog.SUCCESS_TYPE)
+                                    .setTitleText("Item deliver Successful")
+                                    .show();
+
+                        }
+                        @Override
+                        public void onFailure(Call<Void> call, Throwable t) {
+                            System.out.println("fail");
+                        }
+                    });
+
                 }
-                System.out.println(itmarr);
+            });
 
-                String[] reqarr ={orderreqIDS.getSelectedItem().toString()};
 
-                HashMap <String, String[]> map = new HashMap<>();
-                map.put("reqID",reqarr );
-                map.put("itemDescription", itmarr);
-
-                Call<Void> call = endpoints.deliverItem(map);
-                call.enqueue(new Callback<Void>() {
-                    @Override
-                    public void onResponse(Call<Void> call, Response<Void> response) {
-                        System.out.println(response.body());
-
-                        getdetails_from_reqIDSupplier(orderreqIDS.getSelectedItem().toString());
-
-                        new SweetAlertDialog(SupplierProfile.this,SweetAlertDialog.SUCCESS_TYPE)
-                                .setTitleText("Item deliver Successful")
-                                .show();
-
-                    }
-                    @Override
-                    public void onFailure(Call<Void> call, Throwable t) {
-                        System.out.println("fail");
-                    }
-                });
 
 
     }
