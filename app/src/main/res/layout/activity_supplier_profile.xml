@@ -108,7 +108,7 @@
                 android:text="Item List" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/approveRV"
+                android:id="@+id/suplyitm"
                 android:paddingTop="10dp"
                 android:paddingBottom="30dp"
                 android:layout_width="match_parent"
@@ -118,18 +118,28 @@
 
         </LinearLayout>
 
+<!--        <Button-->
+<!--            android:id="@+id/add_item"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="20dp"-->
+<!--            android:background="@drawable/place_button"-->
+<!--            android:gravity="center_horizontal"-->
+<!--            android:padding="15dp"-->
+<!--            android:text="Approve Requisition"-->
+<!--            android:textAlignment="center"-->
+<!--            android:textColor="#000000"-->
+<!--            android:visibility="invisible" />-->
+
         <Button
             android:id="@+id/add_item"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
             android:background="@drawable/place_button"
-            android:gravity="center_horizontal"
-            android:padding="15dp"
-            android:text="Approve Requisition"
-            android:textAlignment="center"
             android:textColor="#FFFFFF"
-            android:visibility="invisible" />
+
+            android:layout_margin="20dp"
+            android:text="deliver"/>
 
     </LinearLayout>
 </ScrollView>
