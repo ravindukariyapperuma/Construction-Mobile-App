@@ -232,9 +232,12 @@ public class SupplierProfile extends AppCompatActivity {
 
                             getdetails_from_reqIDSupplier(orderreqIDS.getSelectedItem().toString());
 
-                            new SweetAlertDialog(SupplierProfile.this,SweetAlertDialog.SUCCESS_TYPE)
-                                    .setTitleText("Item deliver Successful")
-                                    .show();
+                            Intent intent = new Intent(SupplierProfile.this,inprogressItemsInsupplier.class);
+                            startActivity(intent);
+
+//                            new SweetAlertDialog(SupplierProfile.this,SweetAlertDialog.SUCCESS_TYPE)
+//                                    .setTitleText("Item deliver Successful")
+//                                    .show();
 
                         }
                         @Override
