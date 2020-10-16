@@ -11,8 +11,6 @@ public class orderItemcls {
         ItName = itName;
         this.qty = qty;
         this.price = price;
-//        this.editbtn = editbtn;
-//        this.deleteBtn = deleteBtn;
     }
 
     public String getItName() {

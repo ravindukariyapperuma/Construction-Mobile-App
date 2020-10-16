@@ -4,21 +4,18 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.requisitionandapproval.ApiClient.Endpoints;
-import com.example.requisitionandapproval.EmployeeDashboard;
-import com.example.requisitionandapproval.MainClasses.Managers.ManagerApprove;
-import com.example.requisitionandapproval.ManagerDashBoard;
+import com.example.requisitionandapproval.DashBoards.EmployeeDashboard;
+import com.example.requisitionandapproval.DashBoards.ManagerDashBoard;
 import com.example.requisitionandapproval.R;
-import com.example.requisitionandapproval.SiteManagerDashboard;
-import com.example.requisitionandapproval.SupplierDashboard;
+import com.example.requisitionandapproval.DashBoards.SiteManagerDashboard;
+import com.example.requisitionandapproval.DashBoards.SupplierDashboard;
 import com.example.requisitionandapproval.model.userLogin;
-import com.example.requisitionandapproval.MainClasses.Order.place_Purchase_order;
-import com.example.requisitionandapproval.progressBar;
+import com.example.requisitionandapproval.Notification.progressBar;
 import com.google.gson.Gson;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.CountDownTimer;
-import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -32,7 +29,6 @@ import java.util.HashMap;
 
 import com.example.requisitionandapproval.ApiClient.ApiClient;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -158,16 +154,6 @@ public class UserLogin extends AppCompatActivity {
 
                     }
                 }.start();
-
-//                final progressBar pbar = new progressBar(UserLogin.this);
-//                pbar.StartLoading();
-//                Handler handler = new Handler();
-//                handler.postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        pbar.dismissProgress();
-//                    }
-//                },5000);
 
             }
 

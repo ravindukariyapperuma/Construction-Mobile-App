@@ -1,15 +1,12 @@
 package com.example.requisitionandapproval.MainClasses.SiteManager;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.JsonReader;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -19,25 +16,13 @@ import android.widget.TextView;
 
 import com.example.requisitionandapproval.ApiClient.ApiClient;
 import com.example.requisitionandapproval.ApiClient.Endpoints;
-import com.example.requisitionandapproval.MainClasses.Order.place_purchase_order_Item_List;
 import com.example.requisitionandapproval.R;
-import com.example.requisitionandapproval.adapterClasses.ApproveAdapter;
 import com.example.requisitionandapproval.adapterClasses.OrderAdapter;
-import com.example.requisitionandapproval.adapterClasses.place_Item_listAdapter;
-import com.example.requisitionandapproval.dialog;
-import com.example.requisitionandapproval.model.ApproveModel;
-import com.example.requisitionandapproval.model.OrderDoneModel;
+import com.example.requisitionandapproval.Notification.dialog;
 import com.example.requisitionandapproval.model.getOrderedItemList;
-import com.example.requisitionandapproval.model.orderItemcls;
 import com.example.requisitionandapproval.model.orderModel;
 import com.example.requisitionandapproval.model.placedorderReqId;
-import com.example.requisitionandapproval.popup;
-import com.google.gson.JsonObject;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -79,11 +64,6 @@ public class goods_receipt extends AppCompatActivity {
 
         getAllReqNumbers();
 
-//        initdata();
-//        initRecyclerView();
-//
-
-
         orderreqIDS.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -104,8 +84,6 @@ public class goods_receipt extends AppCompatActivity {
 
     }
 
-
-
     public void getAllReqNumbers() {
         System.out.println("HEREE");
         Call<placedorderReqId> call = endpoints.getApprovedOrderIDs();
@@ -124,9 +102,7 @@ public class goods_receipt extends AppCompatActivity {
                     reqadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     reqidspin.setAdapter(reqadapter);
 
-//                    for(int i=0; i<it.size(); i++){
-//                        System.out.println("ITEMSCC" + it.get(i).getItemIDs());
-//                    }
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -149,25 +125,12 @@ public class goods_receipt extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-//                HashMap <String, String> map = new HashMap<>();
-//                map.put("reqID", orderreqIDS.getSelectedItem().toString());
-//                map.put("itemDescription", adapter.checkedItems.);
-//                String jsonObject ="{\"reqID\":\""+orderreqIDS.getSelectedItem().toString()+"\",\"itemDescription\":"+adapter.checkedItems+"}";
-//                JSONObject obj = null;
-//
-//                try {
-//                     obj = new JSONObject(jsonObject);
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
                 String[] itmarr = new String[adapter.checkedItems.size()];
                 for (int i = 0 ; i< adapter.checkedItems.size(); i++){
 
                     itmarr[i]= adapter.checkedItems.get(i).toString();
                 }
                 System.out.println(itmarr);
-
-               // OrderDoneModel obj = new OrderDoneModel(orderreqIDS.getSelectedItem().toString(),adapter.checkedItems);
 
                 String[] reqarr ={orderreqIDS.getSelectedItem().toString()};
 
@@ -186,12 +149,6 @@ public class goods_receipt extends AppCompatActivity {
                         new SweetAlertDialog(goods_receipt.this,SweetAlertDialog.SUCCESS_TYPE)
                                 .setTitleText("Item Received Successful")
                                 .show();
-
-                       // dialog();
-
-//                        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//                        fragmentTransaction.add(R.id.RecivedItem, new popup() );
-//                        fragmentTransaction.commit();
 
                     }
                     @Override
@@ -226,8 +183,7 @@ public class goods_receipt extends AppCompatActivity {
                 for(int i =0 ; i<it.size(); i++){
                     itemcls[i] =new orderModel (it.get(i).getItem_Description());
                 }
-//                itemAdapter adapter= new itemAdapter(itemcls,place_purchase_order_Item_List.this);
-//                recyclerView.setAdapter(adapter);
+
 
                 adapter= new OrderAdapter(itemcls, goods_receipt.this);
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));

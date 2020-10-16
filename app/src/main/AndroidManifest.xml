@@ -15,11 +15,11 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".ManagerDashBoard"></activity>
-        <activity android:name=".SupplierDashboard"></activity>
-        <activity android:name=".EmployeeDashboard"></activity>
-        <activity android:name=".SiteManagerDashboard"></activity>
-        <activity android:name=".welcomeScreen">
+        <activity android:name=".DashBoards.ManagerDashBoard"></activity>
+        <activity android:name=".DashBoards.SupplierDashboard"></activity>
+        <activity android:name=".DashBoards.EmployeeDashboard"></activity>
+        <activity android:name=".DashBoards.SiteManagerDashboard"></activity>
+        <activity android:name=".DashBoards.welcomeScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -33,7 +33,7 @@
         <activity android:name=".MainClasses.Users.registerUsers" />
         <activity android:name=".MainClasses.Order.place_Purchase_order" />
         <activity android:name=".MainClasses.Users.UserLogin" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".Notification.MainActivity" />
         <activity android:name=".MainClasses.Order.place_purchase_order_Item_List" />
         <activity
             android:name=".MainClasses.SiteManager.place_purchase_Order_List"

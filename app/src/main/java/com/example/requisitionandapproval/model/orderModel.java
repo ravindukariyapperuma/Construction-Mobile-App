@@ -9,9 +9,7 @@ public class orderModel {
 
     public orderModel(String ITName) {
         this.ITName = ITName;
-//        this.qty = qty;
-//        this.price = price;
-//        this.expanded = false;
+
     }
 
     public String getITName() {

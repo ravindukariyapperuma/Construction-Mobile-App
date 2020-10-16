@@ -4,9 +4,6 @@ public class OrderDoneModel {
 
     public String reqID;
     public String[] itemDescription;
-//    private String itemPrice;
-//    private String itemQty;
-
 
     public OrderDoneModel(String reqID, String[] itemDescription) {
         this.reqID = reqID;
@@ -21,11 +18,4 @@ public class OrderDoneModel {
         return itemDescription;
     }
 
-//    public String getItemPrice() {
-//        return itemPrice;
-//    }
-//
-//    public String getItemQty() {
-//        return itemQty;
-//    }
 }

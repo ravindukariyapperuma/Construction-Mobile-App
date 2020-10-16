@@ -17,17 +17,13 @@ import android.widget.Toast;
 
 import com.example.requisitionandapproval.ApiClient.ApiClient;
 import com.example.requisitionandapproval.ApiClient.Endpoints;
-import com.example.requisitionandapproval.MainClasses.SiteManager.Approve_Requisition;
-import com.example.requisitionandapproval.MainClasses.Users.UserLogin;
 import com.example.requisitionandapproval.R;
 import com.example.requisitionandapproval.adapterClasses.ApproveAdapter;
 import com.example.requisitionandapproval.model.ApproveModel;
-import com.example.requisitionandapproval.model.GetReqDetailsByID;
-import com.example.requisitionandapproval.model.GetReqNumbers;
 import com.example.requisitionandapproval.model.ManagerReqNumbers;
 import com.example.requisitionandapproval.model.ReqApprovalModel;
 import com.example.requisitionandapproval.model.getDetaislByManagerReqID;
-import com.example.requisitionandapproval.progressBar;
+import com.example.requisitionandapproval.Notification.progressBar;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -41,14 +37,17 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ManagerApprove extends AppCompatActivity {
+
     List<ApproveModel> approveModels;
     RecyclerView recyclerView;
     ReqApprovalModel[] rm;
     static int val;
+
     ApiClient apiClient = new ApiClient();
     private Retrofit retrofit;
     private Endpoints endpoints;
     private String Base_URL = apiClient.getBASE_URL();
+
     String username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

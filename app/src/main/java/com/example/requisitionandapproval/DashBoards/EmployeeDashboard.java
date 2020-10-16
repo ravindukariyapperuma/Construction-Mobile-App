@@ -1,35 +1,36 @@
-package com.example.requisitionandapproval;
+package com.example.requisitionandapproval.DashBoards;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.example.requisitionandapproval.MainClasses.Suppliers.SupplierProfile;
+import com.example.requisitionandapproval.Notification.MainActivity;
+import com.example.requisitionandapproval.R;
 
-public class SupplierDashboard extends AppCompatActivity {
-
-    String EXTRA_SESSION_ID;
-    ImageView supplierr;
+public class EmployeeDashboard extends AppCompatActivity {
+ImageButton addItem;
+Context context = this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_supplier_dashboard);
+        setContentView(R.layout.activity_employee_dashboard);
 
-        supplierr = findViewById(R.id.supplierr);
-
-        Intent intent = getIntent();
-        EXTRA_SESSION_ID = intent.getStringExtra("EXTRA_SESSION_ID");
-
-        supplierr.setOnClickListener(new View.OnClickListener() {
+        addItem = findViewById(R.id.addItem);
+        addItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(SupplierDashboard.this, SupplierProfile.class);
-                intent1.putExtra("username",EXTRA_SESSION_ID);
+                Intent intent = getIntent();
+                String un = intent.getStringExtra("username");
+                String uid = intent.getStringExtra("userID");
+                Intent intent1 = new Intent(context, MainActivity.class);
+                intent1.putExtra("username",un);
+                intent1.putExtra("userID",uid);
                 startActivity(intent1);
             }
         });

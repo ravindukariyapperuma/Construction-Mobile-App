@@ -17,16 +17,10 @@ import android.widget.Toast;
 
 import com.example.requisitionandapproval.ApiClient.ApiClient;
 import com.example.requisitionandapproval.ApiClient.Endpoints;
-import com.example.requisitionandapproval.MainActivity;
-import com.example.requisitionandapproval.MainClasses.Managers.ManagerApprove;
-import com.example.requisitionandapproval.MainClasses.SiteManager.Approve_Requisition;
 import com.example.requisitionandapproval.MainClasses.SiteManager.place_purchase_Order_List;
-import com.example.requisitionandapproval.MainClasses.Users.UserLogin;
-import com.example.requisitionandapproval.MainClasses.Users.registerUsers;
 import com.example.requisitionandapproval.R;
-import com.example.requisitionandapproval.model.GetReqNumbers;
 import com.example.requisitionandapproval.model.supplierModel;
-import com.example.requisitionandapproval.progressBar;
+import com.example.requisitionandapproval.Notification.progressBar;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -122,7 +116,6 @@ public class place_Purchase_order extends AppCompatActivity {
                     new SweetAlertDialog(place_Purchase_order.this,SweetAlertDialog.SUCCESS_TYPE)
                             .setTitleText("Order Placed Successful")
                             .show();
-                    //Toast.makeText(place_Purchase_order.this,"Order Placed Successful",Toast.LENGTH_LONG).show();
 
                 }
 
@@ -188,7 +181,6 @@ public class place_Purchase_order extends AppCompatActivity {
         map.put("other", city.getSelectedItem().toString());
         map.put("requiredDate", requireDate.getText().toString());
 
-        //System.out.println("awd" + sp.getSelectedItem().toString());
 
         Call<Void> call = endpoints.placeOrder(map);
         try {
@@ -203,7 +195,6 @@ public class place_Purchase_order extends AppCompatActivity {
 
 
                             if(response.code() == 404){
-                                // Toast.makeText(place_Purchase_order.this, "Please fill all required fields!", Toast.LENGTH_LONG).show();
                                 new SweetAlertDialog(place_Purchase_order.this,SweetAlertDialog.WARNING_TYPE)
                                         .setTitleText("Error !")
                                         .show();
@@ -228,11 +219,6 @@ public class place_Purchase_order extends AppCompatActivity {
 
                         }
                     }.start();
-
-
-                    //Toast.makeText(place_Purchase_order.this, response.message(), Toast.LENGTH_LONG).show();
-
-
 
                 }
 

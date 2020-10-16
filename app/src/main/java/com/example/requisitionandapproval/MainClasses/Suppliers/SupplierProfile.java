@@ -80,17 +80,7 @@ public class SupplierProfile extends AppCompatActivity {
                 requestingApproval(rm);
             }
         });
-//        ApproveModel[] approveModels = new ApproveModel[]{
-//
-//                new ApproveModel("Tokyo cement"),
-//                new ApproveModel("Pipes")
-//
-//
-//
-//        };
-//        ApproveAdapter adapter= new ApproveAdapter(approveModels,Approve_Requisition.this);
-//        recyclerView.setAdapter(adapter);
-        // getdetails_from_reqID(RequisitionId);
+
         final Spinner reqId = (Spinner) findViewById(R.id.reqIDS);
 
         reqId.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -107,8 +97,6 @@ public class SupplierProfile extends AppCompatActivity {
             }
         });
 
-
-        // initdata();
 
     }
 
@@ -186,11 +174,7 @@ public class SupplierProfile extends AppCompatActivity {
             public void onResponse(Call<reqIDbysupplier> call, Response<reqIDbysupplier> response) {
                 try {
                     reqIDbysupplier it = response.body();
-//                    String[] arraySpinner = new String[it.size()];
-//                    for (int i = 0; i < it.size(); i++) {
-//
-//                        arraySpinner[i] = it.get(i).getItemID();
-//                    }
+
                     Spinner s = (Spinner) findViewById(R.id.reqIDS);
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(SupplierProfile.this, android.R.layout.simple_spinner_item, it.getItemID());
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

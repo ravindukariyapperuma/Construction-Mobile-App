@@ -7,28 +7,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.CountDownTimer;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.requisitionandapproval.ApiClient.ApiClient;
 import com.example.requisitionandapproval.ApiClient.Endpoints;
-import com.example.requisitionandapproval.MainClasses.Items.itemList;
-import com.example.requisitionandapproval.MainClasses.SiteManager.Approve_Requisition;
 import com.example.requisitionandapproval.R;
-import com.example.requisitionandapproval.adapterClasses.itemAdapter;
 import com.example.requisitionandapproval.adapterClasses.place_Item_listAdapter;
-import com.example.requisitionandapproval.model.ItemResult;
-import com.example.requisitionandapproval.model.Itemcls;
 import com.example.requisitionandapproval.model.getOrderedItemList;
 import com.example.requisitionandapproval.model.orderItemcls;
-import com.example.requisitionandapproval.progressBar;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -71,16 +62,11 @@ public class place_purchase_order_Item_List extends AppCompatActivity {
         map.put("reqID", orderId);
 
         Call<List<getOrderedItemList>> call = endpoints.getOrderedItems(map);
-        ArrayList<String> arlist = new ArrayList<>( );
+
 
         call.enqueue(new Callback<List<getOrderedItemList>>() {
             @Override
             public void onResponse(Call<List<getOrderedItemList>> call, final Response<List<getOrderedItemList>> response) {
-
-
-
-
-
 
                         System.out.println("passssed");
                         if(response.code() ==200){
@@ -91,21 +77,9 @@ public class place_purchase_order_Item_List extends AppCompatActivity {
                         for(int i =0 ; i<it.size(); i++){
                             itemcls[i] =new orderItemcls (it.get(i).getItem_Description(), it.get(i).getItem_Quantity(), it.get(i).getItem_AgreedPrice());
                         }
-//                itemAdapter adapter= new itemAdapter(itemcls,place_purchase_order_Item_List.this);
-//                recyclerView.setAdapter(adapter);
 
                         place_Item_listAdapter adapter= new place_Item_listAdapter(itemcls,place_purchase_order_Item_List.this);
                         recyclerView.setAdapter(adapter);
-
-
-
-
-
-
-
-
-
-
 
             }
 
