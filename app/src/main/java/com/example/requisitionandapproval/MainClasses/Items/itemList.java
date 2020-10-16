@@ -43,17 +43,15 @@ public class itemList extends AppCompatActivity {
         retrofit = new Retrofit.Builder().baseUrl(Base_URL).addConverterFactory(GsonConverterFactory.create()).build();
         endpoints = retrofit.create(Endpoints.class);
 
-        Button add_item = findViewById(R.id.add_item);
-        Button button = findViewById(R.id.showBtn);
         name = findViewById(R.id.name);
-
         destxt = findViewById(R.id.destxt);
         qty1 = findViewById(R.id.qty1);
         price = findViewById(R.id.price);
+
         sendGETRequest();
+
         Intent intent = getIntent();
         username = intent.getStringExtra("username");
-
         name.setText("Employee : "+username);
 
         final RecyclerView recyclerView = findViewById(R.id.recyclerView);
@@ -67,8 +65,6 @@ public class itemList extends AppCompatActivity {
         map.put("username", username);
 
         Call<List<ItemResult>> call = endpoints.getItemListByUser(map);
-        ArrayList<String> arlist = new ArrayList<>( );
-
 
         call.enqueue(new Callback<List<ItemResult>>() {
             @Override
@@ -99,8 +95,5 @@ public class itemList extends AppCompatActivity {
 
     }
     public void sendGETRequest(){
-
-
-
     }
 }

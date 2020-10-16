@@ -1,18 +1,17 @@
-package com.example.requisitionandapproval;
+package com.example.requisitionandapproval.DashBoards;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.KeyEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.requisitionandapproval.MainClasses.SiteManager.Approve_Requisition;
 import com.example.requisitionandapproval.MainClasses.SiteManager.goods_receipt;
+import com.example.requisitionandapproval.R;
 
 public class SiteManagerDashboard extends AppCompatActivity {
     ImageButton approve,goods;
@@ -45,14 +44,6 @@ public class SiteManagerDashboard extends AppCompatActivity {
 
 
     }
-//    @Override
-//    public void onBackPressed(){
-//        Intent a = new Intent(Intent.ACTION_MAIN);
-//        a.addCategory(Intent.CATEGORY_HOME);
-//        a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//        startActivity(a);
-//    }
-
     boolean doubleBackToExitPressedOnce = false;
 
     @Override

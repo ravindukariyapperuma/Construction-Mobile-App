@@ -1,9 +1,10 @@
-package com.example.requisitionandapproval;
+package com.example.requisitionandapproval.Notification;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -11,8 +12,7 @@ import android.widget.Toast;
 
 import com.example.requisitionandapproval.ApiClient.ApiClient;
 import com.example.requisitionandapproval.ApiClient.Endpoints;
-import com.example.requisitionandapproval.MainClasses.Order.place_Purchase_order;
-import com.example.requisitionandapproval.MainClasses.SiteManager.goods_receipt;
+import com.example.requisitionandapproval.R;
 import com.example.requisitionandapproval.model.ItemResult;
 
 import java.util.HashMap;
@@ -49,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
         price = findViewById(R.id.price);
         Intent intent = getIntent();
 
-        //get the username and userID when user login to the system
         username = intent.getStringExtra("username");
         userID = intent.getStringExtra("userID");
 
@@ -64,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
                     new SweetAlertDialog(MainActivity.this,SweetAlertDialog.WARNING_TYPE)
                             .setTitleText("Please Fill All fields")
                             .show();
-                    //Toast.makeText(MainActivity.this,"Please Fill All fields",Toast.LENGTH_LONG).show();
                 }else{
                     sendPostRequest();
 
@@ -112,15 +110,27 @@ public class MainActivity extends AppCompatActivity {
                 Call<Void> call = endpoints.saveItemList(map);
                 call.enqueue(new Callback<Void>() {
                     @Override
-                    public void onResponse(Call<Void> call, Response<Void> response) {
-                        System.out.println(response.body());
-//                        dialog();
-                        new SweetAlertDialog(MainActivity.this,SweetAlertDialog.SUCCESS_TYPE)
-                                .setTitleText("Item Adding Successful")
-                                .show();
-                        destxt.setText("");
-                        qty1.setText("");
-                        price.setText("");
+                    public void onResponse(Call<Void> call, final Response<Void> response) {
+
+                        final progressBar pbar = new progressBar(MainActivity.this);
+                        new CountDownTimer(1000, 1000) {
+                            public void onFinish() {
+                                pbar.dismissProgress();
+
+                                System.out.println(response.body());
+
+                                new SweetAlertDialog(MainActivity.this,SweetAlertDialog.SUCCESS_TYPE)
+                                        .setTitleText("Item Adding Successful")
+                                        .show();
+                                destxt.setText("");
+                                qty1.setText("");
+                                price.setText("");
+
+                            }
+                            public void onTick(long millisUntilFinished) {
+                                pbar.StartLoading();
+                            }
+                        }.start();
                     }
                     @Override
                     public void onFailure(Call<Void> call, Throwable t) {

@@ -99,4 +99,7 @@ public interface Endpoints {
     //get all the items by request number
     @POST("/supplier/getInfo")
     Call<List<SupplierItemDetails>> getItemsByReqIDSupplier(@Body HashMap<String, String> map);
+
+    @POST("/supplier/getSelectedInfo")
+    Call<Void> deliverItem(@Body HashMap<String, String[]> map);
 }

@@ -18,26 +18,20 @@ import java.util.List;
 
 public class ApproveAdapter extends RecyclerView.Adapter<ApproveAdapter.ViewHolder>{
 
-//    ApproveModel[] approveModels;
-//    Context context;
     List<ApproveModel> approveModels1;
 
-
-
     public ApproveAdapter( List<ApproveModel> approveModels1) {
-
         this.approveModels1 = approveModels1;
-
-
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.items,parent,false);
-       ViewHolder viewHolder = new ViewHolder(view);
 
+       ViewHolder viewHolder = new ViewHolder(view);
 
         return viewHolder;
     }
@@ -60,10 +54,7 @@ public class ApproveAdapter extends RecyclerView.Adapter<ApproveAdapter.ViewHold
             return 0;
         }else{
             return approveModels1.size();
-
         }
-
-
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -71,9 +62,7 @@ public class ApproveAdapter extends RecyclerView.Adapter<ApproveAdapter.ViewHold
         TextView ItemName;
         EditText qty, price;
         Button down;
-
         ConstraintLayout expandableLayout;
-
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -84,15 +73,9 @@ public class ApproveAdapter extends RecyclerView.Adapter<ApproveAdapter.ViewHold
             expandableLayout = itemView.findViewById(R.id.expandableLayout);
             down = itemView.findViewById(R.id.arrowdown);
 
-//            Qty = itemView.findViewById(R.id.qty);
-//            PriceperItem = itemView.findViewById(R.id.priceperItem);
-//            edit = itemView.findViewById(R.id.editBtn);
-//            delete = itemView.findViewById(R.id.deleteBtn);
-
             ItemName.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
 
                     ApproveModel approveModel = approveModels1.get(getAdapterPosition());
                     approveModel.setExpanded(!approveModel.isExpanded());
@@ -104,6 +87,5 @@ public class ApproveAdapter extends RecyclerView.Adapter<ApproveAdapter.ViewHold
 
         }
     }
-
 
 }

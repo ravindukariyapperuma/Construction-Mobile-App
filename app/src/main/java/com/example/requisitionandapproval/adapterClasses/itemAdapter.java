@@ -70,10 +70,6 @@ public class itemAdapter extends RecyclerView.Adapter<itemAdapter.ViewHolder> {
         ImageView edit;
         ImageView delete;
 
-
-
-
-
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 

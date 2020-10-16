@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="@drawable/background1"
-        tools:context=".MainActivity">
+        tools:context=".Notification.MainActivity">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -70,6 +70,7 @@
         <LinearLayout
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -97,6 +98,93 @@
                 android:hint="Enter Requisition No "
 
                 />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:textColor="#000000"
+                    android:text="RequreDate : "/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/requreDate"
+                    android:textColor="#000000"
+                    android:textSize="15dp"
+                    android:text=""/>
+
+
+
+
+
+
+
+
+
+            </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#000000"
+                        android:textSize="15dp"
+                        android:text="Address : "/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/line1"
+                        android:textSize="15dp"
+                        android:textColor="#000000"
+                        android:text=""/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/line2"
+                        android:textSize="15dp"
+                        android:textColor="#000000"
+                        android:text=""/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#000000"
+                        android:id="@+id/linecity"
+                        android:textSize="15dp"
+                        android:text=""/>
+
+
+
+
+
+
+
+
+
+
+                </LinearLayout>
+            </LinearLayout>
+
             <TextView
                 android:id="@+id/des"
                 android:layout_width="match_parent"
@@ -108,7 +196,7 @@
                 android:text="Item List" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/approveRV"
+                android:id="@+id/suplyitm"
                 android:paddingTop="10dp"
                 android:paddingBottom="30dp"
                 android:layout_width="match_parent"
@@ -118,18 +206,28 @@
 
         </LinearLayout>
 
+<!--        <Button-->
+<!--            android:id="@+id/add_item"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="20dp"-->
+<!--            android:background="@drawable/place_button"-->
+<!--            android:gravity="center_horizontal"-->
+<!--            android:padding="15dp"-->
+<!--            android:text="Approve Requisition"-->
+<!--            android:textAlignment="center"-->
+<!--            android:textColor="#000000"-->
+<!--            android:visibility="invisible" />-->
+
         <Button
             android:id="@+id/add_item"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
             android:background="@drawable/place_button"
-            android:gravity="center_horizontal"
-            android:padding="15dp"
-            android:text="Approve Requisition"
-            android:textAlignment="center"
             android:textColor="#FFFFFF"
-            android:visibility="invisible" />
+
+            android:layout_margin="20dp"
+            android:text="deliver"/>
 
     </LinearLayout>
 </ScrollView>

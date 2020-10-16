@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,15 +17,13 @@ import android.widget.Toast;
 
 import com.example.requisitionandapproval.ApiClient.ApiClient;
 import com.example.requisitionandapproval.ApiClient.Endpoints;
-import com.example.requisitionandapproval.MainClasses.SiteManager.Approve_Requisition;
 import com.example.requisitionandapproval.R;
 import com.example.requisitionandapproval.adapterClasses.ApproveAdapter;
 import com.example.requisitionandapproval.model.ApproveModel;
-import com.example.requisitionandapproval.model.GetReqDetailsByID;
-import com.example.requisitionandapproval.model.GetReqNumbers;
 import com.example.requisitionandapproval.model.ManagerReqNumbers;
 import com.example.requisitionandapproval.model.ReqApprovalModel;
 import com.example.requisitionandapproval.model.getDetaislByManagerReqID;
+import com.example.requisitionandapproval.Notification.progressBar;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,14 +37,17 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ManagerApprove extends AppCompatActivity {
+
     List<ApproveModel> approveModels;
     RecyclerView recyclerView;
     ReqApprovalModel[] rm;
     static int val;
+
     ApiClient apiClient = new ApiClient();
     private Retrofit retrofit;
     private Endpoints endpoints;
     private String Base_URL = apiClient.getBASE_URL();
+
     String username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -201,31 +203,11 @@ public class ManagerApprove extends AppCompatActivity {
         final Spinner ManagerreqIDS = findViewById(R.id.ManagerreqIDS);
 
 
-//                HashMap <String, String> map = new HashMap<>();
-//                map.put("reqID", orderreqIDS.getSelectedItem().toString());
-//                map.put("itemDescription", adapter.checkedItems.);
-//                String jsonObject ="{\"reqID\":\""+orderreqIDS.getSelectedItem().toString()+"\",\"itemDescription\":"+adapter.checkedItems+"}";
-//                JSONObject obj = null;
-//
-//                try {
-//                     obj = new JSONObject(jsonObject);
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//                String[] itmarr = new String[adapter.checkedItems.size()];
-//                for (int i = 0 ; i< adapter.checkedItems.size(); i++){
-//
-//                    itmarr[i]= adapter.checkedItems.get(i).toString();
-//                }
-//                System.out.println(itmarr);
 
-                // OrderDoneModel obj = new OrderDoneModel(orderreqIDS.getSelectedItem().toString(),adapter.checkedItems);
-
-//                String[] reqarr ={orderreqIDS.getSelectedItem().toString()};
 
                 HashMap <String, String> map = new HashMap<>();
                 map.put("reqID",ManagerreqIDS.getSelectedItem().toString() );
-                map.put("username",ManagerreqIDS.getSelectedItem().toString() );
+                map.put("username",username);
 
                 map.put("status", "APPROVED");
 
@@ -234,14 +216,25 @@ public class ManagerApprove extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
                         System.out.println(response.body());
-                       // Toast.makeText(ManagerApprove.this,"Order Approve Successful",Toast.LENGTH_LONG).show();
-                        new SweetAlertDialog(ManagerApprove.this,SweetAlertDialog.SUCCESS_TYPE)
-                                .setTitleText("Order Approval Successful")
-                                .show();
 
-//                        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//                        fragmentTransaction.add(R.id.RecivedItem, new popup() );
-//                        fragmentTransaction.commit();
+                        final progressBar pbar = new progressBar(ManagerApprove.this);
+                        new CountDownTimer(1000, 1000) {
+                            public void onFinish() {
+                                pbar.dismissProgress();
+                                // my whole code
+
+                                new SweetAlertDialog(ManagerApprove.this,SweetAlertDialog.SUCCESS_TYPE)
+                                        .setTitleText("Order Approval Successful")
+                                        .show();
+
+                            }
+
+                            public void onTick(long millisUntilFinished) {
+                                pbar.StartLoading();
+
+                            }
+                        }.start();
+
 
                     }
                     @Override
@@ -272,13 +265,32 @@ public class ManagerApprove extends AppCompatActivity {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                final Spinner reqId = (Spinner) findViewById(R.id.ManagerreqIDS);
-                new SweetAlertDialog(ManagerApprove.this,SweetAlertDialog.SUCCESS_TYPE)
-                        .setTitleText("Order Decline Successful")
-                        .show();
-                //Toast.makeText(ManagerApprove.this,"Decline Successful",Toast.LENGTH_LONG).show();
-                String RequisitionId = reqId.getSelectedItem().toString();
-                getdetails_from_reqID(RequisitionId);
+
+                final progressBar pbar = new progressBar(ManagerApprove.this);
+                new CountDownTimer(1000, 1000) {
+                    public void onFinish() {
+                        pbar.dismissProgress();
+                        // my whole code
+
+                        final Spinner reqId = (Spinner) findViewById(R.id.ManagerreqIDS);
+                        new SweetAlertDialog(ManagerApprove.this,SweetAlertDialog.SUCCESS_TYPE)
+                                .setTitleText("Order Decline Successful")
+                                .show();
+                        //Toast.makeText(ManagerApprove.this,"Decline Successful",Toast.LENGTH_LONG).show();
+                        String RequisitionId = reqId.getSelectedItem().toString();
+                        getdetails_from_reqID(RequisitionId);
+
+                    }
+
+                    public void onTick(long millisUntilFinished) {
+                        pbar.StartLoading();
+
+                    }
+                }.start();
+
+
+
+
 
             }
 

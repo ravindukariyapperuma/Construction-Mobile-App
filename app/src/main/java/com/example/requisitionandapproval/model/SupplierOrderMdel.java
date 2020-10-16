@@ -1,13 +1,13 @@
 package com.example.requisitionandapproval.model;
 
-public class orderItemcls {
+public class SupplierOrderMdel {
     private String ItName ;
     private String qty;
     private String price;
     private Integer editbtn;
     private Integer deleteBtn;
 
-    public orderItemcls(String itName, String qty, String price) {
+    public SupplierOrderMdel(String itName, String qty, String price) {
         ItName = itName;
         this.qty = qty;
         this.price = price;
