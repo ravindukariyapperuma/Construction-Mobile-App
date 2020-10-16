@@ -15,7 +15,8 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".MainClasses.Suppliers.inprogressItemsInsupplier"></activity>
+        <activity android:name=".MainClasses.Suppliers.DeliverdItems"></activity>
+        <activity android:name=".MainClasses.Suppliers.inprogressItemsInsupplier" />
         <activity android:name=".DashBoards.ManagerDashBoard" />
         <activity android:name=".DashBoards.SupplierDashboard" />
         <activity android:name=".DashBoards.EmployeeDashboard" />

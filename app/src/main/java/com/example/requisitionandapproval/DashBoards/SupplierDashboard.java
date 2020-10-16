@@ -8,18 +8,21 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.requisitionandapproval.MainClasses.Suppliers.DeliverdItems;
 import com.example.requisitionandapproval.MainClasses.Suppliers.SupplierProfile;
+import com.example.requisitionandapproval.MainClasses.Suppliers.inprogressItemsInsupplier;
 import com.example.requisitionandapproval.R;
 
 public class SupplierDashboard extends AppCompatActivity {
 
     String EXTRA_SESSION_ID;
-    ImageView supplierr;
+    ImageView supplierr,Btninprogress,BtnDelivered;
     AppCompatRadioButton rbAvailable, rbNotAvailable;
     RadioButton rdActive, rdNotActive;
     TextView txtUsername;
@@ -27,9 +30,11 @@ public class SupplierDashboard extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setContentView(R.layout.activity_supplier_dashboard);
         rbAvailable = findViewById(R.id.rbAvailable);
         rbNotAvailable = findViewById(R.id.rbNotAvailable);
+        Btninprogress = findViewById(R.id.btninprogress);
+        BtnDelivered = findViewById(R.id.btnDelivered);
 
 //        rdActive = findViewById(R.id.rdActive);
 //        rdNotActive = findViewById(R.id.rdNotActive);
@@ -39,7 +44,7 @@ public class SupplierDashboard extends AppCompatActivity {
         txtUsername = findViewById(R.id.txtUsername);
 //        txtUsername.setText(username);
 
-        setContentView(R.layout.activity_supplier_dashboard);
+
 
         supplierr = findViewById(R.id.supplierr);
 
@@ -54,6 +59,24 @@ public class SupplierDashboard extends AppCompatActivity {
                 startActivity(intent1);
             }
         });
+
+
+        Btninprogress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SupplierDashboard.this, inprogressItemsInsupplier.class);
+                startActivity(intent);
+            }
+        });
+
+        BtnDelivered.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SupplierDashboard.this, DeliverdItems.class);
+                startActivity(intent);
+            }
+        });
+
 
 
     }
