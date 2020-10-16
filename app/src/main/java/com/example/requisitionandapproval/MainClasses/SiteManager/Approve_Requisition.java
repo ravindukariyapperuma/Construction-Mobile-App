@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -26,6 +27,7 @@ import com.example.requisitionandapproval.model.Itemcls;
 import com.example.requisitionandapproval.model.ItemsDetails;
 import com.example.requisitionandapproval.model.ReqApprovalModel;
 import com.example.requisitionandapproval.MainClasses.Order.place_Purchase_order;
+import com.example.requisitionandapproval.progressBar;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -228,41 +230,61 @@ public class Approve_Requisition extends AppCompatActivity {
         Call<ReqApprovalModel> call = endpoints.requestApproval(rm);
         call.enqueue(new Callback<ReqApprovalModel>() {
             @Override
-            public void onResponse(Call<ReqApprovalModel> call, Response<ReqApprovalModel> response) {
-                JSONObject jsonObject = null;
-                try {
-                    jsonObject = new JSONObject(new Gson().toJson(response.body()));
-                    String nme = jsonObject.getString("status");
-                    System.out.println("nme"+nme);
-                    if(nme.equals("PENDING")){
-                        System.out.println("Navigate to manager port");
-                        final Spinner reqId = (Spinner) findViewById(R.id.reqIDS);
-                        String RequisitionId = reqId.getSelectedItem().toString();
-                        getdetails_from_reqID(RequisitionId);
-                        new SweetAlertDialog(Approve_Requisition.this,SweetAlertDialog.SUCCESS_TYPE)
-                                .setTitleText("Order Approval Navigates to Manager")
-                                .show();
-                        //Toast.makeText(Approve_Requisition.this,"Order Approval Navigates to Manager",Toast.LENGTH_SHORT).show();
+            public void onResponse(Call<ReqApprovalModel> call, final Response<ReqApprovalModel> response) {
 
-                    }else{
-                        //Toast.makeText(Approve_Requisition.this,"Order Approval Successful",Toast.LENGTH_SHORT).show();
-                        new SweetAlertDialog(Approve_Requisition.this,SweetAlertDialog.SUCCESS_TYPE)
-                                .setTitleText("Order Approval Successful")
-                                .show();
-                        Intent intent = getIntent();
-                        String name = intent.getStringExtra("name");
-                        Spinner reqId = (Spinner) findViewById(R.id.reqIDS);
-                        String RequisitionId = reqId.getSelectedItem().toString();
-                        Intent it = new Intent(getBaseContext(), com.example.requisitionandapproval.MainClasses.Order.place_Purchase_order.class);
-                        it.putExtra("reqid",RequisitionId);
-                        it.putExtra("name1",name);
-                        startActivity(it);
+                final progressBar pbar = new progressBar(Approve_Requisition.this);
+                new CountDownTimer(1000, 1000) {
+                    public void onFinish() {
+                        pbar.dismissProgress();
+                        // my whole code
 
-                        System.out.println("Navigate to sitemanager payment");
+
+
+                        JSONObject jsonObject = null;
+                        try {
+                            jsonObject = new JSONObject(new Gson().toJson(response.body()));
+                            String nme = jsonObject.getString("status");
+                            System.out.println("nme"+nme);
+                            if(nme.equals("PENDING")){
+                                System.out.println("Navigate to manager port");
+                                final Spinner reqId = (Spinner) findViewById(R.id.reqIDS);
+                                String RequisitionId = reqId.getSelectedItem().toString();
+                                getdetails_from_reqID(RequisitionId);
+                                new SweetAlertDialog(Approve_Requisition.this,SweetAlertDialog.SUCCESS_TYPE)
+                                        .setTitleText("Order Approval Navigates to Manager")
+                                        .show();
+                                //Toast.makeText(Approve_Requisition.this,"Order Approval Navigates to Manager",Toast.LENGTH_SHORT).show();
+
+                            }else{
+                                //Toast.makeText(Approve_Requisition.this,"Order Approval Successful",Toast.LENGTH_SHORT).show();
+
+                                Intent intent = getIntent();
+                                String name = intent.getStringExtra("name");
+                                Spinner reqId = (Spinner) findViewById(R.id.reqIDS);
+                                String RequisitionId = reqId.getSelectedItem().toString();
+                                Intent it = new Intent(getBaseContext(), com.example.requisitionandapproval.MainClasses.Order.place_Purchase_order.class);
+                                it.putExtra("reqid",RequisitionId);
+                                it.putExtra("name1",name);
+                                startActivity(it);
+
+                                System.out.println("Navigate to sitemanager payment");
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
                     }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+
+                    public void onTick(long millisUntilFinished) {
+                        pbar.StartLoading();
+
+                    }
+                }.start();
+
+
+
+
+
             }
 
             @Override
@@ -292,13 +314,40 @@ public class Approve_Requisition extends AppCompatActivity {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                final Spinner reqId = (Spinner) findViewById(R.id.reqIDS);
-                String RequisitionId = reqId.getSelectedItem().toString();
-                getdetails_from_reqID(RequisitionId);
-                //Toast.makeText(Approve_Requisition.this,"Decline Successful",Toast.LENGTH_LONG).show();
-                new SweetAlertDialog(Approve_Requisition.this,SweetAlertDialog.SUCCESS_TYPE)
-                        .setTitleText("Order Decline Successful")
-                        .show();
+
+
+
+
+
+                final progressBar pbar = new progressBar(Approve_Requisition.this);
+                new CountDownTimer(2000, 1000) {
+                    public void onFinish() {
+                        pbar.dismissProgress();
+                        // my whole code
+
+
+                        final Spinner reqId = (Spinner) findViewById(R.id.reqIDS);
+                        String RequisitionId = reqId.getSelectedItem().toString();
+                        getdetails_from_reqID(RequisitionId);
+                        //Toast.makeText(Approve_Requisition.this,"Decline Successful",Toast.LENGTH_LONG).show();
+                        new SweetAlertDialog(Approve_Requisition.this,SweetAlertDialog.SUCCESS_TYPE)
+                                .setTitleText("Order Decline Successful")
+                                .show();
+
+
+                    }
+
+                    public void onTick(long millisUntilFinished) {
+                        pbar.StartLoading();
+
+                    }
+                }.start();
+
+
+
+
+
+
             }
 
             @Override

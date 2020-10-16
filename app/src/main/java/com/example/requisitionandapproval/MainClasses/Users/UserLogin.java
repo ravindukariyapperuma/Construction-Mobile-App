@@ -5,16 +5,20 @@ import android.os.Bundle;
 
 import com.example.requisitionandapproval.ApiClient.Endpoints;
 import com.example.requisitionandapproval.EmployeeDashboard;
+import com.example.requisitionandapproval.MainClasses.Managers.ManagerApprove;
 import com.example.requisitionandapproval.ManagerDashBoard;
 import com.example.requisitionandapproval.R;
 import com.example.requisitionandapproval.SiteManagerDashboard;
 import com.example.requisitionandapproval.SupplierDashboard;
 import com.example.requisitionandapproval.model.userLogin;
 import com.example.requisitionandapproval.MainClasses.Order.place_Purchase_order;
+import com.example.requisitionandapproval.progressBar;
 import com.google.gson.Gson;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.os.CountDownTimer;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -27,6 +31,8 @@ import org.json.JSONObject;
 import java.util.HashMap;
 
 import com.example.requisitionandapproval.ApiClient.ApiClient;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -91,49 +97,78 @@ public class UserLogin extends AppCompatActivity {
 
         Call<userLogin> call = endpoints.userLogin(map);
         call.enqueue(new Callback<userLogin>() {
+
+
+
             @Override
-            public void onResponse(Call<userLogin> call, Response<userLogin> response) {
-                if(response.code() ==200){
-                    Toast.makeText(UserLogin.this, response.message(), Toast.LENGTH_LONG).show();
-                }
-                JSONObject jsonObject = null;
-                try {
-                    jsonObject = new JSONObject(new Gson().toJson(response.body()));
-                    String nme = jsonObject.getString("userType");
-                    String userID = jsonObject.getString("userID");
+            public void onResponse(Call<userLogin> call, final Response<userLogin> response) {
+                final progressBar pbar = new progressBar(UserLogin.this);
+                new CountDownTimer(2000, 1000) {
+                    public void onFinish() {
+                        pbar.dismissProgress();
+                        // my whole code
 
-                    if(nme.equals("supplier")){
-                        System.out.println("Supplier Login");
-                        Intent it = new Intent(getBaseContext(), SupplierDashboard.class);
-                        it.putExtra("EXTRA_SESSION_ID", jsonObject.getString("username"));
-                        startActivity(it);
-                    }else if(nme.equals("sitemanager")){
-                        Intent it = new Intent(getBaseContext(), SiteManagerDashboard.class);
-                        it.putExtra("EXTRA_SESSION_ID", jsonObject.getString("username"));
-                        startActivity(it);
+                        if(response.code() ==200){
+                            Toast.makeText(UserLogin.this, response.message(), Toast.LENGTH_LONG).show();
+                        }
+                        JSONObject jsonObject = null;
+                        try {
+                            jsonObject = new JSONObject(new Gson().toJson(response.body()));
+                            String nme = jsonObject.getString("userType");
+                            String userID = jsonObject.getString("userID");
 
-                        System.out.println("sitemanager Login");
+                            if(nme.equals("supplier")){
+                                System.out.println("Supplier Login");
+                                Intent it = new Intent(getBaseContext(), SupplierDashboard.class);
+                                it.putExtra("EXTRA_SESSION_ID", jsonObject.getString("username"));
+                                startActivity(it);
+                            }else if(nme.equals("sitemanager")){
+                                Intent it = new Intent(getBaseContext(), SiteManagerDashboard.class);
+                                it.putExtra("EXTRA_SESSION_ID", jsonObject.getString("username"));
+                                startActivity(it);
 
-                    }else if(nme.equals("employee")){
-                        Intent it = new Intent(UserLogin.this, EmployeeDashboard.class);
-                        it.putExtra("username", jsonObject.getString("username"));
-                        it.putExtra("userID", jsonObject.getString("userID"));
-                        startActivity(it);
-                        System.out.println("employee");
+                                System.out.println("sitemanager Login");
 
-                    }else if(nme.equals("manager")){
-                        Intent it = new Intent(UserLogin.this, ManagerDashBoard.class);
-                        it.putExtra("username", jsonObject.getString("username"));
-                        it.putExtra("userID", jsonObject.getString("userID"));
-                        startActivity(it);
-                        System.out.println("manager");
+                            }else if(nme.equals("employee")){
+                                Intent it = new Intent(UserLogin.this, EmployeeDashboard.class);
+                                it.putExtra("username", jsonObject.getString("username"));
+                                it.putExtra("userID", jsonObject.getString("userID"));
+                                startActivity(it);
+                                System.out.println("employee");
 
-                    }else {
-                        Toast.makeText(UserLogin.this, "Invlaid Login", Toast.LENGTH_LONG).show();
+                            }else if(nme.equals("manager")){
+                                Intent it = new Intent(UserLogin.this, ManagerDashBoard.class);
+                                it.putExtra("username", jsonObject.getString("username"));
+                                it.putExtra("userID", jsonObject.getString("userID"));
+                                startActivity(it);
+                                System.out.println("manager");
+
+                            }else {
+                                Toast.makeText(UserLogin.this, "Invlaid Login", Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
                     }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+
+                    public void onTick(long millisUntilFinished) {
+                        pbar.StartLoading();
+
+                    }
+                }.start();
+
+//                final progressBar pbar = new progressBar(UserLogin.this);
+//                pbar.StartLoading();
+//                Handler handler = new Handler();
+//                handler.postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        pbar.dismissProgress();
+//                    }
+//                },5000);
+
             }
 
             @Override

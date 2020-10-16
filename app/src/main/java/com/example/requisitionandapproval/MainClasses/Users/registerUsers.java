@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -14,8 +15,17 @@ import android.widget.Toast;
 
 import com.example.requisitionandapproval.ApiClient.ApiClient;
 import com.example.requisitionandapproval.ApiClient.Endpoints;
+import com.example.requisitionandapproval.EmployeeDashboard;
 import com.example.requisitionandapproval.MainClasses.Order.place_Purchase_order;
+import com.example.requisitionandapproval.ManagerDashBoard;
 import com.example.requisitionandapproval.R;
+import com.example.requisitionandapproval.SiteManagerDashboard;
+import com.example.requisitionandapproval.SupplierDashboard;
+import com.example.requisitionandapproval.progressBar;
+import com.google.gson.Gson;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 
@@ -94,27 +104,49 @@ public class registerUsers extends AppCompatActivity {
         try {
             call.enqueue(new Callback<Void>() {
                 @Override
-                public void onResponse(Call<Void> call, Response<Void> response) {
-                    System.out.println("PAAAAAAAAS");
-
-                    //Toast.makeText(registerUsers.this, response.message(), Toast.LENGTH_LONG).show();
+                public void onResponse(Call<Void> call, final Response<Void> response) {
 
 
-                    System.out.println("adawqq"+response.code() );
-                    if(response.code() == 404){
-                        Toast.makeText(registerUsers.this, "Please fill all required fields!", Toast.LENGTH_LONG).show();
-                        new SweetAlertDialog(registerUsers.this,SweetAlertDialog.WARNING_TYPE)
-                                .setTitleText("Please fill all required fields!")
-                                .show();
 
-                    }else {
 
-                        new SweetAlertDialog(registerUsers.this,SweetAlertDialog.SUCCESS_TYPE)
-                                .setTitleText("Registration Successful !")
-                                .show();
-                        Intent intent = new Intent(context, UserLogin.class);
-                        startActivity(intent);
-                    }
+                    final progressBar pbar = new progressBar(registerUsers.this);
+                    new CountDownTimer(2000, 1000) {
+                        public void onFinish() {
+                            pbar.dismissProgress();
+                            // my whole code
+                            System.out.println("PAAAAAAAAS");
+
+                            //Toast.makeText(registerUsers.this, response.message(), Toast.LENGTH_LONG).show();
+
+
+                            System.out.println("adawqq"+response.code() );
+                            if(response.code() == 404){
+                                Toast.makeText(registerUsers.this, "Please fill all required fields!", Toast.LENGTH_LONG).show();
+                                new SweetAlertDialog(registerUsers.this,SweetAlertDialog.WARNING_TYPE)
+                                        .setTitleText("Please fill all required fields!")
+                                        .show();
+
+                            }else {
+
+                                new SweetAlertDialog(registerUsers.this,SweetAlertDialog.SUCCESS_TYPE)
+                                        .setTitleText("Registration Successful !")
+                                        .show();
+                                Intent intent = new Intent(context, UserLogin.class);
+                                startActivity(intent);
+                            }
+
+
+                        }
+
+                        public void onTick(long millisUntilFinished) {
+                            pbar.StartLoading();
+
+                        }
+                    }.start();
+
+
+
+
                 }
 
                 @Override
