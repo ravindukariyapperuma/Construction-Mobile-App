@@ -91,41 +91,7 @@ public class goods_receipt extends AppCompatActivity {
                 getitems();
 
             }
-//                HashMap<String, String> map = new HashMap<>();
-//
-//                map.put("reqID", orderreqIDS.getSelectedItem().toString());
-//
-//                Call<List<getOrderedItemList>> call = endpoints.getOrderedItems(map);
-//                ArrayList<String> arlist = new ArrayList<>( );
-//
-//                call.enqueue(new Callback<List<getOrderedItemList>>() {
-//                    @Override
-//                    public void onResponse(Call<List<getOrderedItemList>> call, Response<List<getOrderedItemList>> response) {
-//                        System.out.println("passssed");
-//                        if(response.code() ==200){
-//                        }
-//                        List<getOrderedItemList> it = response.body();
-//                        assert it != null;
-//                        orderModel[] itemcls  =  new orderModel[it.size()];
-//                        for(int i =0 ; i<it.size(); i++){
-//                            itemcls[i] =new orderModel (it.get(i).getItem_Description());
-//                        }
-////                itemAdapter adapter= new itemAdapter(itemcls,place_purchase_order_Item_List.this);
-////                recyclerView.setAdapter(adapter);
-//
-//                         adapter= new OrderAdapter(itemcls, goods_receipt.this);
-//                        recyclerView.setLayoutManager(new LinearLayoutManager(context));
-//                        recyclerView.setAdapter(adapter);
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Call<List<getOrderedItemList>> call, Throwable t) {
-//                        System.out.println("failed");
-//
-//                    }
-//
-//                });
-//            }
+
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
