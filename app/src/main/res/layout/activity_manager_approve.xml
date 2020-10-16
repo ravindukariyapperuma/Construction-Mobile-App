@@ -36,7 +36,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
                 <TextView
-                    android:id="@+id/name"
+                    android:id="@+id/uname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
@@ -58,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:padding="20dp"
-                android:text="Place Requisition"
+                android:text="Manager  Approve Requisition"
                 android:textColor="@android:color/white"
                 android:textSize="34sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -82,67 +82,40 @@
                     android:id="@+id/no"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_margin="20dp"
                     android:textSize="18dp"
                     android:textColor="#000000"
-                    android:text="Enter Item Description"  />
+                    android:text="Enter Requisition No" />
 
-                <EditText
-                    android:id="@+id/destxt"
+                <Spinner
+                    android:id="@+id/ManagerreqIDS"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-
-
+                    android:ems="10"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
                     android:textColor="#BDBDBD"
-                   android:layout_margin="10dp"
+
                     android:inputType="textPersonName"
                     android:background="#ffffff"
-                    android:hint="Enter Item Description..."/>
-
-
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:textSize="18dp"
-                    android:textColor="#000000"
-                    android:text="Enter Item Quantity" />
-
-                <EditText
-                    android:id="@+id/qty1"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-
-
-                    android:textColor="#BDBDBD"
-                    android:layout_margin="10dp"
-                    android:inputType="number"
-                    android:background="#ffffff"
-                    android:hint="Enter Item Quantity..."/>
+                    android:hint="Enter Requisition No "/>
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/des"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_margin="20dp"
                     android:textSize="18dp"
                     android:textColor="#000000"
-                    android:text="Enter Item Agreed Price"  />
+                    android:text="Item List" />
 
-                <EditText
-                    android:id="@+id/price"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/ManagerapproveRV"
+                    android:layout_margin="20dp"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content">
 
-
-                    android:textColor="#BDBDBD"
-                    android:layout_margin="10dp"
-                    android:inputType="number"
-                    android:background="#ffffff"
-                    android:hint="Enter Agreed price..."/>
-
-
+                </androidx.recyclerview.widget.RecyclerView>
 
 
 
@@ -151,20 +124,25 @@
                     android:id="@+id/add_item"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
-                    android:background="@drawable/button_states"
-                   android:layout_margin="10dp"
-                    android:text="Add Item To List"
-                    android:textColor="#FFFFFF" />
+                    android:textAlignment="center"
+                    android:background="@drawable/place_button"
+                    android:padding="15dp"
+                    android:layout_margin="15dp"
+                    android:textColor="#FFFFFF"
+                    android:text="Approve Requisition"
+                    android:gravity="center_horizontal" />
 
                 <Button
-                    android:id="@+id/showBtn"
+                    android:id="@+id/decline_Requsition"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/button_show_btn"
-                    android:text="Show Item List"
-                    android:textColor="#FFFFFF" />
+                    android:textAlignment="center"
+                    android:background="@drawable/declinebtn"
+                    android:padding="15dp"
+                    android:layout_margin="15dp"
+                    android:textColor="#FFFFFF"
+                    android:text="Decline Requisition"
+                    android:gravity="center_horizontal" />
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

@@ -36,7 +36,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
                 <TextView
-                    android:id="@+id/name"
+                    android:id="@+id/uname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
@@ -58,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:padding="20dp"
-                android:text="Place Requisition"
+                android:text="Place Purchase Order"
                 android:textColor="@android:color/white"
                 android:textSize="34sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -85,86 +85,106 @@
                     android:layout_margin="10dp"
                     android:textSize="18dp"
                     android:textColor="#000000"
-                    android:text="Enter Item Description"  />
+                    android:text="Enter Supplier"  />
 
-                <EditText
-                    android:id="@+id/destxt"
+                <Spinner
+                    android:id="@+id/supplyspin"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
+                    android:ems="10"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:textColor="#BDBDBD"
 
+                    android:inputType="textPersonName"
+                    android:background="#ffffff"
+                    android:hint="Enter Requisition No "/>
+
+                <TextView
+                    android:id="@+id/des"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:textSize="18dp"
+                    android:textColor="#000000"
+                    android:text="Enter Delivery Address" />
+
+                <EditText
+                    android:id="@+id/addLine1"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
 
                     android:textColor="#BDBDBD"
                    android:layout_margin="10dp"
                     android:inputType="textPersonName"
                     android:background="#ffffff"
-                    android:hint="Enter Item Description..."/>
+                    android:hint="Enter Address Line 1  :  "/>
 
-
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:textSize="18dp"
-                    android:textColor="#000000"
-                    android:text="Enter Item Quantity" />
-
-                <EditText
-                    android:id="@+id/qty1"
+                 <EditText
+                     android:id="@+id/addLine2"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
 
-
                     android:textColor="#BDBDBD"
-                    android:layout_margin="10dp"
-                    android:inputType="number"
-                    android:background="#ffffff"
-                    android:hint="Enter Item Quantity..."/>
-
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:textSize="18dp"
-                    android:textColor="#000000"
-                    android:text="Enter Item Agreed Price"  />
-
-                <EditText
-                    android:id="@+id/price"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-
-
-                    android:textColor="#BDBDBD"
-                    android:layout_margin="10dp"
-                    android:inputType="number"
-                    android:background="#ffffff"
-                    android:hint="Enter Agreed price..."/>
-
-
-
-
-
-
-                <Button
-                    android:id="@+id/add_item"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:background="@drawable/button_states"
                    android:layout_margin="10dp"
-                    android:text="Add Item To List"
-                    android:textColor="#FFFFFF" />
+                    android:inputType="textPersonName"
+                    android:background="#ffffff"
+                     android:hint="Enter Address Line 2  : "/>
 
-                <Button
-                    android:id="@+id/showBtn"
+                <Spinner
+                    android:id="@+id/selectcity"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+
+                    android:textColor="#BDBDBD"
+                   android:layout_margin="10dp"
+                    android:inputType="textPersonName"
+                    android:background="#ffffff"
+                    android:hint="Select City :  "
+
+                    />
+
+
+                <TextView
+                    android:id="@+id/reddate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/button_show_btn"
-                    android:text="Show Item List"
-                    android:textColor="#FFFFFF" />
+                   android:layout_margin="10dp"
+                    android:textSize="18dp"
+                    android:textColor="#000000"
+                    android:text="Enter Required Date : " />
+
+
+
+
+                <EditText
+                    android:id="@+id/requireDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+
+                    android:clickable="true"
+                   android:layout_margin="10dp"
+                    android:textColor="#BDBDBD"
+
+
+                    android:background="#ffffff"
+                    android:editable="false"
+                    android:hint="Select Date"/>
+
+
+
+                <Button
+                    android:id="@+id/Addrequisition"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:background="@drawable/place_button"
+                    android:padding="15dp"
+                    android:layout_margin="20dp"
+                    android:textColor="#FFFFFF"
+                    android:text="Add Requisition"
+                    android:gravity="center_horizontal" />
+
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

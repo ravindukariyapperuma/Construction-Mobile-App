@@ -78,93 +78,20 @@
                 android:orientation="vertical">
 
 
-                <TextView
-                    android:id="@+id/no"
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_margin="20dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:textSize="18dp"
-                    android:textColor="#000000"
-                    android:text="Enter Item Description"  />
+                    android:layout_height="wrap_content">
 
-                <EditText
-                    android:id="@+id/destxt"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-
-
-                    android:textColor="#BDBDBD"
-                   android:layout_margin="10dp"
-                    android:inputType="textPersonName"
-                    android:background="#ffffff"
-                    android:hint="Enter Item Description..."/>
-
-
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:textSize="18dp"
-                    android:textColor="#000000"
-                    android:text="Enter Item Quantity" />
-
-                <EditText
-                    android:id="@+id/qty1"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-
-
-                    android:textColor="#BDBDBD"
-                    android:layout_margin="10dp"
-                    android:inputType="number"
-                    android:background="#ffffff"
-                    android:hint="Enter Item Quantity..."/>
-
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:textSize="18dp"
-                    android:textColor="#000000"
-                    android:text="Enter Item Agreed Price"  />
-
-                <EditText
-                    android:id="@+id/price"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-
-
-                    android:textColor="#BDBDBD"
-                    android:layout_margin="10dp"
-                    android:inputType="number"
-                    android:background="#ffffff"
-                    android:hint="Enter Agreed price..."/>
+                </androidx.recyclerview.widget.RecyclerView>
 
 
 
 
 
-
-                <Button
-                    android:id="@+id/add_item"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:background="@drawable/button_states"
-                   android:layout_margin="10dp"
-                    android:text="Add Item To List"
-                    android:textColor="#FFFFFF" />
-
-                <Button
-                    android:id="@+id/showBtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/button_show_btn"
-                    android:text="Show Item List"
-                    android:textColor="#FFFFFF" />
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
