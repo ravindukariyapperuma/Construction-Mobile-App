@@ -16,14 +16,21 @@ import android.widget.Toast;
 
 import com.example.requisitionandapproval.ApiClient.ApiClient;
 import com.example.requisitionandapproval.ApiClient.Endpoints;
+import com.example.requisitionandapproval.MainClasses.Order.place_purchase_order_Item_List;
 import com.example.requisitionandapproval.MainClasses.SiteManager.Approve_Requisition;
+import com.example.requisitionandapproval.MainClasses.SiteManager.goods_receipt;
 import com.example.requisitionandapproval.R;
 import com.example.requisitionandapproval.adapterClasses.ApproveAdapter;
+import com.example.requisitionandapproval.adapterClasses.place_Item_listAdapter;
+import com.example.requisitionandapproval.adapterClasses.supplierOrderAdaptor;
 import com.example.requisitionandapproval.model.ApproveModel;
 import com.example.requisitionandapproval.model.GetReqDetailsByID;
 import com.example.requisitionandapproval.model.GetReqNumbers;
 import com.example.requisitionandapproval.model.ReqApprovalModel;
 import com.example.requisitionandapproval.model.SupplierItemDetails;
+import com.example.requisitionandapproval.model.SupplierOrderMdel;
+import com.example.requisitionandapproval.model.getOrderedItemList;
+import com.example.requisitionandapproval.model.orderItemcls;
 import com.example.requisitionandapproval.model.reqIDbysupplier;
 import com.google.gson.Gson;
 
@@ -34,6 +41,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -45,6 +53,7 @@ public class SupplierProfile extends AppCompatActivity {
     List<ApproveModel> approveModels;
     RecyclerView recyclerView;
     ReqApprovalModel[] rm;
+    supplierOrderAdaptor adaptor;
     ApiClient apiClient = new ApiClient();
     Button add_item;
     static int val;
@@ -67,7 +76,7 @@ public class SupplierProfile extends AppCompatActivity {
         retrofit = new Retrofit.Builder().baseUrl(Base_URL).addConverterFactory(GsonConverterFactory.create()).build();
         endpoints = retrofit.create(Endpoints.class);
 
-        recyclerView = findViewById(R.id.approveRV);
+        recyclerView = findViewById(R.id.suplyitm);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         add_item = findViewById(R.id.add_item);
@@ -77,7 +86,7 @@ public class SupplierProfile extends AppCompatActivity {
         add_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                requestingApproval(rm);
+                deliverItem();
             }
         });
 
@@ -116,50 +125,41 @@ public class SupplierProfile extends AppCompatActivity {
 
     public void getdetails_from_reqIDSupplier(final String reqID) {
 
-        HashMap<String, String> map = new HashMap<>();
-        map.put("reqID", reqID);
 
+        Intent intent = getIntent();
+        String orderId = intent.getStringExtra("orderReqId");
+        HashMap<String, String> map = new HashMap<>();
+
+        map.put("reqID", reqID);
 
         Call<List<SupplierItemDetails>> call = endpoints.getItemsByReqIDSupplier(map);
 
+
         call.enqueue(new Callback<List<SupplierItemDetails>>() {
             @Override
-            public void onResponse(Call<List<SupplierItemDetails>> call, Response<List<SupplierItemDetails>> response) {
-                if (response.code() == 200) {
-                    Toast.makeText(SupplierProfile.this, response.message(), Toast.LENGTH_LONG).show();
+            public void onResponse(Call<List<SupplierItemDetails>> call, final Response<List<SupplierItemDetails>> response) {
+
+                System.out.println("passssed");
+                if(response.code() ==200){
                 }
-                approveModels = new ArrayList<>();
-
-                try {
-                    List<SupplierItemDetails> it = response.body();
-                    rm = new ReqApprovalModel[it.size()];
-                    for (int i = 0; i < it.size(); i++) {
-                        approveModels.add(new ApproveModel(it.get(i).getDes(), it.get(i).getQty(), it.get(i).getPrice()));
-                        String nm = it.get(i).getPrice();
-                        for (int j = 0; j < it.size(); j++) {
-                            if(i == 0){
-                                int itmprive = Integer.parseInt(it.get(j).getPrice());
-                                int quantity = Integer.parseInt(it.get(j).getPrice());
-                                val = itmprive * quantity;
-                            }
-                        }
-                        rm[i] = new ReqApprovalModel(reqID, username,it.get(i).getDes(), it.get(i).getPrice(),it.get(i).getQty() );
-                    }
-
-                    initRecyclerView();
-                } catch (Exception e) {
-
-                    e.printStackTrace();
-                    System.out.println("123123123123");
-
+                List<SupplierItemDetails> it = response.body();
+                assert it != null;
+                SupplierOrderMdel[] itemcls  =  new SupplierOrderMdel[it.size()];
+                for(int i =0 ; i<it.size(); i++){
+                    itemcls[i] =new SupplierOrderMdel(it.get(i).getDes(), it.get(i).getQty(), it.get(i).getPrice());
                 }
+
+                supplierOrderAdaptor adapter= new supplierOrderAdaptor(itemcls, SupplierProfile.this);
+                recyclerView.setAdapter(adapter);
+
             }
 
             @Override
             public void onFailure(Call<List<SupplierItemDetails>> call, Throwable t) {
-                System.out.println("failed" + t);
-                Toast.makeText(SupplierProfile.this, "Error", Toast.LENGTH_LONG).show();
+                System.out.println("failed");
+
             }
+
         });
     }
 
@@ -191,36 +191,45 @@ public class SupplierProfile extends AppCompatActivity {
         });
     }
 
-    public void requestingApproval(ReqApprovalModel[] rm) {
+    public void deliverItem() {
 
-        Call<ReqApprovalModel> call = endpoints.requestApproval(rm);
-        call.enqueue(new Callback<ReqApprovalModel>() {
-            @Override
-            public void onResponse(Call<ReqApprovalModel> call, Response<ReqApprovalModel> response) {
-                JSONObject jsonObject = null;
-                try {
-                    jsonObject = new JSONObject(new Gson().toJson(response.body()));
-                    String nme = jsonObject.getString("status");
-                    System.out.println("nme"+nme);
-                    if(nme.equals("PENDING")){
 
-                        System.out.println("Navigate to manager port");
+        final Spinner orderreqIDS = findViewById(R.id.reqIDS);
 
-                    }else{
-                        Intent it = new Intent(getBaseContext(), com.example.requisitionandapproval.MainClasses.Order.place_Purchase_order.class);
-                        startActivity(it);
-                        System.out.println("Navigate to sitemanager payment");
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
+
+
+                String[] itmarr = new String[adaptor.checkedItems.size()];
+                for (int i = 0 ; i< adaptor.checkedItems.size(); i++){
+
+                    itmarr[i]= adaptor.checkedItems.get(i).toString();
                 }
-            }
+                System.out.println(itmarr);
 
-            @Override
-            public void onFailure(Call<ReqApprovalModel> call, Throwable t) {
-                System.out.println("ERROR::"+t);
+                String[] reqarr ={orderreqIDS.getSelectedItem().toString()};
 
-            }
-        });
+                HashMap <String, String[]> map = new HashMap<>();
+                map.put("reqID",reqarr );
+                map.put("itemDescription", itmarr);
+
+                Call<Void> call = endpoints.deliverItem(map);
+                call.enqueue(new Callback<Void>() {
+                    @Override
+                    public void onResponse(Call<Void> call, Response<Void> response) {
+                        System.out.println(response.body());
+
+                        getdetails_from_reqIDSupplier(orderreqIDS.getSelectedItem().toString());
+
+                        new SweetAlertDialog(SupplierProfile.this,SweetAlertDialog.SUCCESS_TYPE)
+                                .setTitleText("Item deliver Successful")
+                                .show();
+
+                    }
+                    @Override
+                    public void onFailure(Call<Void> call, Throwable t) {
+                        System.out.println("fail");
+                    }
+                });
+
+
     }
 }
