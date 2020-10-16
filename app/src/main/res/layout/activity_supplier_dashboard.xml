@@ -4,89 +4,113 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android">
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".DashBoards.SupplierDashboard">
 
-    <ImageView
-        android:id="@+id/imageView13"
-        android:layout_width="wrap_content"
-        android:layout_height="767dp"
-        android:background="@drawable/dashboard4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".DashBoards.SupplierDashboard">
 
-    <ImageButton
-        android:id="@+id/supplierr"
-        android:layout_width="170dp"
-        android:layout_height="165dp"
-        android:layout_marginTop="60dp"
-        android:background="@drawable/supitems"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+        <ImageView
+            android:id="@+id/imageView13"
+            android:layout_width="wrap_content"
+            android:layout_height="767dp"
+            android:background="@drawable/dashboard4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="360dp"
-        android:text="Supplier"
-        android:textColor="#2e4b7b"
-        android:textSize="36sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.302"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ImageButton
+            android:id="@+id/btninprogress"
+            android:layout_width="150dp"
+            android:layout_height="145dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="60dp"
+            android:background="@drawable/inprogres"
+            app:layout_constraintEnd_toStartOf="@+id/imageView13"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/supplierr"
+            app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
-    <RadioGroup
-        android:layout_width="195dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="@+id/txtUsername"
-        app:layout_constraintTop_toBottomOf="@+id/txtUsername">
+        <ImageButton
+            android:id="@+id/supplierr"
+            android:layout_width="150dp"
+            android:layout_height="145dp"
+            android:layout_marginTop="60dp"
+            android:background="@drawable/orders"
+            app:layout_constraintEnd_toStartOf="@+id/btninprogress"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/imageView13"
+            app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
-        <androidx.appcompat.widget.AppCompatRadioButton
-            android:id="@+id/rbAvailable"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:background="@drawable/radio_button_left_selector"
-            android:button="@android:color/transparent"
-            android:checked="false"
-            android:onClick="onRadioButtonClick"
-            android:paddingLeft="8dp"
-            android:text="Available"
-            android:textColor="@android:color/black" />
+        <ImageButton
+            android:id="@+id/btnDelivered"
+            android:layout_width="150dp"
+            android:layout_height="145dp"
+            android:background="@drawable/delivered"
+            app:layout_constraintEnd_toEndOf="@+id/btninprogress"
+            app:layout_constraintHorizontal_bias="0.487"
+            app:layout_constraintStart_toStartOf="@+id/supplierr"
+            app:layout_constraintTop_toBottomOf="@+id/supplierr" />
 
-        <androidx.appcompat.widget.AppCompatRadioButton
-            android:id="@+id/rbNotAvailable"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:background="@drawable/radio_button_right_selector"
-            android:button="@android:color/transparent"
-            android:checked="false"
-            android:onClick="onRadioButtonClick"
-            android:paddingLeft="8dp"
-            android:text="Not available"
-            android:textColor="@android:color/black" />
-    </RadioGroup>
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="360dp"
+            android:text="Supplier"
+            android:textColor="#2e4b7b"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.302"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/txtUsername"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="@+id/textView14"
-        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+        <RadioGroup
+            android:layout_width="195dp"
+            android:layout_height="36dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="@+id/txtUsername"
+            app:layout_constraintTop_toBottomOf="@+id/txtUsername">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/rbAvailable"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@drawable/radio_button_left_selector"
+                android:button="@android:color/transparent"
+                android:checked="false"
+                android:onClick="onRadioButtonClick"
+                android:paddingLeft="8dp"
+                android:text="Available"
+                android:textColor="@android:color/black" />
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/rbNotAvailable"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@drawable/radio_button_right_selector"
+                android:button="@android:color/transparent"
+                android:checked="false"
+                android:onClick="onRadioButtonClick"
+                android:paddingLeft="8dp"
+                android:text="Not available"
+                android:textColor="@android:color/black" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/txtUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            app:layout_constraintStart_toStartOf="@+id/textView14"
+            app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
