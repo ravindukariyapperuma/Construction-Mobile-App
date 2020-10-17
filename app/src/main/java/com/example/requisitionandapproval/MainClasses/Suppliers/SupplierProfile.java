@@ -232,6 +232,8 @@ public class SupplierProfile extends AppCompatActivity {
 
                             getdetails_from_reqIDSupplier(orderreqIDS.getSelectedItem().toString());
 
+
+
                             new SweetAlertDialog(SupplierProfile.this,SweetAlertDialog.SUCCESS_TYPE)
                                     .setTitleText("Item deliver Successful")
                                     .show();

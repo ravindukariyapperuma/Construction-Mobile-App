@@ -9,8 +9,12 @@ import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,13 +42,17 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class place_Purchase_order extends AppCompatActivity {
 
     final Calendar myCalendar = Calendar.getInstance();
-     EditText requireDate;
+     EditText requireDate,cnum,holderName,cvv,expdate,mobileNumber;
+     LinearLayout cOndelivery,cardpaymetlayout;
     ApiClient apiClient = new ApiClient();
     private Retrofit retrofit;
     private Endpoints endpoints;
     private String Base_URL = apiClient.getBASE_URL();
     String name;
     TextView uname;
+    RadioButton card,cOnd;
+    RadioGroup paymentradiogroup;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +72,22 @@ public class place_Purchase_order extends AppCompatActivity {
         Button Addrequisition = findViewById(R.id.Addrequisition);
 
         requireDate= findViewById(R.id.requireDate);
+        card= findViewById(R.id.card);
+        cOnd= findViewById(R.id.cOnd);
+        cnum= findViewById(R.id.cnum);
+        holderName= findViewById(R.id.holderName);
+        cvv= findViewById(R.id.cvv);
+        expdate= findViewById(R.id.expdate);
+        mobileNumber= findViewById(R.id.mobileNumber);
+        cOndelivery= findViewById(R.id.cOndelivery);
+        cardpaymetlayout= findViewById(R.id.cardpaymetlayout);
+        paymentradiogroup= findViewById(R.id.paymentradiogroup);
+
         getAllSuppliers();
+
+        cOndelivery.setVisibility(View.GONE);
+        cardpaymetlayout.setVisibility(View.GONE);
+
 
         String []city = {"Jaffna","Kilinochchi","Mannar","Mullaitivu","Vavuniya","Puttalam","Kurunegala","Gampaha","Colombo","Kalutara","Anuradhapura","Polonnaruwa","Matale","Kandy","Nuwara Eliya","Kegalle","Ratnapura","Trincomalee","Batticaloa","Ampara","Badulla","Monaragala","Hambantota","Matara","Galle"};
 
@@ -97,6 +120,33 @@ public class place_Purchase_order extends AppCompatActivity {
             }
         });
 
+
+        paymentradiogroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (card.isChecked()) {
+
+                    cardpaymetlayout.setVisibility(View.VISIBLE);
+                    cOndelivery.setVisibility(View.GONE);
+
+                }else if(cOnd.isChecked()){
+                    cOndelivery.setVisibility(View.VISIBLE);
+                    cardpaymetlayout.setVisibility(View.GONE);
+                }
+
+
+
+
+
+
+
+            }
+        });
+
+
+
+
+
         Addrequisition.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,10 +162,44 @@ public class place_Purchase_order extends AppCompatActivity {
                             .show();
                 }else{
 
-                    placeOrder();
-                    new SweetAlertDialog(place_Purchase_order.this,SweetAlertDialog.SUCCESS_TYPE)
-                            .setTitleText("Order Placed Successful")
-                            .show();
+                    if (card.isChecked()){
+                        if (cnum.getText().toString().isEmpty() ||holderName.getText().toString().isEmpty() ||cvv.getText().toString().isEmpty() ||expdate.getText().toString().isEmpty()) {
+                            new SweetAlertDialog(place_Purchase_order.this, SweetAlertDialog.WARNING_TYPE)
+                                    .setTitleText("Please Fill Card Details ")
+                                    .show();
+                        }else{
+                            placeOrder();
+                            new SweetAlertDialog(place_Purchase_order.this,SweetAlertDialog.SUCCESS_TYPE)
+                                    .setTitleText("Order Placed Successful")
+                                    .show();
+                        }
+
+                    }else if (cOnd.isChecked()){
+
+                        if (mobileNumber.getText().toString().isEmpty() ) {
+                            new SweetAlertDialog(place_Purchase_order.this, SweetAlertDialog.WARNING_TYPE)
+                                    .setTitleText("Please Enter Contact Number ")
+                                    .show();
+                        }else{
+                            placeOrder();
+                            new SweetAlertDialog(place_Purchase_order.this,SweetAlertDialog.SUCCESS_TYPE)
+                                    .setTitleText("Order Placed Successful")
+                                    .show();
+                        }
+
+                    }else{
+
+                        new SweetAlertDialog(place_Purchase_order.this,SweetAlertDialog.WARNING_TYPE)
+                                .setTitleText("Please Select Payment Methods")
+                                .show();
+
+                    }
+
+//
+//                    placeOrder();
+//                    new SweetAlertDialog(place_Purchase_order.this,SweetAlertDialog.SUCCESS_TYPE)
+//                            .setTitleText("Order Placed Successful")
+//                            .show();
 
                 }
 

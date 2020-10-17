@@ -20,7 +20,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/btninprogress"
             android:layout_width="150dp"
             android:layout_height="145dp"
@@ -33,7 +33,7 @@
             app:layout_constraintStart_toEndOf="@+id/supplierr"
             app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/supplierr"
             android:layout_width="150dp"
             android:layout_height="145dp"
@@ -44,7 +44,7 @@
             app:layout_constraintStart_toEndOf="@+id/imageView13"
             app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/btnDelivered"
             android:layout_width="150dp"
             android:layout_height="145dp"

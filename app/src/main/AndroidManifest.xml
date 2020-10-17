@@ -15,10 +15,12 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".DashBoards.ManagerDashBoard"></activity>
-        <activity android:name=".DashBoards.SupplierDashboard"></activity>
-        <activity android:name=".DashBoards.EmployeeDashboard"></activity>
-        <activity android:name=".DashBoards.SiteManagerDashboard"></activity>
+        <activity android:name=".MainClasses.Suppliers.DeliverdItems"></activity>
+        <activity android:name=".MainClasses.Suppliers.inprogressItemsInsupplier" />
+        <activity android:name=".DashBoards.ManagerDashBoard" />
+        <activity android:name=".DashBoards.SupplierDashboard" />
+        <activity android:name=".DashBoards.EmployeeDashboard" />
+        <activity android:name=".DashBoards.SiteManagerDashboard" />
         <activity android:name=".DashBoards.welcomeScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,7 +40,7 @@
         <activity
             android:name=".MainClasses.SiteManager.place_purchase_Order_List"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" /> <!-- <activity android:name=".MainClasses.SiteManager.Approve_Requisition" /> -->
-        <activity android:name=".MainClasses.Managers.ManagerApprove"></activity>
+        <activity android:name=".MainClasses.Managers.ManagerApprove" />
     </application>
 
 </manifest>

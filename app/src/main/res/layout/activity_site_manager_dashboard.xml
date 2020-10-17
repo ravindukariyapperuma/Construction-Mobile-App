@@ -22,11 +22,11 @@
 
         <ImageButton
             android:id="@+id/approve"
-            android:layout_width="170dp"
-            android:layout_height="165dp"
-            android:layout_marginStart="3dp"
-            android:layout_marginLeft="3dp"
-            android:layout_marginTop="40dp"
+            android:layout_width="150dp"
+            android:layout_height="145dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
             android:background="@drawable/approve"
             app:layout_constraintEnd_toStartOf="@+id/imageView6"
             app:layout_constraintHorizontal_bias="0.5"
@@ -35,14 +35,23 @@
 
         <ImageButton
             android:id="@+id/goods"
-            android:layout_width="170dp"
-            android:layout_height="165dp"
-            android:layout_marginTop="40dp"
+            android:layout_width="150dp"
+            android:layout_height="145dp"
+            android:layout_marginTop="30dp"
             android:background="@drawable/goods"
             app:layout_constraintEnd_toStartOf="@+id/approve"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/imageView6"
             app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+        <ImageButton
+            android:id="@+id/purchaseorder"
+            android:layout_width="150dp"
+            android:layout_height="145dp"
+            android:background="@drawable/purchaseorder"
+            app:layout_constraintEnd_toEndOf="@+id/approve"
+            app:layout_constraintStart_toStartOf="@+id/goods"
+            app:layout_constraintTop_toBottomOf="@+id/goods" />
 
         <TextView
             android:id="@+id/textView12"
