@@ -20,6 +20,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/txtManager"
+            android:layout_width="wrap_content"
+            android:layout_height="19dp"
+            android:text="TextView"
+            app:layout_constraintStart_toStartOf="@+id/textView15"
+            app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
         <ImageButton
             android:id="@+id/Goods"
             android:layout_width="170dp"

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.requisitionandapproval.MainClasses.SiteManager.Approve_Requisition;
@@ -16,6 +17,7 @@ import com.example.requisitionandapproval.R;
 
 public class SiteManagerDashboard extends AppCompatActivity {
     ImageButton approve,goods,purchaseorder;
+    TextView txtSitemager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +55,8 @@ public class SiteManagerDashboard extends AppCompatActivity {
                 startActivity(intent1);
             }
         });
-
+        txtSitemager = findViewById(R.id.txtSitemager);
+        txtSitemager.setText(un);
 
     }
     boolean doubleBackToExitPressedOnce = false;

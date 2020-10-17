@@ -22,6 +22,11 @@ import com.example.requisitionandapproval.MainClasses.Suppliers.DeliverdItems;
 import com.example.requisitionandapproval.MainClasses.Suppliers.SupplierProfile;
 import com.example.requisitionandapproval.MainClasses.Suppliers.inprogressItemsInsupplier;
 import com.example.requisitionandapproval.R;
+import com.example.requisitionandapproval.model.SupplierAvailability;
+import com.google.gson.Gson;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 
@@ -44,6 +49,7 @@ public class SupplierDashboard extends AppCompatActivity {
     private Endpoints endpoints;
     private String Base_URL = apiClient.getBASE_URL();
 //    String username ="abc";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,8 +64,11 @@ public class SupplierDashboard extends AppCompatActivity {
         retrofit = new Retrofit.Builder().baseUrl(Base_URL).addConverterFactory(GsonConverterFactory.create()).build();
         endpoints = retrofit.create(Endpoints.class);
 
+
+
         Intent intent = getIntent();
         EXTRA_SESSION_ID = intent.getStringExtra("EXTRA_SESSION_ID");
+
 
         supplierr.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,21 +99,56 @@ public class SupplierDashboard extends AppCompatActivity {
         });
 
 
-        rbAvailable.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+
+            rbAvailable.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    checkAvailable(EXTRA_SESSION_ID, "available");
+                }
+            });
+            rbNotAvailable.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    checkAvailable(EXTRA_SESSION_ID, "notavailable");
+                }
+            });
+
+        initialAvailability(EXTRA_SESSION_ID);
+        txtUsername.setText(EXTRA_SESSION_ID);
+
+
+    }
+
+    public void initialAvailability(String userName){
+        HashMap<String, String> map = new HashMap<>();
+        map.put("username",userName );
+
+        Call<SupplierAvailability> call = endpoints.checkInitialAvailability(map);
+        call.enqueue(new Callback<SupplierAvailability>() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                checkAvailable(EXTRA_SESSION_ID,"available");
+            public void onResponse(Call<SupplierAvailability> call, Response<SupplierAvailability> response) {
+                System.out.println(response.body());
+
+                JSONObject jsonObject = null;
+                try {
+                    jsonObject = new JSONObject(new Gson().toJson(response.body()));
+                    String availability = jsonObject.getString("result");
+
+                    if(availability.equals("available")){
+                        rbAvailable.setChecked(true);
+                    }else{
+                        rbNotAvailable.setChecked(true);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            @Override
+            public void onFailure(Call<SupplierAvailability> call, Throwable t) {
+                System.out.println("fail");
             }
         });
-        rbNotAvailable.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                checkAvailable(EXTRA_SESSION_ID,"notavailable");
-            }
-        });
-
-
-
     }
 
     public void checkAvailable(String userName, final String status){

@@ -7,6 +7,7 @@ import com.example.requisitionandapproval.model.ItemResult;
 import com.example.requisitionandapproval.model.ManagerReqNumbers;
 import com.example.requisitionandapproval.model.OrderDoneModel;
 import com.example.requisitionandapproval.model.ReqApprovalModel;
+import com.example.requisitionandapproval.model.SupplierAvailability;
 import com.example.requisitionandapproval.model.SupplierItemDetails;
 import com.example.requisitionandapproval.model.deliverItemModel;
 import com.example.requisitionandapproval.model.getDetaislByManagerReqID;
@@ -120,4 +121,8 @@ public interface Endpoints {
 
     @POST("/supplier/Supplieravalability")
     Call<Void> chechAvailable(@Body HashMap<String, String> map);
+
+    @POST("/supplier/checkTheSupplierStatus")
+    Call<SupplierAvailability> checkInitialAvailability(@Body HashMap<String, String> map);
+
 }
