@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.view.View;
 
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -18,6 +19,7 @@ public class ManagerDashBoard extends AppCompatActivity {
 
     String username;
     ImageButton Goods ;
+    TextView txtManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,9 @@ public class ManagerDashBoard extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        txtManager = findViewById(R.id.txtManager);
+        txtManager.setText(username);
     }
     boolean doubleBackToExitPressedOnce = false;
 

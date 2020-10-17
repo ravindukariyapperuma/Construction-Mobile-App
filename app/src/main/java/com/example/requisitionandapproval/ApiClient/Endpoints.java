@@ -7,6 +7,7 @@ import com.example.requisitionandapproval.model.ItemResult;
 import com.example.requisitionandapproval.model.ManagerReqNumbers;
 import com.example.requisitionandapproval.model.OrderDoneModel;
 import com.example.requisitionandapproval.model.ReqApprovalModel;
+import com.example.requisitionandapproval.model.SupplierAvailability;
 import com.example.requisitionandapproval.model.SupplierItemDetails;
 import com.example.requisitionandapproval.model.deliverItemModel;
 import com.example.requisitionandapproval.model.getDetaislByManagerReqID;
@@ -67,10 +68,10 @@ public interface Endpoints {
     Call<Void> placeOrder(@Body HashMap<String, String> map);
 
     //Site Manager get req IDs of place purchase order
-    @POST("/sitemanager/getAllOrdersReqIds")
+    @POST("/sitemanager/siteManagergetAllApprovalItems")
     Call<placedorderReqId> getApprovedOrderIDs();
 
-    @POST("/sitemanager/getPlaceOrders")
+    @POST("/sitemanager/SiteManagergetAllDetails")
     Call<List<getOrderedItemList>> getOrderedItems(@Body HashMap<String, String> map);
 
     //Site Manager clicked received Items
@@ -117,4 +118,11 @@ public interface Endpoints {
 
     @POST("/supplier/getDeliveredItems")
     Call<List<InprogressResponseModel>> getDeliveredItemsDetailsByReqIDSupplier(@Body HashMap<String, String> map);
+
+    @POST("/supplier/Supplieravalability")
+    Call<Void> chechAvailable(@Body HashMap<String, String> map);
+
+    @POST("/supplier/checkTheSupplierStatus")
+    Call<SupplierAvailability> checkInitialAvailability(@Body HashMap<String, String> map);
+
 }

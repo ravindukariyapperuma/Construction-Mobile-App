@@ -82,8 +82,7 @@ public class InprogressAdaptor extends RecyclerView.Adapter<InprogressAdaptor.Vi
             ItemName = itemView.findViewById(R.id.placeitemName);
             Qty = itemView.findViewById(R.id.placeqty);
             PriceperItem = itemView.findViewById(R.id.placepriceperItem);
-            edit = itemView.findViewById(R.id.placeeditBtn);
-            delete = itemView.findViewById(R.id.placedeleteBtn);
+
 
         }
     }

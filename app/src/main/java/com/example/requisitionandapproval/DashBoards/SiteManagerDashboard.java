@@ -7,14 +7,18 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.requisitionandapproval.MainClasses.SiteManager.Approve_Requisition;
 import com.example.requisitionandapproval.MainClasses.SiteManager.goods_receipt;
+import com.example.requisitionandapproval.MainClasses.SiteManager.place_purchase_Order_List;
 import com.example.requisitionandapproval.R;
 
 public class SiteManagerDashboard extends AppCompatActivity {
-    ImageButton approve,goods;
+    ImageButton approve,goods,purchaseorder;
+    TextView txtSitemager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +46,17 @@ public class SiteManagerDashboard extends AppCompatActivity {
             }
         });
 
+        purchaseorder = findViewById(R.id.purchaseorder);
+        purchaseorder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1  = new Intent(SiteManagerDashboard.this, place_purchase_Order_List.class);
+                intent1.putExtra("name",un);
+                startActivity(intent1);
+            }
+        });
+        txtSitemager = findViewById(R.id.txtSitemager);
+        txtSitemager.setText(un);
 
     }
     boolean doubleBackToExitPressedOnce = false;

@@ -86,8 +86,7 @@ public class supplierOrderAdaptor extends RecyclerView.Adapter<supplierOrderAdap
             ItemName = itemView.findViewById(R.id.itemName);
             Qty = itemView.findViewById(R.id.qty);
             PriceperItem = itemView.findViewById(R.id.priceperItem);
-            edit = itemView.findViewById(R.id.placeeditBtn);
-            delete = itemView.findViewById(R.id.placedeleteBtn);
+
 
             ordercheck = itemView.findViewById(R.id.itmcheck);
 
