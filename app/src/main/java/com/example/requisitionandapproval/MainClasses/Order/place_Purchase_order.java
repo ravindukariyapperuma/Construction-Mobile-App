@@ -271,11 +271,6 @@ public class place_Purchase_order extends AppCompatActivity {
             call.enqueue(new Callback<Void>() {
                 @Override
                 public void onResponse(Call<Void> call, final Response<Void> response) {
-                    final progressBar pbar = new progressBar(place_Purchase_order.this);
-                    new CountDownTimer(2000, 1000) {
-                        public void onFinish() {
-                            pbar.dismissProgress();
-                            // my whole code
 
 
                             if(response.code() == 404){
@@ -290,21 +285,15 @@ public class place_Purchase_order extends AppCompatActivity {
                                         .show();
                                 //Toast.makeText(place_Purchase_order.this, "Order placed successful!", Toast.LENGTH_LONG).show();
                                 System.out.println("adawqq"+response.code() );
-
-                                Intent intent1 = new Intent(place_Purchase_order.this, place_purchase_Order_List.class);
-                                intent1.putExtra("name",name);
-                                startActivity(intent1);
+//
+//                                Intent intent1 = new Intent(place_Purchase_order.this, place_purchase_Order_List.class);
+//                                intent1.putExtra("name",name);
+//                                startActivity(intent1);
                             }
 
                         }
 
-                        public void onTick(long millisUntilFinished) {
-                            pbar.StartLoading();
 
-                        }
-                    }.start();
-
-                }
 
                 @Override
                 public void onFailure(Call<Void> call, Throwable t) {

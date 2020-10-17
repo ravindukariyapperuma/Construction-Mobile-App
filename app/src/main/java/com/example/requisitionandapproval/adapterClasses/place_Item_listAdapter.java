@@ -74,8 +74,7 @@ public class place_Item_listAdapter extends RecyclerView.Adapter<place_Item_list
             ItemName = itemView.findViewById(R.id.placeitemName);
             Qty = itemView.findViewById(R.id.placeqty);
             PriceperItem = itemView.findViewById(R.id.placepriceperItem);
-            edit = itemView.findViewById(R.id.placeeditBtn);
-            delete = itemView.findViewById(R.id.placedeleteBtn);
+
 
         }
     }
