@@ -38,8 +38,9 @@ public class goods_receipt extends AppCompatActivity {
 
 
     RecyclerView recyclerView;
-    ApiClient apiClient = new ApiClient();
+
     OrderAdapter adapter ;
+    ApiClient apiClient = new ApiClient();
     private Retrofit retrofit;
     private Endpoints endpoints;
     private String Base_URL = apiClient.getBASE_URL();

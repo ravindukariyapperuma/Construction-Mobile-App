@@ -67,10 +67,10 @@ public interface Endpoints {
     Call<Void> placeOrder(@Body HashMap<String, String> map);
 
     //Site Manager get req IDs of place purchase order
-    @POST("/sitemanager/getAllOrdersReqIds")
+    @POST("/sitemanager/siteManagergetAllApprovalItems")
     Call<placedorderReqId> getApprovedOrderIDs();
 
-    @POST("/sitemanager/getPlaceOrders")
+    @POST("/sitemanager/SiteManagergetAllDetails")
     Call<List<getOrderedItemList>> getOrderedItems(@Body HashMap<String, String> map);
 
     //Site Manager clicked received Items
@@ -117,4 +117,7 @@ public interface Endpoints {
 
     @POST("/supplier/getDeliveredItems")
     Call<List<InprogressResponseModel>> getDeliveredItemsDetailsByReqIDSupplier(@Body HashMap<String, String> map);
+
+    @POST("/supplier/Supplieravalability")
+    Call<Void> chechAvailable(@Body HashMap<String, String> map);
 }
