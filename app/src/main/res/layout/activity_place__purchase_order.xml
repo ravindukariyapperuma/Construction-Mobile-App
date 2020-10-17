@@ -172,6 +172,216 @@
                     android:hint="Select Date"/>
 
 
+                <TextView
+                    android:id="@+id/paymenttxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:textSize="18dp"
+                    android:textColor="#000000"
+                    android:text="Select Payment Method " />
+
+                <RadioGroup
+                    android:id="@+id/paymentradiogroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+
+                    <RadioButton
+                        android:id="@+id/card"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:textSize="18dp"
+                        android:textColor="#000000"
+                        android:text="Card Payment " />
+
+                    <RadioButton
+                        android:id="@+id/cOnd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Cash On Delivary"
+                        android:layout_margin="10dp"
+                        android:textSize="18dp"
+                        android:textColor="#000000"
+                        />
+
+
+
+
+                </RadioGroup>
+
+                <LinearLayout
+                    android:id="@+id/cardpaymetlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:textSize="18dp"
+                        android:textColor="#000000"
+                        android:text="Card Number : " />
+
+
+
+
+                    <EditText
+                        android:id="@+id/cnum"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+
+                       android:inputType="number"
+                        android:maxLength="16"
+                        android:layout_margin="10dp"
+                        android:textColor="#BDBDBD"
+
+
+                        android:background="#ffffff"
+
+                        android:hint="Card Number"/>
+
+
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:textSize="18dp"
+                        android:textColor="#000000"
+                        android:text="Card Holder Name : " />
+
+
+
+
+                    <EditText
+                        android:id="@+id/holderName"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ."
+
+                        android:layout_margin="10dp"
+                        android:textColor="#BDBDBD"
+                        android:textAllCaps="true"
+
+
+                        android:background="#ffffff"
+
+                        android:hint="Card Holder Name"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:textSize="18dp"
+                            android:textColor="#000000"
+                            android:text="CVV : " />
+
+
+
+
+                        <EditText
+                            android:id="@+id/cvv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+
+                           android:inputType="number"
+                            android:maxLength="3"
+
+                            android:layout_margin="10dp"
+                            android:textColor="#BDBDBD"
+                            android:textAllCaps="true"
+
+
+                            android:background="#ffffff"
+
+                            android:hint="CVV"/>
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:textSize="18dp"
+                            android:textColor="#000000"
+                            android:text="EXP date : " />
+
+
+
+
+                        <EditText
+                            android:id="@+id/expdate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+
+                            android:digits="0123456789/"
+                            android:maxLength="5"
+
+                            android:layout_margin="10dp"
+                            android:textColor="#BDBDBD"
+
+
+
+                            android:background="#ffffff"
+
+                            android:hint="EXP Date"/>
+
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/cOndelivery"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:textSize="18dp"
+                        android:textColor="#000000"
+                        android:text="Contact Number : " />
+
+
+
+
+                    <EditText
+                        android:id="@+id/mobileNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+
+                        android:inputType="number"
+                        android:maxLength="10"
+                        android:layout_margin="10dp"
+                        android:textColor="#BDBDBD"
+
+
+                        android:background="#ffffff"
+
+                        android:hint="Contact Number"/>
+
+
+                </LinearLayout>
+
+
 
                 <Button
                     android:id="@+id/Addrequisition"
